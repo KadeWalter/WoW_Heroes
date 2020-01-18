@@ -1,0 +1,13 @@
+/* 
+  Home.strings
+  WoW_Heroes
+
+  Created by Kade Walter on 1/17/20.
+  Copyright © 2020 Kade Walter. All rights reserved.
+*/
+
+"Screen Title" = "Home";
+
+"Character Select Header" = "Selected Character";
+
+"All Characters Header" = "All Characters";

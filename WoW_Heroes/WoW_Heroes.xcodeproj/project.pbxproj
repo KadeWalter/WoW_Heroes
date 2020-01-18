@@ -9,12 +9,16 @@
 /* Begin PBXBuildFile section */
 		19332C1923D29708006403B9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19332C1823D29708006403B9 /* AppDelegate.swift */; };
 		19332C1B23D29708006403B9 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19332C1A23D29708006403B9 /* SceneDelegate.swift */; };
-		19332C1D23D29708006403B9 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19332C1C23D29708006403B9 /* ViewController.swift */; };
-		19332C2023D29708006403B9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 19332C1E23D29708006403B9 /* Main.storyboard */; };
+		19332C1D23D29708006403B9 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19332C1C23D29708006403B9 /* TabBarController.swift */; };
 		19332C2323D29708006403B9 /* WoW_Heroes.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 19332C2123D29708006403B9 /* WoW_Heroes.xcdatamodeld */; };
 		19332C2523D29711006403B9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 19332C2423D29711006403B9 /* Assets.xcassets */; };
 		19332C2823D29711006403B9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 19332C2623D29711006403B9 /* LaunchScreen.storyboard */; };
 		19332C3323D29711006403B9 /* WoW_HeroesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19332C3223D29711006403B9 /* WoW_HeroesTests.swift */; };
+		19332C4323D29E95006403B9 /* HomeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19332C4223D29E95006403B9 /* HomeTableViewController.swift */; };
+		19332C4523D29F76006403B9 /* PVETableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19332C4423D29F75006403B9 /* PVETableViewController.swift */; };
+		19332C4723D29F82006403B9 /* GearTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19332C4623D29F82006403B9 /* GearTableViewController.swift */; };
+		19332C4923D29F8F006403B9 /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19332C4823D29F8F006403B9 /* SettingsTableViewController.swift */; };
+		1954FA2723D2A625006906F2 /* Home.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1954FA2623D2A625006906F2 /* Home.strings */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -31,8 +35,7 @@
 		19332C1523D29708006403B9 /* WoW_Heroes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WoW_Heroes.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		19332C1823D29708006403B9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		19332C1A23D29708006403B9 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		19332C1C23D29708006403B9 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		19332C1F23D29708006403B9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		19332C1C23D29708006403B9 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		19332C2223D29708006403B9 /* WoW_Heroes.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = WoW_Heroes.xcdatamodel; sourceTree = "<group>"; };
 		19332C2423D29711006403B9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		19332C2723D29711006403B9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -40,6 +43,11 @@
 		19332C2E23D29711006403B9 /* WoW_HeroesTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WoW_HeroesTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		19332C3223D29711006403B9 /* WoW_HeroesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WoW_HeroesTests.swift; sourceTree = "<group>"; };
 		19332C3423D29711006403B9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		19332C4223D29E95006403B9 /* HomeTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTableViewController.swift; sourceTree = "<group>"; };
+		19332C4423D29F75006403B9 /* PVETableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PVETableViewController.swift; sourceTree = "<group>"; };
+		19332C4623D29F82006403B9 /* GearTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GearTableViewController.swift; sourceTree = "<group>"; };
+		19332C4823D29F8F006403B9 /* SettingsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
+		1954FA2623D2A625006906F2 /* Home.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Home.strings; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,14 +89,12 @@
 		19332C1723D29708006403B9 /* WoW_Heroes */ = {
 			isa = PBXGroup;
 			children = (
-				19332C1823D29708006403B9 /* AppDelegate.swift */,
-				19332C1A23D29708006403B9 /* SceneDelegate.swift */,
-				19332C1C23D29708006403B9 /* ViewController.swift */,
-				19332C1E23D29708006403B9 /* Main.storyboard */,
-				19332C2423D29711006403B9 /* Assets.xcassets */,
-				19332C2623D29711006403B9 /* LaunchScreen.storyboard */,
 				19332C2923D29711006403B9 /* Info.plist */,
-				19332C2123D29708006403B9 /* WoW_Heroes.xcdatamodeld */,
+				19332C4123D29E5C006403B9 /* Controllers */,
+				19332C4F23D2A393006403B9 /* Custom Cells */,
+				19332C3D23D299C2006403B9 /* AppDelegate */,
+				19332C4023D29A07006403B9 /* Models */,
+				19332C3F23D29A00006403B9 /* Resources */,
 			);
 			path = WoW_Heroes;
 			sourceTree = "<group>";
@@ -100,6 +106,108 @@
 				19332C3423D29711006403B9 /* Info.plist */,
 			);
 			path = WoW_HeroesTests;
+			sourceTree = "<group>";
+		};
+		19332C3D23D299C2006403B9 /* AppDelegate */ = {
+			isa = PBXGroup;
+			children = (
+				19332C1823D29708006403B9 /* AppDelegate.swift */,
+				19332C1A23D29708006403B9 /* SceneDelegate.swift */,
+			);
+			path = AppDelegate;
+			sourceTree = "<group>";
+		};
+		19332C3E23D299EB006403B9 /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				19332C2423D29711006403B9 /* Assets.xcassets */,
+			);
+			path = Assets;
+			sourceTree = "<group>";
+		};
+		19332C3F23D29A00006403B9 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				19332C3E23D299EB006403B9 /* Assets */,
+				19332C2623D29711006403B9 /* LaunchScreen.storyboard */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		19332C4023D29A07006403B9 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				19332C2123D29708006403B9 /* WoW_Heroes.xcdatamodeld */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		19332C4123D29E5C006403B9 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				19332C4D23D2A273006403B9 /* Gear */,
+				19332C4A23D2A261006403B9 /* Home */,
+				19332C4B23D2A268006403B9 /* PvE */,
+				19332C4E23D2A279006403B9 /* Settings */,
+				19332C4C23D2A26D006403B9 /* Tab Bar */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		19332C4A23D2A261006403B9 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				1954FA2523D2A60D006906F2 /* Strings */,
+				19332C4223D29E95006403B9 /* HomeTableViewController.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		19332C4B23D2A268006403B9 /* PvE */ = {
+			isa = PBXGroup;
+			children = (
+				19332C4423D29F75006403B9 /* PVETableViewController.swift */,
+			);
+			path = PvE;
+			sourceTree = "<group>";
+		};
+		19332C4C23D2A26D006403B9 /* Tab Bar */ = {
+			isa = PBXGroup;
+			children = (
+				19332C1C23D29708006403B9 /* TabBarController.swift */,
+			);
+			path = "Tab Bar";
+			sourceTree = "<group>";
+		};
+		19332C4D23D2A273006403B9 /* Gear */ = {
+			isa = PBXGroup;
+			children = (
+				19332C4623D29F82006403B9 /* GearTableViewController.swift */,
+			);
+			path = Gear;
+			sourceTree = "<group>";
+		};
+		19332C4E23D2A279006403B9 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				19332C4823D29F8F006403B9 /* SettingsTableViewController.swift */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
+		19332C4F23D2A393006403B9 /* Custom Cells */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "Custom Cells";
+			sourceTree = "<group>";
+		};
+		1954FA2523D2A60D006906F2 /* Strings */ = {
+			isa = PBXGroup;
+			children = (
+				1954FA2623D2A625006906F2 /* Home.strings */,
+			);
+			path = Strings;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -185,7 +293,7 @@
 			files = (
 				19332C2823D29711006403B9 /* LaunchScreen.storyboard in Resources */,
 				19332C2523D29711006403B9 /* Assets.xcassets in Resources */,
-				19332C2023D29708006403B9 /* Main.storyboard in Resources */,
+				1954FA2723D2A625006906F2 /* Home.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -203,10 +311,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				19332C1D23D29708006403B9 /* ViewController.swift in Sources */,
+				19332C1D23D29708006403B9 /* TabBarController.swift in Sources */,
+				19332C4523D29F76006403B9 /* PVETableViewController.swift in Sources */,
 				19332C2323D29708006403B9 /* WoW_Heroes.xcdatamodeld in Sources */,
 				19332C1923D29708006403B9 /* AppDelegate.swift in Sources */,
+				19332C4923D29F8F006403B9 /* SettingsTableViewController.swift in Sources */,
+				19332C4723D29F82006403B9 /* GearTableViewController.swift in Sources */,
 				19332C1B23D29708006403B9 /* SceneDelegate.swift in Sources */,
+				19332C4323D29E95006403B9 /* HomeTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -229,14 +341,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		19332C1E23D29708006403B9 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				19332C1F23D29708006403B9 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		19332C2623D29711006403B9 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
