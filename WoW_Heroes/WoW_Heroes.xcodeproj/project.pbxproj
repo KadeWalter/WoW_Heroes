@@ -15,10 +15,17 @@
 		19332C2823D29711006403B9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 19332C2623D29711006403B9 /* LaunchScreen.storyboard */; };
 		19332C3323D29711006403B9 /* WoW_HeroesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19332C3223D29711006403B9 /* WoW_HeroesTests.swift */; };
 		19332C4323D29E95006403B9 /* HomeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19332C4223D29E95006403B9 /* HomeTableViewController.swift */; };
-		19332C4523D29F76006403B9 /* PVETableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19332C4423D29F75006403B9 /* PVETableViewController.swift */; };
-		19332C4723D29F82006403B9 /* GearTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19332C4623D29F82006403B9 /* GearTableViewController.swift */; };
-		19332C4923D29F8F006403B9 /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19332C4823D29F8F006403B9 /* SettingsTableViewController.swift */; };
+		193423C923F367FE007A30DE /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 193423C823F367FE007A30DE /* NetworkManager.swift */; };
+		193423CD23F5076F007A30DE /* FontManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 193423CC23F5076F007A30DE /* FontManager.swift */; };
 		1954FA2723D2A625006906F2 /* Home.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1954FA2623D2A625006906F2 /* Home.strings */; };
+		1965D20A24DB417C00FDBE66 /* Realm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1965D20924DB417C00FDBE66 /* Realm.swift */; };
+		19926DF72437F40F005B3C72 /* RegionSelectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19926DF62437F40F005B3C72 /* RegionSelectViewController.swift */; };
+		19B3BFC623F0629900486823 /* SCAccessToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19B3BFC523F0629900486823 /* SCAccessToken.swift */; };
+		19C9492D243820D4001780F2 /* NotificationNameExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19C9492C243820D4001780F2 /* NotificationNameExtension.swift */; };
+		19CF1D172436655B009F2700 /* SCCharacterProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19CF1D162436655B009F2700 /* SCCharacterProfile.swift */; };
+		19CF1D1A2437B954009F2700 /* SCRealmIndex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19CF1D192437B954009F2700 /* SCRealmIndex.swift */; };
+		19E9F4A5241C1DD600C464AC /* AddCharacterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19E9F4A3241C1DD600C464AC /* AddCharacterViewController.swift */; };
+		19E9F4A6241C1DD600C464AC /* AddCharacterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 19E9F4A4241C1DD600C464AC /* AddCharacterViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,10 +51,17 @@
 		19332C3223D29711006403B9 /* WoW_HeroesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WoW_HeroesTests.swift; sourceTree = "<group>"; };
 		19332C3423D29711006403B9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		19332C4223D29E95006403B9 /* HomeTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTableViewController.swift; sourceTree = "<group>"; };
-		19332C4423D29F75006403B9 /* PVETableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PVETableViewController.swift; sourceTree = "<group>"; };
-		19332C4623D29F82006403B9 /* GearTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GearTableViewController.swift; sourceTree = "<group>"; };
-		19332C4823D29F8F006403B9 /* SettingsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
+		193423C823F367FE007A30DE /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		193423CC23F5076F007A30DE /* FontManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontManager.swift; sourceTree = "<group>"; };
 		1954FA2623D2A625006906F2 /* Home.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Home.strings; sourceTree = "<group>"; };
+		1965D20924DB417C00FDBE66 /* Realm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Realm.swift; sourceTree = "<group>"; };
+		19926DF62437F40F005B3C72 /* RegionSelectViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegionSelectViewController.swift; sourceTree = "<group>"; };
+		19B3BFC523F0629900486823 /* SCAccessToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SCAccessToken.swift; sourceTree = "<group>"; };
+		19C9492C243820D4001780F2 /* NotificationNameExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationNameExtension.swift; sourceTree = "<group>"; };
+		19CF1D162436655B009F2700 /* SCCharacterProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SCCharacterProfile.swift; sourceTree = "<group>"; };
+		19CF1D192437B954009F2700 /* SCRealmIndex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SCRealmIndex.swift; sourceTree = "<group>"; };
+		19E9F4A3241C1DD600C464AC /* AddCharacterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCharacterViewController.swift; sourceTree = "<group>"; };
+		19E9F4A4241C1DD600C464AC /* AddCharacterViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddCharacterViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -91,9 +105,8 @@
 			children = (
 				19332C2923D29711006403B9 /* Info.plist */,
 				19332C4123D29E5C006403B9 /* Controllers */,
-				19332C4F23D2A393006403B9 /* Custom Cells */,
-				19332C3D23D299C2006403B9 /* AppDelegate */,
-				19332C4023D29A07006403B9 /* Models */,
+				193423CA23F50740007A30DE /* Utility */,
+				19332C4023D29A07006403B9 /* Core Data */,
 				19332C3F23D29A00006403B9 /* Resources */,
 			);
 			path = WoW_Heroes;
@@ -134,21 +147,21 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
-		19332C4023D29A07006403B9 /* Models */ = {
+		19332C4023D29A07006403B9 /* Core Data */ = {
 			isa = PBXGroup;
 			children = (
 				19332C2123D29708006403B9 /* WoW_Heroes.xcdatamodeld */,
+				1965D20924DB417C00FDBE66 /* Realm.swift */,
 			);
-			path = Models;
+			path = "Core Data";
 			sourceTree = "<group>";
 		};
 		19332C4123D29E5C006403B9 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				19332C4D23D2A273006403B9 /* Gear */,
+				19C9492B243820B8001780F2 /* Extensions */,
+				19332C3D23D299C2006403B9 /* AppDelegate */,
 				19332C4A23D2A261006403B9 /* Home */,
-				19332C4B23D2A268006403B9 /* PvE */,
-				19332C4E23D2A279006403B9 /* Settings */,
 				19332C4C23D2A26D006403B9 /* Tab Bar */,
 			);
 			path = Controllers;
@@ -157,18 +170,11 @@
 		19332C4A23D2A261006403B9 /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				19E9F4A0241C1D4600C464AC /* Add Character */,
 				1954FA2523D2A60D006906F2 /* Strings */,
 				19332C4223D29E95006403B9 /* HomeTableViewController.swift */,
 			);
 			path = Home;
-			sourceTree = "<group>";
-		};
-		19332C4B23D2A268006403B9 /* PvE */ = {
-			isa = PBXGroup;
-			children = (
-				19332C4423D29F75006403B9 /* PVETableViewController.swift */,
-			);
-			path = PvE;
 			sourceTree = "<group>";
 		};
 		19332C4C23D2A26D006403B9 /* Tab Bar */ = {
@@ -179,27 +185,21 @@
 			path = "Tab Bar";
 			sourceTree = "<group>";
 		};
-		19332C4D23D2A273006403B9 /* Gear */ = {
+		193423CA23F50740007A30DE /* Utility */ = {
 			isa = PBXGroup;
 			children = (
-				19332C4623D29F82006403B9 /* GearTableViewController.swift */,
+				193423CB23F5075F007A30DE /* Font */,
+				19B3BFC223F061B600486823 /* Service Calls */,
 			);
-			path = Gear;
+			path = Utility;
 			sourceTree = "<group>";
 		};
-		19332C4E23D2A279006403B9 /* Settings */ = {
+		193423CB23F5075F007A30DE /* Font */ = {
 			isa = PBXGroup;
 			children = (
-				19332C4823D29F8F006403B9 /* SettingsTableViewController.swift */,
+				193423CC23F5076F007A30DE /* FontManager.swift */,
 			);
-			path = Settings;
-			sourceTree = "<group>";
-		};
-		19332C4F23D2A393006403B9 /* Custom Cells */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = "Custom Cells";
+			path = Font;
 			sourceTree = "<group>";
 		};
 		1954FA2523D2A60D006906F2 /* Strings */ = {
@@ -208,6 +208,67 @@
 				1954FA2623D2A625006906F2 /* Home.strings */,
 			);
 			path = Strings;
+			sourceTree = "<group>";
+		};
+		19926DF52437F15B005B3C72 /* Region Select */ = {
+			isa = PBXGroup;
+			children = (
+				19926DF62437F40F005B3C72 /* RegionSelectViewController.swift */,
+			);
+			path = "Region Select";
+			sourceTree = "<group>";
+		};
+		19B3BFC223F061B600486823 /* Service Calls */ = {
+			isa = PBXGroup;
+			children = (
+				193423C823F367FE007A30DE /* NetworkManager.swift */,
+				19B3BFC323F061CF00486823 /* AccessToken */,
+				19B3BFC423F061D700486823 /* WoWCharacters */,
+				19CF1D182437B8E8009F2700 /* Realms */,
+			);
+			path = "Service Calls";
+			sourceTree = "<group>";
+		};
+		19B3BFC323F061CF00486823 /* AccessToken */ = {
+			isa = PBXGroup;
+			children = (
+				19B3BFC523F0629900486823 /* SCAccessToken.swift */,
+			);
+			path = AccessToken;
+			sourceTree = "<group>";
+		};
+		19B3BFC423F061D700486823 /* WoWCharacters */ = {
+			isa = PBXGroup;
+			children = (
+				19CF1D162436655B009F2700 /* SCCharacterProfile.swift */,
+			);
+			path = WoWCharacters;
+			sourceTree = "<group>";
+		};
+		19C9492B243820B8001780F2 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				19C9492C243820D4001780F2 /* NotificationNameExtension.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		19CF1D182437B8E8009F2700 /* Realms */ = {
+			isa = PBXGroup;
+			children = (
+				19CF1D192437B954009F2700 /* SCRealmIndex.swift */,
+			);
+			path = Realms;
+			sourceTree = "<group>";
+		};
+		19E9F4A0241C1D4600C464AC /* Add Character */ = {
+			isa = PBXGroup;
+			children = (
+				19926DF52437F15B005B3C72 /* Region Select */,
+				19E9F4A3241C1DD600C464AC /* AddCharacterViewController.swift */,
+				19E9F4A4241C1DD600C464AC /* AddCharacterViewController.xib */,
+			);
+			path = "Add Character";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -291,6 +352,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				19E9F4A6241C1DD600C464AC /* AddCharacterViewController.xib in Resources */,
 				19332C2823D29711006403B9 /* LaunchScreen.storyboard in Resources */,
 				19332C2523D29711006403B9 /* Assets.xcassets in Resources */,
 				1954FA2723D2A625006906F2 /* Home.strings in Resources */,
@@ -311,14 +373,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				19CF1D1A2437B954009F2700 /* SCRealmIndex.swift in Sources */,
 				19332C1D23D29708006403B9 /* TabBarController.swift in Sources */,
-				19332C4523D29F76006403B9 /* PVETableViewController.swift in Sources */,
+				19C9492D243820D4001780F2 /* NotificationNameExtension.swift in Sources */,
+				1965D20A24DB417C00FDBE66 /* Realm.swift in Sources */,
+				193423C923F367FE007A30DE /* NetworkManager.swift in Sources */,
 				19332C2323D29708006403B9 /* WoW_Heroes.xcdatamodeld in Sources */,
 				19332C1923D29708006403B9 /* AppDelegate.swift in Sources */,
-				19332C4923D29F8F006403B9 /* SettingsTableViewController.swift in Sources */,
-				19332C4723D29F82006403B9 /* GearTableViewController.swift in Sources */,
+				19E9F4A5241C1DD600C464AC /* AddCharacterViewController.swift in Sources */,
+				193423CD23F5076F007A30DE /* FontManager.swift in Sources */,
+				19B3BFC623F0629900486823 /* SCAccessToken.swift in Sources */,
+				19926DF72437F40F005B3C72 /* RegionSelectViewController.swift in Sources */,
 				19332C1B23D29708006403B9 /* SceneDelegate.swift in Sources */,
 				19332C4323D29E95006403B9 /* HomeTableViewController.swift in Sources */,
+				19CF1D172436655B009F2700 /* SCCharacterProfile.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -472,13 +540,15 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = Z4PM8J443B;
+				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
 				INFOPLIST_FILE = WoW_Heroes/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.kadewalter.WoW-Heroes.WoW-Heroes";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.kadewalter.WoW-Heroes";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_TREAT_WARNINGS_AS_ERRORS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -490,13 +560,15 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = Z4PM8J443B;
+				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
 				INFOPLIST_FILE = WoW_Heroes/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.kadewalter.WoW-Heroes.WoW-Heroes";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.kadewalter.WoW-Heroes";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_TREAT_WARNINGS_AS_ERRORS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

@@ -11,3 +11,7 @@
 "Character Select Header" = "Selected Character";
 
 "All Characters Header" = "All Characters";
+
+"No Character Selected" = "There is no character selected. Add one below.";
+
+"Add New Character" = "Add New Character";
