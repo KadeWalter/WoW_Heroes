@@ -17,9 +17,18 @@ class NetworkManager {
         blizzardBaseAPI = "https://%@.api.blizzard.com"
     }
     
+    class func printServiceCallReturnStatus(fromResponse response: URLResponse, forServiceCall serviceCall: String) {
+        var printString: String = ""
+        if let httpsResponse = response as? HTTPURLResponse {
+            printString.append("Network Manager: \n")
+            printString.append("\tNetwork Call - \(serviceCall)\n")
+            printString.append("\tService Response - \(httpsResponse.statusCode)\n")
+            print(printString)
+        }
+    }
+    
     func accessTokenNeedsRefreshed() {
         // Check if the access token needs refreshed. If it does, get a new one.
-        // TODO: - Remove print statements.
         if let accessTokenEpiration = UserDefaults.standard.value(forKey: "BlizzardAccessExpiration") as? Date {
             if Date() < accessTokenEpiration {
                 return

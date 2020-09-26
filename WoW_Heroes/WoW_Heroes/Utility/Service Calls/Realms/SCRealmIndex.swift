@@ -14,6 +14,8 @@ final class SCRealmIndex {
     private static var region: String = ""
     
     class func getRealms(region: String) {
+        let serviceCallName = "GetRealms"
+        
         // Create Params
         self.region = region
         var params: [String : String] = [:]
@@ -42,27 +44,55 @@ final class SCRealmIndex {
             request.httpMethod = "GET"
             
             let task = URLSession.shared.dataTask(with: request) { data, response, error in
-                guard let _ = data, error == nil else {
-                    print(error?.localizedDescription ?? "No data")
+                guard let data = data, let response = response, error == nil else {
+                    print(error?.localizedDescription ?? "No realm data retreived.")
                     return
                 }
-                // TODO: - decode realms and add new ones to core data.
+                
+                NetworkManager.printServiceCallReturnStatus(fromResponse: response, forServiceCall: serviceCallName)
+                
+                do {
+                    let managedObjectContext = WHNSManagedObject.WHManagedObjectContext()
+                    let decodedRealmData = try JSONDecoder().decode(Realms.self, from: data)
+                    for realm in decodedRealmData.realms {
+                        self.processRealmData(withData: realm, region: region, context: managedObjectContext)
+                    }
+                    try managedObjectContext.save()
+                    NotificationCenter.default.post(name: .didRetrieveRealmList, object: nil)
+                } catch {
+                    print(error)
+                }
             }
             task.resume()
-            
+        }
+    }
+    
+    private class func processRealmData(withData realmData: RealmData, region: String, context: NSManagedObjectContext) {
+        guard let realm = Realm.createWithoutInsert(context: context) else { return }
+        realm.name = realmData.name
+        realm.slug = realmData.slug
+        realm.id = realmData.id
+        realm.region = region
+        
+        if let existingRealm = Realm.fetchRealm(withId: Int(realmData.id), region: region, context: context) {
+            // If the realm already exists, just update it.
+            existingRealm.updateRealm(fromRealm: realm)
+        } else {
+            // Otherwise, insert a new one into Core Data.
+            realm.insert(intoContext: context)
         }
     }
 }
 
-// Struct for decoding realms.
+// Structs for decoding realms.
 extension SCRealmIndex {
     public struct Realms: Codable {
-        var realms: [Realmy]
+        var realms: [RealmData]
     }
-    
-    struct Realmy: Codable {
-        var name: String
-        var id: Int
-        var slug: String
-    }
+}
+
+struct RealmData: Codable {
+    var name: String
+    var id: Int32
+    var slug: String
 }

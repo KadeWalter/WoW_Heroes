@@ -18,7 +18,7 @@ class AddCharacterViewController: UIViewController {
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var realmTextField: UITextField!
     
-//    var realms: [Realm] = []
+    var realms: [Realm] = []
     
     weak var addDelegate: CharacterAddedDelegate?
     let region: String
@@ -57,7 +57,8 @@ extension AddCharacterViewController {
     @objc func realmsRetrieved(notif: Notification) {
         NotificationCenter.default.removeObserver(self, name: .didRetrieveRealmList, object: nil)
         // Fetch the realms for core data and store them alphabetically:
-        
+        realms = Realm.fetchAllRealms(forRegion: region)
+        realms = realms.sorted(by: { $0.name < $1.name })
     }
     
     @objc func saveCharacter() {
@@ -75,11 +76,11 @@ extension AddCharacterViewController: UIPickerViewDataSource, UIPickerViewDelega
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return 1
+        return realms.count
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return ""
+        return realms[row].name
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
@@ -107,8 +108,9 @@ extension AddCharacterViewController {
         realmPicker.backgroundColor = .white
         
         // Create tool bar for picker view.
-        let toolbar = UIToolbar()
-        toolbar.sizeToFit()
+        let toolbar = UIToolbar(frame: CGRect(x:0, y: 0,width:UIScreen.main.bounds.width, height:44))
+        toolbar.translatesAutoresizingMaskIntoConstraints = false
+        toolbar.barStyle = .default
         let flexBarButton = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
         let doneButton = UIBarButtonItem(title: "Done", style: .done, target: self, action: #selector(dismissKeyboard))
         toolbar.setItems([flexBarButton, doneButton], animated: true)
