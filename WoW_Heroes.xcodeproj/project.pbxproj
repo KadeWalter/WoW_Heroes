@@ -13,11 +13,14 @@
 		19332C2323D29708006403B9 /* WoW_Heroes.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 19332C2123D29708006403B9 /* WoW_Heroes.xcdatamodeld */; };
 		19332C2523D29711006403B9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 19332C2423D29711006403B9 /* Assets.xcassets */; };
 		19332C2823D29711006403B9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 19332C2623D29711006403B9 /* LaunchScreen.storyboard */; };
-		19332C3323D29711006403B9 /* WoW_HeroesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19332C3223D29711006403B9 /* WoW_HeroesTests.swift */; };
 		19332C4323D29E95006403B9 /* HomeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19332C4223D29E95006403B9 /* HomeTableViewController.swift */; };
 		193423C923F367FE007A30DE /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 193423C823F367FE007A30DE /* NetworkManager.swift */; };
 		193423CD23F5076F007A30DE /* FontManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 193423CC23F5076F007A30DE /* FontManager.swift */; };
 		1954FA2723D2A625006906F2 /* Home.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1954FA2623D2A625006906F2 /* Home.strings */; };
+		19623452251FD97700464FA7 /* UserDefaultsHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19623451251FD97700464FA7 /* UserDefaultsHelper.swift */; };
+		19623456251FDC5400464FA7 /* GlobalStringDefinitions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19623455251FDC5400464FA7 /* GlobalStringDefinitions.swift */; };
+		1962347A251FFF3B00464FA7 /* UIViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19623479251FFF3B00464FA7 /* UIViewControllerExtension.swift */; };
+		196234802520014600464FA7 /* WoW_HeroesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1962347F2520014600464FA7 /* WoW_HeroesTests.swift */; };
 		1965D20A24DB417C00FDBE66 /* Realm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1965D20924DB417C00FDBE66 /* Realm.swift */; };
 		19926DF72437F40F005B3C72 /* RegionSelectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19926DF62437F40F005B3C72 /* RegionSelectViewController.swift */; };
 		19B3BFC623F0629900486823 /* SCAccessToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19B3BFC523F0629900486823 /* SCAccessToken.swift */; };
@@ -49,12 +52,15 @@
 		19332C2723D29711006403B9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		19332C2923D29711006403B9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		19332C2E23D29711006403B9 /* WoW_HeroesTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WoW_HeroesTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		19332C3223D29711006403B9 /* WoW_HeroesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WoW_HeroesTests.swift; sourceTree = "<group>"; };
 		19332C3423D29711006403B9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		19332C4223D29E95006403B9 /* HomeTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTableViewController.swift; sourceTree = "<group>"; };
 		193423C823F367FE007A30DE /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		193423CC23F5076F007A30DE /* FontManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontManager.swift; sourceTree = "<group>"; };
 		1954FA2623D2A625006906F2 /* Home.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Home.strings; sourceTree = "<group>"; };
+		19623451251FD97700464FA7 /* UserDefaultsHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsHelper.swift; sourceTree = "<group>"; };
+		19623455251FDC5400464FA7 /* GlobalStringDefinitions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalStringDefinitions.swift; sourceTree = "<group>"; };
+		19623479251FFF3B00464FA7 /* UIViewControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtension.swift; sourceTree = "<group>"; };
+		1962347F2520014600464FA7 /* WoW_HeroesTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WoW_HeroesTests.swift; sourceTree = "<group>"; };
 		1965D20924DB417C00FDBE66 /* Realm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Realm.swift; sourceTree = "<group>"; };
 		19926DF62437F40F005B3C72 /* RegionSelectViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegionSelectViewController.swift; sourceTree = "<group>"; };
 		19B3BFC523F0629900486823 /* SCAccessToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SCAccessToken.swift; sourceTree = "<group>"; };
@@ -117,7 +123,7 @@
 		19332C3123D29711006403B9 /* WoW_HeroesTests */ = {
 			isa = PBXGroup;
 			children = (
-				19332C3223D29711006403B9 /* WoW_HeroesTests.swift */,
+				1962347F2520014600464FA7 /* WoW_HeroesTests.swift */,
 				19332C3423D29711006403B9 /* Info.plist */,
 			);
 			path = WoW_HeroesTests;
@@ -191,6 +197,7 @@
 		193423CA23F50740007A30DE /* Utility */ = {
 			isa = PBXGroup;
 			children = (
+				19623450251FD96200464FA7 /* User Defaults */,
 				193423CB23F5075F007A30DE /* Font */,
 				19B3BFC223F061B600486823 /* Service Calls */,
 			);
@@ -211,6 +218,14 @@
 				1954FA2623D2A625006906F2 /* Home.strings */,
 			);
 			path = Strings;
+			sourceTree = "<group>";
+		};
+		19623450251FD96200464FA7 /* User Defaults */ = {
+			isa = PBXGroup;
+			children = (
+				19623451251FD97700464FA7 /* UserDefaultsHelper.swift */,
+			);
+			path = "User Defaults";
 			sourceTree = "<group>";
 		};
 		19926DF52437F15B005B3C72 /* Region Select */ = {
@@ -252,6 +267,8 @@
 			isa = PBXGroup;
 			children = (
 				19C9492C243820D4001780F2 /* NotificationNameExtension.swift */,
+				19623455251FDC5400464FA7 /* GlobalStringDefinitions.swift */,
+				19623479251FFF3B00464FA7 /* UIViewControllerExtension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -335,6 +352,7 @@
 					};
 					19332C2D23D29711006403B9 = {
 						CreatedOnToolsVersion = 11.3.1;
+						LastSwiftMigration = 1200;
 						TestTargetID = 19332C1423D29708006403B9;
 					};
 				};
@@ -385,6 +403,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				19CF1D1A2437B954009F2700 /* SCRealmIndex.swift in Sources */,
+				19623456251FDC5400464FA7 /* GlobalStringDefinitions.swift in Sources */,
+				1962347A251FFF3B00464FA7 /* UIViewControllerExtension.swift in Sources */,
 				19332C1D23D29708006403B9 /* TabBarController.swift in Sources */,
 				19C9492D243820D4001780F2 /* NotificationNameExtension.swift in Sources */,
 				1965D20A24DB417C00FDBE66 /* Realm.swift in Sources */,
@@ -394,6 +414,7 @@
 				19E9F4A5241C1DD600C464AC /* AddCharacterViewController.swift in Sources */,
 				19FDC81924DB5FC000621FF5 /* WHNSManagedObject.swift in Sources */,
 				193423CD23F5076F007A30DE /* FontManager.swift in Sources */,
+				19623452251FD97700464FA7 /* UserDefaultsHelper.swift in Sources */,
 				19B3BFC623F0629900486823 /* SCAccessToken.swift in Sources */,
 				19926DF72437F40F005B3C72 /* RegionSelectViewController.swift in Sources */,
 				19332C1B23D29708006403B9 /* SceneDelegate.swift in Sources */,
@@ -406,7 +427,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				19332C3323D29711006403B9 /* WoW_HeroesTests.swift in Sources */,
+				196234802520014600464FA7 /* WoW_HeroesTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -591,6 +612,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = Z4PM8J443B;
 				INFOPLIST_FILE = WoW_HeroesTests/Info.plist;
@@ -602,6 +624,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.kadewalter.WoW-Heroes.WoW-HeroesTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/WoW_Heroes.app/WoW_Heroes";
@@ -613,6 +636,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = Z4PM8J443B;
 				INFOPLIST_FILE = WoW_HeroesTests/Info.plist;

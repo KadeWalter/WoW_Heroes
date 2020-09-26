@@ -26,7 +26,9 @@ class WHNSManagedObject: NSManagedObject {
     
     // Function for getting managed object context
     class func WHManagedObjectContext() -> NSManagedObjectContext {
-        return AppDelegate.delegate().persistentContainer.viewContext
+        guard let appDel = AppDelegate.sharedAppDelegate else { fatalError() }
+        return appDel.persistentContainer.viewContext
+        
     }
     
     // Insert Functions

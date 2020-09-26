@@ -18,11 +18,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return true
     }
     
-    class func delegate() -> AppDelegate {
-        DispatchQueue.main.sync {
-            guard let delegate = UIApplication.shared.delegate as? AppDelegate else { fatalError() }
-            return delegate
+    /**
+     sharedAppDelegate returns the app delegate on the appropriate thread.
+    */
+    static var sharedAppDelegate: AppDelegate? {
+        if Thread.isMainThread {
+            return UIApplication.shared.delegate as? AppDelegate
         }
+        
+        var appDelegate: AppDelegate?
+        DispatchQueue.main.sync {
+            appDelegate = UIApplication.shared.delegate as? AppDelegate
+        }
+        return appDelegate
     }
     
     // MARK: - Core Data stack

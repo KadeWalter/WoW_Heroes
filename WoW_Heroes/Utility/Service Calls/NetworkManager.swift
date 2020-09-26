@@ -26,6 +26,13 @@ class NetworkManager {
             print(printString)
         }
     }
+}
+
+// MARK: - Blizzard Access Token and URL Functions
+extension NetworkManager {
+    func getBlizzardBaseAPI(region: String) -> String {
+        return String(format: blizzardBaseAPI, region)
+    }
     
     func accessTokenNeedsRefreshed() {
         // Check if the access token needs refreshed. If it does, get a new one.
@@ -41,13 +48,12 @@ class NetworkManager {
         SCAccessToken.getAccessToken()
     }
     
-    func getBlizzardBaseAPI(region: String) -> String {
-        return String(format: blizzardBaseAPI, region)
-    }
-    
     func getAccessToken() -> String {
         // Return the current access token from User Defaults.
-        return UserDefaults.standard.string(forKey: "BlizzardAccessToken") ?? ""
+        if let token = UserDefaultsHelper.getValue(forKey: "blizzardApiToken") as? String {
+            return token
+        }
+        return ""
     }
     
     func getLocale() -> String {

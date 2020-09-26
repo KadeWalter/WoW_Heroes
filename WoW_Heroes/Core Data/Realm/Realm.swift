@@ -78,6 +78,16 @@ class Realm: WHNSManagedObject, Codable {
             return []
         }
     }
+    
+    class func removeAllRealms(forRegion region: String, context: NSManagedObjectContext) {
+        let DelAllReqVar = NSBatchDeleteRequest(fetchRequest: NSFetchRequest<NSFetchRequestResult>(entityName: identifier()))
+        do {
+            try context.execute(DelAllReqVar)
+        }
+        catch {
+            print(error)
+        }
+    }
 }
 
 extension Realm {

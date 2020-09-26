@@ -13,7 +13,7 @@ final class SCRealmIndex {
     
     private static var region: String = ""
     
-    class func getRealms(region: String) {
+    class func getRealms(region: String, completion: @escaping (Bool) -> Void) {
         let serviceCallName = "GetRealms"
         
         // Create Params
@@ -53,15 +53,29 @@ final class SCRealmIndex {
                 
                 do {
                     let managedObjectContext = WHNSManagedObject.WHManagedObjectContext()
+                    
+                    // Remove any exisiting realms for the region from Core Data.
+                    // NEEDED!!!! Otherwise, we try to edit too many realms at once.
+                    Realm.removeAllRealms(forRegion: region, context: managedObjectContext)
+                    
+                    // Add the realms to core data.
                     let decodedRealmData = try JSONDecoder().decode(Realms.self, from: data)
                     for realm in decodedRealmData.realms {
                         self.processRealmData(withData: realm, region: region, context: managedObjectContext)
                     }
                     try managedObjectContext.save()
-                    NotificationCenter.default.post(name: .didRetrieveRealmList, object: nil)
+                    
+                    // Set the next realm fetch date to now + 7 days.
+                    let calendar = Calendar.current
+                    let nextRefreshDate = calendar.date(byAdding: .day, value: 7, to: Date())
+                    UserDefaultsHelper.set(value: nextRefreshDate, forKey: realmRefreshDate)
+                    
+                    completion(true)
                 } catch {
                     print(error)
+                    completion(false)
                 }
+                completion(false)
             }
             task.resume()
         }

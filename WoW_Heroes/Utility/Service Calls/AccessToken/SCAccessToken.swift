@@ -68,13 +68,13 @@ final class SCAccessToken {
             } catch {
                 print("Unable to decode access token.")
             }
-            UserDefaults.standard.set(accessToken.access_token, forKey: "BlizzardAccessToken")
-            UserDefaults.standard.set(Date().addingTimeInterval(accessToken.expires_in), forKey: "BlizzardAccessExpiration")
+            UserDefaultsHelper.set(value: accessToken.access_token, forKey: blizzardApiKey)
+            UserDefaultsHelper.set(value: Date().addingTimeInterval(accessToken.expires_in), forKey: accessTokenExpiration)
             semaphore.signal()
         }
         task.resume()
         
-        // Wait for the semaphore to signal.
+        // Wait for the semaphore to signal so we know we have the token before entering the app.
         semaphore.wait()
     }
 }

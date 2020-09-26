@@ -50,15 +50,18 @@ extension AddCharacterViewController {
     }
     
     func getRealms() {
-        NotificationCenter.default.addObserver(self, selector: #selector(realmsRetrieved(notif:)), name: .didRetrieveRealmList, object: nil)
-        SCRealmIndex.getRealms(region: self.region)
-    }
-    
-    @objc func realmsRetrieved(notif: Notification) {
-        NotificationCenter.default.removeObserver(self, name: .didRetrieveRealmList, object: nil)
-        // Fetch the realms for core data and store them alphabetically:
-        realms = Realm.fetchAllRealms(forRegion: region)
-        realms = realms.sorted(by: { $0.name < $1.name })
+        let refreshDate : Date = UserDefaultsHelper.getValue(forKey: realmRefreshDate) as? Date ?? Date()
+        if refreshDate <= Date() {
+            showSpinner(onView: self.view)
+            SCRealmIndex.getRealms(region: self.region) { success in
+                if success {
+                    self.realms = Realm.fetchAllRealms(forRegion: self.region).sorted(by: { $0.name < $1.name })
+                    self.removeSpinner()
+                }
+            }
+        } else {
+            realms = Realm.fetchAllRealms(forRegion: region).sorted(by: {$0.name < $1.name })
+        }
     }
     
     @objc func saveCharacter() {
