@@ -21,14 +21,17 @@
 		19623456251FDC5400464FA7 /* GlobalStringDefinitions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19623455251FDC5400464FA7 /* GlobalStringDefinitions.swift */; };
 		1962347A251FFF3B00464FA7 /* UIViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19623479251FFF3B00464FA7 /* UIViewControllerExtension.swift */; };
 		196234802520014600464FA7 /* WoW_HeroesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1962347F2520014600464FA7 /* WoW_HeroesTests.swift */; };
+		1962348425200DE100464FA7 /* AddCharacterTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1962348325200DE100464FA7 /* AddCharacterTableViewController.swift */; };
+		19623496252012F600464FA7 /* WHTextFieldTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19623495252012F600464FA7 /* WHTextFieldTableViewCell.swift */; };
+		1962349A2520251100464FA7 /* RealmSelectPickerViewTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 196234992520251100464FA7 /* RealmSelectPickerViewTableViewCell.swift */; };
+		196234A2252059AF00464FA7 /* AddCharacter.strings in Resources */ = {isa = PBXBuildFile; fileRef = 196234A1252059AF00464FA7 /* AddCharacter.strings */; };
+		196234A825205A2600464FA7 /* GlobalStrings.strings in Resources */ = {isa = PBXBuildFile; fileRef = 196234A725205A2600464FA7 /* GlobalStrings.strings */; };
 		1965D20A24DB417C00FDBE66 /* Realm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1965D20924DB417C00FDBE66 /* Realm.swift */; };
 		19926DF72437F40F005B3C72 /* RegionSelectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19926DF62437F40F005B3C72 /* RegionSelectViewController.swift */; };
 		19B3BFC623F0629900486823 /* SCAccessToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19B3BFC523F0629900486823 /* SCAccessToken.swift */; };
 		19C9492D243820D4001780F2 /* NotificationNameExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19C9492C243820D4001780F2 /* NotificationNameExtension.swift */; };
 		19CF1D172436655B009F2700 /* SCCharacterProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19CF1D162436655B009F2700 /* SCCharacterProfile.swift */; };
 		19CF1D1A2437B954009F2700 /* SCRealmIndex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19CF1D192437B954009F2700 /* SCRealmIndex.swift */; };
-		19E9F4A5241C1DD600C464AC /* AddCharacterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19E9F4A3241C1DD600C464AC /* AddCharacterViewController.swift */; };
-		19E9F4A6241C1DD600C464AC /* AddCharacterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 19E9F4A4241C1DD600C464AC /* AddCharacterViewController.xib */; };
 		19FDC81924DB5FC000621FF5 /* WHNSManagedObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19FDC81824DB5FC000621FF5 /* WHNSManagedObject.swift */; };
 /* End PBXBuildFile section */
 
@@ -61,14 +64,17 @@
 		19623455251FDC5400464FA7 /* GlobalStringDefinitions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalStringDefinitions.swift; sourceTree = "<group>"; };
 		19623479251FFF3B00464FA7 /* UIViewControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtension.swift; sourceTree = "<group>"; };
 		1962347F2520014600464FA7 /* WoW_HeroesTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WoW_HeroesTests.swift; sourceTree = "<group>"; };
+		1962348325200DE100464FA7 /* AddCharacterTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCharacterTableViewController.swift; sourceTree = "<group>"; };
+		19623495252012F600464FA7 /* WHTextFieldTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WHTextFieldTableViewCell.swift; sourceTree = "<group>"; };
+		196234992520251100464FA7 /* RealmSelectPickerViewTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmSelectPickerViewTableViewCell.swift; sourceTree = "<group>"; };
+		196234A1252059AF00464FA7 /* AddCharacter.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = AddCharacter.strings; sourceTree = "<group>"; };
+		196234A725205A2600464FA7 /* GlobalStrings.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = GlobalStrings.strings; sourceTree = "<group>"; };
 		1965D20924DB417C00FDBE66 /* Realm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Realm.swift; sourceTree = "<group>"; };
 		19926DF62437F40F005B3C72 /* RegionSelectViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegionSelectViewController.swift; sourceTree = "<group>"; };
 		19B3BFC523F0629900486823 /* SCAccessToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SCAccessToken.swift; sourceTree = "<group>"; };
 		19C9492C243820D4001780F2 /* NotificationNameExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationNameExtension.swift; sourceTree = "<group>"; };
 		19CF1D162436655B009F2700 /* SCCharacterProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SCCharacterProfile.swift; sourceTree = "<group>"; };
 		19CF1D192437B954009F2700 /* SCRealmIndex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SCRealmIndex.swift; sourceTree = "<group>"; };
-		19E9F4A3241C1DD600C464AC /* AddCharacterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCharacterViewController.swift; sourceTree = "<group>"; };
-		19E9F4A4241C1DD600C464AC /* AddCharacterViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddCharacterViewController.xib; sourceTree = "<group>"; };
 		19FDC81824DB5FC000621FF5 /* WHNSManagedObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WHNSManagedObject.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -113,6 +119,7 @@
 			children = (
 				19332C2923D29711006403B9 /* Info.plist */,
 				19332C4123D29E5C006403B9 /* Controllers */,
+				19623487252010CE00464FA7 /* Custom Views */,
 				193423CA23F50740007A30DE /* Utility */,
 				19332C4023D29A07006403B9 /* Core Data */,
 				19332C3F23D29A00006403B9 /* Resources */,
@@ -197,8 +204,8 @@
 		193423CA23F50740007A30DE /* Utility */ = {
 			isa = PBXGroup;
 			children = (
-				19623450251FD96200464FA7 /* User Defaults */,
 				193423CB23F5075F007A30DE /* Font */,
+				19623450251FD96200464FA7 /* User Defaults */,
 				19B3BFC223F061B600486823 /* Service Calls */,
 			);
 			path = Utility;
@@ -215,6 +222,7 @@
 		1954FA2523D2A60D006906F2 /* Strings */ = {
 			isa = PBXGroup;
 			children = (
+				196234A1252059AF00464FA7 /* AddCharacter.strings */,
 				1954FA2623D2A625006906F2 /* Home.strings */,
 			);
 			path = Strings;
@@ -228,21 +236,38 @@
 			path = "User Defaults";
 			sourceTree = "<group>";
 		};
-		19926DF52437F15B005B3C72 /* Region Select */ = {
+		19623487252010CE00464FA7 /* Custom Views */ = {
 			isa = PBXGroup;
 			children = (
-				19926DF62437F40F005B3C72 /* RegionSelectViewController.swift */,
+				19623488252010E600464FA7 /* TableView Cells */,
 			);
-			path = "Region Select";
+			path = "Custom Views";
+			sourceTree = "<group>";
+		};
+		19623488252010E600464FA7 /* TableView Cells */ = {
+			isa = PBXGroup;
+			children = (
+				196234992520251100464FA7 /* RealmSelectPickerViewTableViewCell.swift */,
+				19623495252012F600464FA7 /* WHTextFieldTableViewCell.swift */,
+			);
+			path = "TableView Cells";
+			sourceTree = "<group>";
+		};
+		196234AD25205A3400464FA7 /* Strings */ = {
+			isa = PBXGroup;
+			children = (
+				196234A725205A2600464FA7 /* GlobalStrings.strings */,
+			);
+			path = Strings;
 			sourceTree = "<group>";
 		};
 		19B3BFC223F061B600486823 /* Service Calls */ = {
 			isa = PBXGroup;
 			children = (
-				193423C823F367FE007A30DE /* NetworkManager.swift */,
 				19B3BFC323F061CF00486823 /* AccessToken */,
-				19B3BFC423F061D700486823 /* WoWCharacters */,
 				19CF1D182437B8E8009F2700 /* Realms */,
+				19B3BFC423F061D700486823 /* WoWCharacters */,
+				193423C823F367FE007A30DE /* NetworkManager.swift */,
 			);
 			path = "Service Calls";
 			sourceTree = "<group>";
@@ -266,8 +291,9 @@
 		19C9492B243820B8001780F2 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				19C9492C243820D4001780F2 /* NotificationNameExtension.swift */,
+				196234AD25205A3400464FA7 /* Strings */,
 				19623455251FDC5400464FA7 /* GlobalStringDefinitions.swift */,
+				19C9492C243820D4001780F2 /* NotificationNameExtension.swift */,
 				19623479251FFF3B00464FA7 /* UIViewControllerExtension.swift */,
 			);
 			path = Extensions;
@@ -284,9 +310,8 @@
 		19E9F4A0241C1D4600C464AC /* Add Character */ = {
 			isa = PBXGroup;
 			children = (
-				19926DF52437F15B005B3C72 /* Region Select */,
-				19E9F4A3241C1DD600C464AC /* AddCharacterViewController.swift */,
-				19E9F4A4241C1DD600C464AC /* AddCharacterViewController.xib */,
+				1962348325200DE100464FA7 /* AddCharacterTableViewController.swift */,
+				19926DF62437F40F005B3C72 /* RegionSelectViewController.swift */,
 			);
 			path = "Add Character";
 			sourceTree = "<group>";
@@ -381,10 +406,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				19E9F4A6241C1DD600C464AC /* AddCharacterViewController.xib in Resources */,
 				19332C2823D29711006403B9 /* LaunchScreen.storyboard in Resources */,
 				19332C2523D29711006403B9 /* Assets.xcassets in Resources */,
+				196234A825205A2600464FA7 /* GlobalStrings.strings in Resources */,
 				1954FA2723D2A625006906F2 /* Home.strings in Resources */,
+				196234A2252059AF00464FA7 /* AddCharacter.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -402,16 +428,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				19623496252012F600464FA7 /* WHTextFieldTableViewCell.swift in Sources */,
 				19CF1D1A2437B954009F2700 /* SCRealmIndex.swift in Sources */,
 				19623456251FDC5400464FA7 /* GlobalStringDefinitions.swift in Sources */,
 				1962347A251FFF3B00464FA7 /* UIViewControllerExtension.swift in Sources */,
+				1962348425200DE100464FA7 /* AddCharacterTableViewController.swift in Sources */,
 				19332C1D23D29708006403B9 /* TabBarController.swift in Sources */,
 				19C9492D243820D4001780F2 /* NotificationNameExtension.swift in Sources */,
 				1965D20A24DB417C00FDBE66 /* Realm.swift in Sources */,
 				193423C923F367FE007A30DE /* NetworkManager.swift in Sources */,
 				19332C2323D29708006403B9 /* WoW_Heroes.xcdatamodeld in Sources */,
 				19332C1923D29708006403B9 /* AppDelegate.swift in Sources */,
-				19E9F4A5241C1DD600C464AC /* AddCharacterViewController.swift in Sources */,
+				1962349A2520251100464FA7 /* RealmSelectPickerViewTableViewCell.swift in Sources */,
 				19FDC81924DB5FC000621FF5 /* WHNSManagedObject.swift in Sources */,
 				193423CD23F5076F007A30DE /* FontManager.swift in Sources */,
 				19623452251FD97700464FA7 /* UserDefaultsHelper.swift in Sources */,

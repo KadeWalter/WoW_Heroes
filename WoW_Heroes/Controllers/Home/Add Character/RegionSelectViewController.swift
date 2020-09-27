@@ -8,6 +8,7 @@
 
 import UIKit
 
+// TODO: - Change this to a table view
 class RegionSelectViewController: UIViewController {
 
     lazy var usButton = lazyRegionButton(regionName: "US")
@@ -42,22 +43,22 @@ class RegionSelectViewController: UIViewController {
 // MARK: - Button Selected Functions
 extension RegionSelectViewController {
     @objc func usButtonSelected() {
-        let vc = AddCharacterViewController(region: "us")
+        let vc = AddCharacterTableViewController(region: "us")
         self.navigationController?.pushViewController(vc, animated: true)
     }
     
     @objc func euButtonSelected() {
-        let vc = AddCharacterViewController(region: "eu")
+        let vc = AddCharacterTableViewController(region: "eu")
         self.navigationController?.pushViewController(vc, animated: true)
     }
     
     @objc func krButtonSelected() {
-        let vc = AddCharacterViewController(region: "kr")
+        let vc = AddCharacterTableViewController(region: "kr")
         self.navigationController?.pushViewController(vc, animated: true)
     }
     
     @objc func twButtonSelected() {
-        let vc = AddCharacterViewController(region: "tw")
+        let vc = AddCharacterTableViewController(region: "tw")
         self.navigationController?.pushViewController(vc, animated: true)
     }
 }
