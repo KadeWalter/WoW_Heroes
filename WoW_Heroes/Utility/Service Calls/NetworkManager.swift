@@ -8,6 +8,8 @@
 
 import Foundation
 
+typealias NetworkCompletionBlock = (_ data: Data?, _ response: URLResponse?, _ error: Error?) -> Void
+
 class NetworkManager {
     
     static let shared = NetworkManager()
@@ -20,7 +22,7 @@ class NetworkManager {
 
 // MARK: - Task Execution Functions
 extension NetworkManager {
-    class func executeTask(forRequest request: URLRequest, serviceCallName: String, _ completion : @escaping(Data?, URLResponse?, Error?) -> Void) {
+    class func executeTask(forRequest request: URLRequest, serviceCallName: String, _ completion : @escaping NetworkCompletionBlock) {
         let task = URLSession.shared.dataTask(with: request) { data, response, error in
             if let response = response {
                 printServiceCallReturnStatus(fromResponse: response, forServiceCall: serviceCallName)
