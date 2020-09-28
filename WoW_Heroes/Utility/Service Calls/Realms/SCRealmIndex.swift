@@ -67,8 +67,8 @@ final class SCRealmIndex {
                     
                     // Set the next realm fetch date to now + 7 days.
                     let calendar = Calendar.current
-                    let nextRefreshDate = calendar.date(byAdding: .day, value: 7, to: Date())
-                    UserDefaultsHelper.set(value: nextRefreshDate, forKey: realmRefreshDate)
+                    let nextRefreshDate = calendar.date(byAdding: .day, value: 3, to: Date())
+                    UserDefaultsHelper.set(value: nextRefreshDate, forKey: "\(realmRefreshDate)\(region)")
                     
                     completion(true)
                 } catch {

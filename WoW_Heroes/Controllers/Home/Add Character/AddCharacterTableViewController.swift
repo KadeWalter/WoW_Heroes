@@ -9,13 +9,12 @@
 import UIKit
 
 protocol CharacterAddedDelegate: class {
-    func characterAdded()
+    func characterAdded(characterName name: String, realm: Realm)
 }
 
 class AddCharacterTableViewController: UITableViewController {
     
-    weak var addDelegate: CharacterAddedDelegate?
-    
+    weak var addCharacterDelegate: CharacterAddedDelegate?
     var tableModel: [AddCharacterTableModelRows]
     let region: String
     var realms: [Realm] = []
@@ -36,10 +35,9 @@ class AddCharacterTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.register(WHTextFieldTableViewCell.self, forCellReuseIdentifier: WHTextFieldTableViewCell.identifier)
+        tableView.register(TextFieldTableViewCell.self, forCellReuseIdentifier: TextFieldTableViewCell.identifier)
         tableView.register(RealmSelectPickerViewTableViewCell.self, forCellReuseIdentifier: RealmSelectPickerViewTableViewCell.identifier)
-        let saveButton = UIBarButtonItem(title: localizedSave(), style: .done, target: self, action: #selector(saveCharacter))
-        self.navigationItem.rightBarButtonItem = saveButton
+        initializeViews()
         buildTableModel()
         getRealms()
     }
@@ -52,7 +50,7 @@ class AddCharacterTableViewController: UITableViewController {
     }
     
     func getRealms() {
-        let refreshDate : Date = UserDefaultsHelper.getValue(forKey: realmRefreshDate) as? Date ?? Date()
+        let refreshDate : Date = UserDefaultsHelper.getValue(forKey: "\(realmRefreshDate)\(region)") as? Date ?? Date()
         if refreshDate <= Date() {
             showSpinner(onView: self.view)
             SCRealmIndex.getRealms(region: self.region) { success in
@@ -68,22 +66,23 @@ class AddCharacterTableViewController: UITableViewController {
     
     @objc func saveCharacter() {
         // Save character
-        // TODO: - Add Character Information to core data.
-        // Pop view controller
-        self.navigationController?.popToRootViewController(animated: true)
+        if let realm = selectedRealm, let name = characterName {
+            addCharacterDelegate?.characterAdded(characterName: name, realm: realm)
+            self.navigationController?.popToRootViewController(animated: true)
+        }
     }
 }
 
 // MARK: - Text Field Delegate Functions
 extension AddCharacterTableViewController: TextFieldTableViewCellDelegate {
-    func didEndEditing(cell: WHTextFieldTableViewCell, text: String) {
+    func didEndEditing(cell: TextFieldTableViewCell, text: String) {
         if cell.rowIdentifier == RowIdentifiers.Name.rawValue {
             characterName = text
         }
     }
 }
 
-// MARK: - Realm PickerView Delegate Function
+// MARK: - Realm PickerView Functions
 extension AddCharacterTableViewController: RealmPickerViewValueUpdatedDelegate {
     func pickerValueUpdated(indexPath: IndexPath, value: Realm) {
         selectedRealm = value
@@ -106,11 +105,11 @@ extension AddCharacterTableViewController: RealmPickerViewValueUpdatedDelegate {
         if tableModel.indices.contains(indexPath.row + 1), tableModel[indexPath.row + 1].rowType == .RealmPicker {
             // If the realm picker view is visible, remove it.
             tableModel.remove(at: indexPath.row + 1)
-            tableView.deleteRows(at: [IndexPath(row: indexPath.row + 1, section: indexPath.section)], with: .top)
+            tableView.deleteRows(at: [IndexPath(row: indexPath.row + 1, section: indexPath.section)], with: .fade)
         } else {
             // Otherwise add the realm picker view to the tableModel
             tableModel.insert(AddCharacterTableModelRows(placeholder: nil, rowType: .RealmPicker, rowIdentifier: nil), at: indexPath.row + 1)
-            tableView.insertRows(at: [IndexPath(row: indexPath.row + 1, section: indexPath.section)], with: .top)
+            tableView.insertRows(at: [IndexPath(row: indexPath.row + 1, section: indexPath.section)], with: .fade)
         }
         tableView.endUpdates()
         tableView.reloadData()
@@ -139,7 +138,7 @@ extension AddCharacterTableViewController {
         let cellInfo = tableModel[indexPath.row]
         switch cellInfo.rowType {
         case .Name, .Realm:
-            if let cell = tableView.dequeueReusableCell(withIdentifier: WHTextFieldTableViewCell.identifier, for: indexPath) as? WHTextFieldTableViewCell {
+            if let cell = tableView.dequeueReusableCell(withIdentifier: TextFieldTableViewCell.identifier, for: indexPath) as? TextFieldTableViewCell {
                 cell.textField.placeholder = cellInfo.placeholder
                 cell.textFieldDelegate = self
                 cell.rowIdentifier = cellInfo.rowIdentifier?.rawValue
@@ -162,14 +161,14 @@ extension AddCharacterTableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.resignFirstResponder()
         // Editing the name text field
-        if let cell = tableView.cellForRow(at: indexPath) as? WHTextFieldTableViewCell, cell.rowIdentifier == RowIdentifiers.Name.rawValue {
+        if let cell = tableView.cellForRow(at: indexPath) as? TextFieldTableViewCell, cell.rowIdentifier == RowIdentifiers.Name.rawValue {
             if !cell.textField.isFirstResponder {
                 cell.textField.isUserInteractionEnabled = true
                 cell.textField.becomeFirstResponder()
             }
         }
         // Select a realm
-        if let cell = tableView.cellForRow(at: indexPath) as? WHTextFieldTableViewCell, cell.rowIdentifier == RowIdentifiers.Realm.rawValue {
+        if let cell = tableView.cellForRow(at: indexPath) as? TextFieldTableViewCell, cell.rowIdentifier == RowIdentifiers.Realm.rawValue {
             showOrHideRealmPickerView(indexPath: indexPath)
         }
     }
@@ -193,6 +192,15 @@ extension AddCharacterTableViewController {
     enum RowIdentifiers: String {
         case Name = "NameRow"
         case Realm = "RealmRow"
+    }
+}
+
+// MARK: - View Setup
+extension AddCharacterTableViewController {
+    func initializeViews() {
+        // Save Button
+        let saveButton = UIBarButtonItem(title: localizedSave(), style: .done, target: self, action: #selector(saveCharacter))
+        self.navigationItem.rightBarButtonItem = saveButton
     }
 }
 

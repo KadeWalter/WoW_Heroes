@@ -63,6 +63,7 @@ class Realm: WHNSManagedObject, Codable {
         }
     }
     
+    // Get All Realms For A Region
     class func fetchAllRealms(forRegion region: String) -> [Realm] {
         return fetchAllRealms(forRegion: region, context: WHNSManagedObject.WHManagedObjectContext())
     }
@@ -70,7 +71,7 @@ class Realm: WHNSManagedObject, Codable {
     class func fetchAllRealms(forRegion region: String, context: NSManagedObjectContext) -> [Realm] {
         let predicate = NSPredicate(format: "region == %@", region)
         do {
-            let request = NSFetchRequest<Realm>(entityName: Realm.identifier())
+            let request = NSFetchRequest<Realm>(entityName: self.identifier())
             request.predicate = predicate
             let realms = try context.fetch(request)
             return realms
@@ -79,13 +80,27 @@ class Realm: WHNSManagedObject, Codable {
         }
     }
     
+    // Delete All Realms For A Region
+    class func removeAllRealms(forRegion region: String) {
+        removeAllRealms(forRegion: region, context: WHNSManagedObject.WHManagedObjectContext())
+    }
+    
     class func removeAllRealms(forRegion region: String, context: NSManagedObjectContext) {
-        let DelAllReqVar = NSBatchDeleteRequest(fetchRequest: NSFetchRequest<NSFetchRequestResult>(entityName: identifier()))
+        let predicate = NSPredicate(format: "region == %@", region)
+        let request = NSFetchRequest<NSFetchRequestResult>(entityName: self.identifier())
+        request.predicate = predicate
+        
         do {
-            try context.execute(DelAllReqVar)
-        }
-        catch {
-            print(error)
+            let result = try? context.fetch(request)
+            let resultData = result as! [NSManagedObject]
+            
+            for object in resultData {
+                context.delete(object)
+            }
+            
+            try context.save()
+        } catch let error as NSError  {
+            print("Error: \(error)")
         }
     }
 }

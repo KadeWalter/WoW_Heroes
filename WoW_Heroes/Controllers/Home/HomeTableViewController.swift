@@ -52,7 +52,7 @@ extension HomeTableViewController {
 // MARK: - Class Helper Functions
 extension HomeTableViewController {
     @objc func addNewCharacter() {
-        let vc = RegionSelectViewController()
+        let vc = RegionSelectTableViewController()
         self.navigationController?.pushViewController(vc, animated: true)
     }
     
@@ -67,3 +67,5 @@ extension HomeTableViewController: CharacterAddedDelegate {
         // Refresh characters list and update table view.
     }
 }
+
+// TODO: Localize Strings 

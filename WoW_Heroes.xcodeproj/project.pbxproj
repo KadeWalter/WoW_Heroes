@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		19112EF7252144BB00C57379 /* RegionSelectTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19112EF6252144BB00C57379 /* RegionSelectTableViewController.swift */; };
+		19112EFC2521458F00C57379 /* RegionSelect.strings in Resources */ = {isa = PBXBuildFile; fileRef = 19112EFB2521458F00C57379 /* RegionSelect.strings */; };
 		19332C1923D29708006403B9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19332C1823D29708006403B9 /* AppDelegate.swift */; };
 		19332C1B23D29708006403B9 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19332C1A23D29708006403B9 /* SceneDelegate.swift */; };
 		19332C1D23D29708006403B9 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19332C1C23D29708006403B9 /* TabBarController.swift */; };
@@ -22,12 +24,11 @@
 		1962347A251FFF3B00464FA7 /* UIViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19623479251FFF3B00464FA7 /* UIViewControllerExtension.swift */; };
 		196234802520014600464FA7 /* WoW_HeroesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1962347F2520014600464FA7 /* WoW_HeroesTests.swift */; };
 		1962348425200DE100464FA7 /* AddCharacterTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1962348325200DE100464FA7 /* AddCharacterTableViewController.swift */; };
-		19623496252012F600464FA7 /* WHTextFieldTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19623495252012F600464FA7 /* WHTextFieldTableViewCell.swift */; };
+		19623496252012F600464FA7 /* TextFieldTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19623495252012F600464FA7 /* TextFieldTableViewCell.swift */; };
 		1962349A2520251100464FA7 /* RealmSelectPickerViewTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 196234992520251100464FA7 /* RealmSelectPickerViewTableViewCell.swift */; };
 		196234A2252059AF00464FA7 /* AddCharacter.strings in Resources */ = {isa = PBXBuildFile; fileRef = 196234A1252059AF00464FA7 /* AddCharacter.strings */; };
 		196234A825205A2600464FA7 /* GlobalStrings.strings in Resources */ = {isa = PBXBuildFile; fileRef = 196234A725205A2600464FA7 /* GlobalStrings.strings */; };
 		1965D20A24DB417C00FDBE66 /* Realm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1965D20924DB417C00FDBE66 /* Realm.swift */; };
-		19926DF72437F40F005B3C72 /* RegionSelectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19926DF62437F40F005B3C72 /* RegionSelectViewController.swift */; };
 		19B3BFC623F0629900486823 /* SCAccessToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19B3BFC523F0629900486823 /* SCAccessToken.swift */; };
 		19C9492D243820D4001780F2 /* NotificationNameExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19C9492C243820D4001780F2 /* NotificationNameExtension.swift */; };
 		19CF1D172436655B009F2700 /* SCCharacterProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19CF1D162436655B009F2700 /* SCCharacterProfile.swift */; };
@@ -46,6 +47,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		19112EF6252144BB00C57379 /* RegionSelectTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegionSelectTableViewController.swift; sourceTree = "<group>"; };
+		19112EFB2521458F00C57379 /* RegionSelect.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = RegionSelect.strings; sourceTree = "<group>"; };
 		19332C1523D29708006403B9 /* WoW_Heroes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WoW_Heroes.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		19332C1823D29708006403B9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		19332C1A23D29708006403B9 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -65,12 +68,11 @@
 		19623479251FFF3B00464FA7 /* UIViewControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtension.swift; sourceTree = "<group>"; };
 		1962347F2520014600464FA7 /* WoW_HeroesTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WoW_HeroesTests.swift; sourceTree = "<group>"; };
 		1962348325200DE100464FA7 /* AddCharacterTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCharacterTableViewController.swift; sourceTree = "<group>"; };
-		19623495252012F600464FA7 /* WHTextFieldTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WHTextFieldTableViewCell.swift; sourceTree = "<group>"; };
+		19623495252012F600464FA7 /* TextFieldTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldTableViewCell.swift; sourceTree = "<group>"; };
 		196234992520251100464FA7 /* RealmSelectPickerViewTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmSelectPickerViewTableViewCell.swift; sourceTree = "<group>"; };
 		196234A1252059AF00464FA7 /* AddCharacter.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = AddCharacter.strings; sourceTree = "<group>"; };
 		196234A725205A2600464FA7 /* GlobalStrings.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = GlobalStrings.strings; sourceTree = "<group>"; };
 		1965D20924DB417C00FDBE66 /* Realm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Realm.swift; sourceTree = "<group>"; };
-		19926DF62437F40F005B3C72 /* RegionSelectViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegionSelectViewController.swift; sourceTree = "<group>"; };
 		19B3BFC523F0629900486823 /* SCAccessToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SCAccessToken.swift; sourceTree = "<group>"; };
 		19C9492C243820D4001780F2 /* NotificationNameExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationNameExtension.swift; sourceTree = "<group>"; };
 		19CF1D162436655B009F2700 /* SCCharacterProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SCCharacterProfile.swift; sourceTree = "<group>"; };
@@ -96,6 +98,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		19112EFA2521457500C57379 /* Strings */ = {
+			isa = PBXGroup;
+			children = (
+				196234A1252059AF00464FA7 /* AddCharacter.strings */,
+				19112EFB2521458F00C57379 /* RegionSelect.strings */,
+			);
+			path = Strings;
+			sourceTree = "<group>";
+		};
 		19332C0C23D29708006403B9 = {
 			isa = PBXGroup;
 			children = (
@@ -222,7 +233,6 @@
 		1954FA2523D2A60D006906F2 /* Strings */ = {
 			isa = PBXGroup;
 			children = (
-				196234A1252059AF00464FA7 /* AddCharacter.strings */,
 				1954FA2623D2A625006906F2 /* Home.strings */,
 			);
 			path = Strings;
@@ -248,7 +258,7 @@
 			isa = PBXGroup;
 			children = (
 				196234992520251100464FA7 /* RealmSelectPickerViewTableViewCell.swift */,
-				19623495252012F600464FA7 /* WHTextFieldTableViewCell.swift */,
+				19623495252012F600464FA7 /* TextFieldTableViewCell.swift */,
 			);
 			path = "TableView Cells";
 			sourceTree = "<group>";
@@ -310,8 +320,9 @@
 		19E9F4A0241C1D4600C464AC /* Add Character */ = {
 			isa = PBXGroup;
 			children = (
+				19112EFA2521457500C57379 /* Strings */,
 				1962348325200DE100464FA7 /* AddCharacterTableViewController.swift */,
-				19926DF62437F40F005B3C72 /* RegionSelectViewController.swift */,
+				19112EF6252144BB00C57379 /* RegionSelectTableViewController.swift */,
 			);
 			path = "Add Character";
 			sourceTree = "<group>";
@@ -410,6 +421,7 @@
 				19332C2523D29711006403B9 /* Assets.xcassets in Resources */,
 				196234A825205A2600464FA7 /* GlobalStrings.strings in Resources */,
 				1954FA2723D2A625006906F2 /* Home.strings in Resources */,
+				19112EFC2521458F00C57379 /* RegionSelect.strings in Resources */,
 				196234A2252059AF00464FA7 /* AddCharacter.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -428,7 +440,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				19623496252012F600464FA7 /* WHTextFieldTableViewCell.swift in Sources */,
+				19623496252012F600464FA7 /* TextFieldTableViewCell.swift in Sources */,
 				19CF1D1A2437B954009F2700 /* SCRealmIndex.swift in Sources */,
 				19623456251FDC5400464FA7 /* GlobalStringDefinitions.swift in Sources */,
 				1962347A251FFF3B00464FA7 /* UIViewControllerExtension.swift in Sources */,
@@ -437,6 +449,7 @@
 				19C9492D243820D4001780F2 /* NotificationNameExtension.swift in Sources */,
 				1965D20A24DB417C00FDBE66 /* Realm.swift in Sources */,
 				193423C923F367FE007A30DE /* NetworkManager.swift in Sources */,
+				19112EF7252144BB00C57379 /* RegionSelectTableViewController.swift in Sources */,
 				19332C2323D29708006403B9 /* WoW_Heroes.xcdatamodeld in Sources */,
 				19332C1923D29708006403B9 /* AppDelegate.swift in Sources */,
 				1962349A2520251100464FA7 /* RealmSelectPickerViewTableViewCell.swift in Sources */,
@@ -444,7 +457,6 @@
 				193423CD23F5076F007A30DE /* FontManager.swift in Sources */,
 				19623452251FD97700464FA7 /* UserDefaultsHelper.swift in Sources */,
 				19B3BFC623F0629900486823 /* SCAccessToken.swift in Sources */,
-				19926DF72437F40F005B3C72 /* RegionSelectViewController.swift in Sources */,
 				19332C1B23D29708006403B9 /* SceneDelegate.swift in Sources */,
 				19332C4323D29E95006403B9 /* HomeTableViewController.swift in Sources */,
 				19CF1D172436655B009F2700 /* SCCharacterProfile.swift in Sources */,

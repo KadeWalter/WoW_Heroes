@@ -9,12 +9,12 @@
 import UIKit
 
 protocol TextFieldTableViewCellDelegate: class {
-    func didEndEditing(cell: WHTextFieldTableViewCell, text: String)
+    func didEndEditing(cell: TextFieldTableViewCell, text: String)
 }
 
-class WHTextFieldTableViewCell: UITableViewCell, UITextFieldDelegate {
+class TextFieldTableViewCell: UITableViewCell, UITextFieldDelegate {
     
-    static let identifier = String(describing: WHTextFieldTableViewCell.self)
+    static let identifier = String(describing: TextFieldTableViewCell.self)
     
     lazy var textField = lazyTextField()
     weak var textFieldDelegate: TextFieldTableViewCellDelegate?
@@ -27,24 +27,6 @@ class WHTextFieldTableViewCell: UITableViewCell, UITextFieldDelegate {
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
-    }
-    
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-    }
-    
-    func initializeView() {
-        contentView.addSubview(textField)
-        
-        let guide = contentView.layoutMarginsGuide
-        NSLayoutConstraint.activate([
-            textField.topAnchor.constraint(equalTo: guide.topAnchor),
-            textField.bottomAnchor.constraint(equalTo: guide.bottomAnchor),
-            textField.leadingAnchor.constraint(equalTo: guide.leadingAnchor),
-            textField.trailingAnchor.constraint(equalTo: guide.trailingAnchor)
-        ])
-        
-        contentView.bringSubviewToFront(textField)
     }
     
     func textFieldDidEndEditing(_ textField: UITextField) {
@@ -70,5 +52,19 @@ class WHTextFieldTableViewCell: UITableViewCell, UITextFieldDelegate {
         textField.returnKeyType = .done
         textField.isUserInteractionEnabled = false
         return textField
+    }
+    
+    func initializeView() {
+        contentView.addSubview(textField)
+        
+        let guide = contentView.layoutMarginsGuide
+        NSLayoutConstraint.activate([
+            textField.topAnchor.constraint(equalTo: guide.topAnchor),
+            textField.bottomAnchor.constraint(equalTo: guide.bottomAnchor),
+            textField.leadingAnchor.constraint(equalTo: guide.leadingAnchor),
+            textField.trailingAnchor.constraint(equalTo: guide.trailingAnchor)
+        ])
+        
+        contentView.bringSubviewToFront(textField)
     }
 }
