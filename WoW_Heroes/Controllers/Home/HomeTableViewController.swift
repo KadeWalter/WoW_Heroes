@@ -28,6 +28,9 @@ class HomeTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.navigationBar.prefersLargeTitles = true
+        
+        // REMOVE THIS LATER. USE FOR DEVELOPMENT
+        print(UserDefaultsHelper.getValue(forKey: blizzardAccessToken) ?? "")
     }
 }
 

@@ -49,7 +49,7 @@ extension NetworkManager {
     
     func accessTokenNeedsRefreshed() {
         // Check if the access token needs refreshed. If it does, get a new one.
-        if let accessTokenEpiration = UserDefaults.standard.value(forKey: "BlizzardAccessExpiration") as? Date {
+        if let accessTokenEpiration = UserDefaults.standard.value(forKey: blizzardAccessTokenExpiration) as? Date {
             if Date() < accessTokenEpiration {
                 return
             }

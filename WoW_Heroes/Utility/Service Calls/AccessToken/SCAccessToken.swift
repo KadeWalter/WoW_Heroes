@@ -70,8 +70,8 @@ final class SCAccessToken {
                 } catch {
                     print("Unable to decode access token.")
                 }
-                UserDefaultsHelper.set(value: accessToken.access_token, forKey: blizzardApiKey)
-                UserDefaultsHelper.set(value: Date().addingTimeInterval(accessToken.expires_in), forKey: accessTokenExpiration)
+                UserDefaultsHelper.set(value: accessToken.access_token, forKey: blizzardAccessToken)
+                UserDefaultsHelper.set(value: Date().addingTimeInterval(accessToken.expires_in), forKey: blizzardAccessTokenExpiration)
                 semaphore.signal()
             } else {
                 print(error as Any)

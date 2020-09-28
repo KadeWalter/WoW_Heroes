@@ -9,6 +9,6 @@
 import Foundation
 
 // MARK: - User Defaults Strings
-let blizzardApiKey = "blizzardApiToken"
-let accessTokenExpiration = "blizzardApiTokenExpiration"
+let blizzardAccessToken = "blizzardAccessToken"
+let blizzardAccessTokenExpiration = "blizzardAccessTokenExpiration"
 let realmRefreshDate = "realmRefreshDate"
