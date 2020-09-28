@@ -16,6 +16,19 @@ class NetworkManager {
     private init() {
         blizzardBaseAPI = "https://%@.api.blizzard.com"
     }
+}
+
+// MARK: - Task Execution Functions
+extension NetworkManager {
+    class func executeTask(forRequest request: URLRequest, serviceCallName: String, _ completion : @escaping(Data?, URLResponse?, Error?) -> Void) {
+        let task = URLSession.shared.dataTask(with: request) { data, response, error in
+            if let response = response {
+                printServiceCallReturnStatus(fromResponse: response, forServiceCall: serviceCallName)
+            }
+            completion(data, response, error)
+        }
+        task.resume()
+    }
     
     class func printServiceCallReturnStatus(fromResponse response: URLResponse, forServiceCall serviceCall: String) {
         var printString: String = ""

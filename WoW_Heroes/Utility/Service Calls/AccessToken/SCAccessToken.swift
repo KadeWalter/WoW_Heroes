@@ -57,23 +57,27 @@ final class SCAccessToken {
         // Create a semaphore to wait for this call to finish.
         let semaphore = DispatchSemaphore(value: 0)
         
-        let task = URLSession.shared.dataTask(with: request) { data, response, error in
-            // When the call comes back and finishes, if we dont have an error, store the access token and the expiration date in user defaults.
-            guard let data = data, error == nil else {
-                print(error?.localizedDescription ?? "No data")
-                return
+        NetworkManager.executeTask(forRequest: request, serviceCallName: "GetAccessToken") { data, response, error in
+            if error == nil {
+                // When the call comes back and finishes, if we dont have an error, store the access token and the expiration date in user defaults.
+                guard let data = data else {
+                    print(error?.localizedDescription ?? "No data")
+                    return
+                }
+                // Decode and store the access token.
+                do {
+                    accessToken = try JSONDecoder().decode(AccessToken.self, from: data)
+                } catch {
+                    print("Unable to decode access token.")
+                }
+                UserDefaultsHelper.set(value: accessToken.access_token, forKey: blizzardApiKey)
+                UserDefaultsHelper.set(value: Date().addingTimeInterval(accessToken.expires_in), forKey: accessTokenExpiration)
+                semaphore.signal()
+            } else {
+                print(error as Any)
+                semaphore.signal()
             }
-            do {
-                accessToken = try JSONDecoder().decode(AccessToken.self, from: data)
-            } catch {
-                print("Unable to decode access token.")
-            }
-            UserDefaultsHelper.set(value: accessToken.access_token, forKey: blizzardApiKey)
-            UserDefaultsHelper.set(value: Date().addingTimeInterval(accessToken.expires_in), forKey: accessTokenExpiration)
-            semaphore.signal()
         }
-        task.resume()
-        
         // Wait for the semaphore to signal so we know we have the token before entering the app.
         semaphore.wait()
     }

@@ -55,16 +55,12 @@ extension HomeTableViewController {
         let vc = RegionSelectTableViewController()
         self.navigationController?.pushViewController(vc, animated: true)
     }
-    
-    func fetchCharacters() {
-        // Fetch characters stored in core data.
-    }
 }
 
 // MARK: - Added Character Delegate
 extension HomeTableViewController: CharacterAddedDelegate {
-    func characterAdded() {
-        // Refresh characters list and update table view.
+    func characterAdded(characterName name: String, realm: Realm) {
+        return
     }
 }
 
