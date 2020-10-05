@@ -28,7 +28,6 @@ class WHNSManagedObject: NSManagedObject {
     class func WHManagedObjectContext() -> NSManagedObjectContext {
         guard let appDel = AppDelegate.sharedAppDelegate else { fatalError() }
         return appDel.persistentContainer.viewContext
-        
     }
     
     // Insert Functions

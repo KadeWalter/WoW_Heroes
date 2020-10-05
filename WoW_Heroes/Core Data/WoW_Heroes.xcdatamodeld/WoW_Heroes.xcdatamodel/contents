@@ -1,12 +1,28 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="17192" systemVersion="19H2" minimumToolsVersion="Automatic" sourceLanguage="Objective-C" userDefinedModelVersionIdentifier="">
+    <entity name="Character" representedClassName="Character" syncable="YES">
+        <attribute name="activeSpec" optional="YES" attributeType="String"/>
+        <attribute name="activeTitle" optional="YES" attributeType="String"/>
+        <attribute name="averageIlvl" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="charClass" optional="YES" attributeType="String"/>
+        <attribute name="equippedIlvl" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="faction" optional="YES" attributeType="String"/>
+        <attribute name="gender" optional="YES" attributeType="String"/>
+        <attribute name="guild" optional="YES" attributeType="String"/>
+        <attribute name="level" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <attribute name="race" optional="YES" attributeType="String"/>
+        <relationship name="realm" optional="YES" maxCount="1" deletionRule="Deny" destinationEntity="Realm" inverseName="character" inverseEntity="Realm"/>
+    </entity>
     <entity name="Realm" representedClassName="Realm" syncable="YES">
         <attribute name="id" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="name" optional="YES" attributeType="String"/>
         <attribute name="region" optional="YES" attributeType="String"/>
         <attribute name="slug" optional="YES" attributeType="String"/>
+        <relationship name="character" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Character" inverseName="realm" inverseEntity="Character"/>
     </entity>
     <elements>
-        <element name="Realm" positionX="-63" positionY="-18" width="128" height="103"/>
+        <element name="Realm" positionX="-63" positionY="-18" width="128" height="118"/>
+        <element name="Character" positionX="205.9765625" positionY="-192.67578125" width="128" height="223"/>
     </elements>
 </model>

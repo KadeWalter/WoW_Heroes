@@ -61,12 +61,12 @@ class AddCharacterTableViewController: UITableViewController {
             loadingMask?.showLoadingMask()
             SCRealmIndex.getRealms(region: self.region) { success in
                 if success {
-                    self.realms = Realm.fetchAllRealms(forRegion: self.region).sorted(by: { $0.name < $1.name })
+                    self.realms = Realm.fetchAllRealms(forRegion: self.region)
                 }
                 self.loadingMask?.hideLoadingMask()
             }
         } else {
-            realms = Realm.fetchAllRealms(forRegion: region).sorted(by: {$0.name < $1.name })
+            realms = Realm.fetchAllRealms(forRegion: region)
         }
     }
     

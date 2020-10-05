@@ -56,6 +56,7 @@ extension Realm {
         do {
             let request = NSFetchRequest<Realm>(entityName: Realm.identifier())
             request.predicate = predicate
+            
             let realms = try context.fetch(request)
             if realms.count == 1, let realm = realms.first {
                 return realm
@@ -77,6 +78,10 @@ extension Realm {
         do {
             let request = NSFetchRequest<Realm>(entityName: self.identifier())
             request.predicate = predicate
+            
+            let sortByName = NSSortDescriptor(key: "name", ascending: true)
+            request.sortDescriptors = [sortByName]
+            
             let realms = try context.fetch(request)
             return realms
         } catch {
