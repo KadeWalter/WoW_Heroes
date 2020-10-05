@@ -39,7 +39,7 @@ class RealmSelectPickerViewTableViewCell: UITableViewCell {
         pickerView.reloadAllComponents()
     }
     
-    func setSelectedRealm(realm: Realm) {
+    private func setSelectedRealm(realm: Realm) {
         if let ip = indexPath {
             realmPickerDelegate?.pickerValueUpdated(indexPath: ip, value: realm)
         }
@@ -67,7 +67,7 @@ extension RealmSelectPickerViewTableViewCell: UIPickerViewDataSource, UIPickerVi
 
 // MARK: - View Setup
 extension RealmSelectPickerViewTableViewCell {
-    func initializeViews() {
+    private func initializeViews() {
         contentView.addSubview(pickerView)
         
         let guide = contentView.layoutMarginsGuide
@@ -80,7 +80,7 @@ extension RealmSelectPickerViewTableViewCell {
         ])
     }
     
-    func lazyPickerView() -> UIPickerView {
+    private func lazyPickerView() -> UIPickerView {
         let picker = UIPickerView()
         picker.dataSource = self
         picker.delegate = self

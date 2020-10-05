@@ -52,30 +52,33 @@ final class SCRealmIndex {
     }
     
     private class func processRealmData(data: Data) -> Bool {
-        do {
-            let managedObjectContext = WHNSManagedObject.WHManagedObjectContext()
-            
-            // Remove any exisiting realms for the region from Core Data.
-            // NEEDED!!!! Otherwise, we try to edit too many realms at once.
-            Realm.removeAllRealms(forRegion: region, context: managedObjectContext)
-            
-            // Add the realms to core data.
-            let decodedRealmData = try JSONDecoder().decode(Realms.self, from: data)
-            for realm in decodedRealmData.realms {
-                self.importRealm(withData: realm, region: region, context: managedObjectContext)
+        let managedObjectContext = WHNSManagedObject.WHManagedObjectContext()
+        
+        // Add the realms to core data.
+        var success: Bool = false
+        managedObjectContext.performAndWait {
+            do {
+                // Try to decode the realm data from the service call. And store the realms in core data.
+                let decodedRealmData = try JSONDecoder().decode(Realms.self, from: data)
+                for realm in decodedRealmData.realms {
+                    self.importRealm(withData: realm, region: region, context: managedObjectContext)
+                }
+                
+                // If there was a change from the last set of realms, then save them.
+                if managedObjectContext.hasChanges {
+                    try managedObjectContext.save()
+                }
+                
+                // Set the next realm fetch date to now + 7 days.
+                let calendar = Calendar.current
+                let nextRefreshDate = calendar.date(byAdding: .day, value: 3, to: Date())
+                UserDefaultsHelper.set(value: nextRefreshDate, forKey: "\(realmRefreshDate)\(region)")
+                success = true
+            } catch let error {
+                print(error.localizedDescription)
             }
-            try managedObjectContext.save()
-            
-            // Set the next realm fetch date to now + 7 days.
-            let calendar = Calendar.current
-            let nextRefreshDate = calendar.date(byAdding: .day, value: 3, to: Date())
-            UserDefaultsHelper.set(value: nextRefreshDate, forKey: "\(realmRefreshDate)\(region)")
-            
-            return true
-        } catch {
-            print(error)
-            return false
         }
+        return success
     }
     
     private class func importRealm(withData realmData: RealmData, region: String, context: NSManagedObjectContext) {
@@ -99,13 +102,13 @@ final class SCRealmIndex {
 
 // Structs for decoding realms.
 extension SCRealmIndex {
-    public struct Realms: Codable {
+    struct Realms: Codable {
         var realms: [RealmData]
     }
-}
-
-struct RealmData: Codable {
-    var name: String
-    var id: Int32
-    var slug: String
+    
+    struct RealmData: Codable {
+        var name: String
+        var id: Int32
+        var slug: String
+    }
 }

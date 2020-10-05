@@ -43,7 +43,7 @@ class TextFieldTableViewCell: UITableViewCell, UITextFieldDelegate {
         return true
     }
     
-    func lazyTextField() -> UITextField {
+    private func lazyTextField() -> UITextField {
         let textField = UITextField()
         textField.translatesAutoresizingMaskIntoConstraints = false
         textField.borderStyle = .none
@@ -54,7 +54,7 @@ class TextFieldTableViewCell: UITableViewCell, UITextFieldDelegate {
         return textField
     }
     
-    func initializeView() {
+    private func initializeView() {
         contentView.addSubview(textField)
         
         let guide = contentView.layoutMarginsGuide

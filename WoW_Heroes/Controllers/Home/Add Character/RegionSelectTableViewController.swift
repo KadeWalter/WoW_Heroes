@@ -28,7 +28,7 @@ class RegionSelectTableViewController: UITableViewController {
         buildTableModel()
     }
     
-    func buildTableModel() {
+    private func buildTableModel() {
         tableModel.append(RegionSelectTableModel(region: "US"))
         tableModel.append(RegionSelectTableModel(region: "EU"))
         tableModel.append(RegionSelectTableModel(region: "KR"))
@@ -69,7 +69,7 @@ extension RegionSelectTableViewController {
 
 // MARK: - Localized Strings
 extension RegionSelectTableViewController {
-    func localizedTitle() -> String {
+    private func localizedTitle() -> String {
         return NSLocalizedString("Region Select Title", tableName: "RegionSelect", bundle: .main, value: "region select title", comment: "region select title")
     }
 }

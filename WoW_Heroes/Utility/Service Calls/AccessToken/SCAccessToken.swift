@@ -19,8 +19,6 @@ final class SCAccessToken {
      Subsequent API calls should check if access token is expired, and if so, request a new token.
      */
     class func getAccessToken() {
-        var accessToken: AccessToken = AccessToken(token_type: "", access_token: "", expires_in: 0)
-        
         // Get the client information.
         var clientId = ""
         var secret = ""
@@ -59,27 +57,28 @@ final class SCAccessToken {
         
         NetworkManager.executeTask(forRequest: request, serviceCallName: "GetAccessToken") { data, response, error in
             if error == nil {
-                // When the call comes back and finishes, if we dont have an error, store the access token and the expiration date in user defaults.
-                guard let data = data else {
-                    print(error?.localizedDescription ?? "No data")
-                    return
-                }
-                // Decode and store the access token.
-                do {
-                    accessToken = try JSONDecoder().decode(AccessToken.self, from: data)
-                } catch {
-                    print("Unable to decode access token.")
-                }
-                UserDefaultsHelper.set(value: accessToken.access_token, forKey: blizzardAccessToken)
-                UserDefaultsHelper.set(value: Date().addingTimeInterval(accessToken.expires_in), forKey: blizzardAccessTokenExpiration)
-                semaphore.signal()
+                self.processAccessToken(data: data)
             } else {
                 print(error as Any)
-                semaphore.signal()
             }
+            semaphore.signal()
         }
         // Wait for the semaphore to signal so we know we have the token before entering the app.
         semaphore.wait()
+    }
+    
+    private class func processAccessToken(data: Data?) {
+        guard let data = data else { return }
+        var accessToken: AccessToken
+        // Decode and store the access token.
+        do {
+            accessToken = try JSONDecoder().decode(AccessToken.self, from: data)
+        } catch {
+            accessToken = AccessToken(token_type: "", access_token: "", expires_in: 0)
+            print("Unable to decode access token.")
+        }
+        UserDefaultsHelper.set(value: accessToken.access_token, forKey: blizzardAccessToken)
+        UserDefaultsHelper.set(value: Date().addingTimeInterval(accessToken.expires_in), forKey: blizzardAccessTokenExpiration)
     }
 }
 

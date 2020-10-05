@@ -11,6 +11,7 @@ import CoreData
 
 @objc(Realm)
 class Realm: WHNSManagedObject, Codable {
+    
     @NSManaged var name: String
     @NSManaged var slug: String
     @NSManaged var id: Int32
@@ -42,7 +43,10 @@ class Realm: WHNSManagedObject, Codable {
     override class func identifier() -> String {
         return String(describing: self)
     }
-    
+}
+
+// MARK: - Fetch and Delete Functions
+extension Realm {
     class func fetchRealm(withId id: Int, region: String) -> Realm? {
         return fetchRealm(withId: id, region: region, context: WHNSManagedObject.WHManagedObjectContext())
     }
@@ -77,30 +81,6 @@ class Realm: WHNSManagedObject, Codable {
             return realms
         } catch {
             return []
-        }
-    }
-    
-    // Delete All Realms For A Region
-    class func removeAllRealms(forRegion region: String) {
-        removeAllRealms(forRegion: region, context: WHNSManagedObject.WHManagedObjectContext())
-    }
-    
-    class func removeAllRealms(forRegion region: String, context: NSManagedObjectContext) {
-        let predicate = NSPredicate(format: "region == %@", region)
-        let request = NSFetchRequest<NSFetchRequestResult>(entityName: self.identifier())
-        request.predicate = predicate
-        
-        do {
-            let result = try? context.fetch(request)
-            let resultData = result as! [NSManagedObject]
-            
-            for object in resultData {
-                context.delete(object)
-            }
-            
-            try context.save()
-        } catch let error as NSError  {
-            print("Error: \(error)")
         }
     }
 }

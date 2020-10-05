@@ -21,11 +21,13 @@ class AddCharacterTableViewController: UITableViewController {
     var characterName: String?
     var realmName: String?
     var selectedRealm: Realm?
+    var loadingMask: LoadingSpinnerViewController?
     
     init(region: String) {
         self.tableModel = []
         self.region = region
         super.init(style: .grouped)
+        self.loadingMask = LoadingSpinnerViewController(withViewController: self)
         self.title = localizedTitle()
     }
     
@@ -39,32 +41,36 @@ class AddCharacterTableViewController: UITableViewController {
         tableView.register(RealmSelectPickerViewTableViewCell.self, forCellReuseIdentifier: RealmSelectPickerViewTableViewCell.identifier)
         initializeViews()
         buildTableModel()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         getRealms()
     }
     
-    func buildTableModel() {
+    private func buildTableModel() {
         // Add the name text field row to the table model
         tableModel.append(AddCharacterTableModelRows(placeholder: localizedNamePlaceholder(), rowType: .Name, rowIdentifier: .Name))
         // Add the realm text field and realm picker rows to the table model
         tableModel.append(AddCharacterTableModelRows(placeholder: localizedRealmPlaceholder(), rowType: .Realm, rowIdentifier: .Realm))
     }
     
-    func getRealms() {
+    private func getRealms() {
         let refreshDate : Date = UserDefaultsHelper.getValue(forKey: "\(realmRefreshDate)\(region)") as? Date ?? Date()
         if refreshDate <= Date() {
-            showSpinner(onView: self.view)
+            loadingMask?.showLoadingMask()
             SCRealmIndex.getRealms(region: self.region) { success in
                 if success {
                     self.realms = Realm.fetchAllRealms(forRegion: self.region).sorted(by: { $0.name < $1.name })
-                    self.removeSpinner()
                 }
+                self.loadingMask?.hideLoadingMask()
             }
         } else {
             realms = Realm.fetchAllRealms(forRegion: region).sorted(by: {$0.name < $1.name })
         }
     }
     
-    @objc func saveCharacter() {
+    @objc private func saveCharacter() {
         // Save character
         if let realm = selectedRealm, let name = characterName {
             addCharacterDelegate?.characterAdded(characterName: name, realm: realm)
@@ -90,7 +96,7 @@ extension AddCharacterTableViewController: RealmPickerViewValueUpdatedDelegate {
         updateRealmNameTextField(indexPath: indexPath, text: value.name)
     }
     
-    func updateRealmNameTextField(indexPath: IndexPath, text: String) {
+    private func updateRealmNameTextField(indexPath: IndexPath, text: String) {
         tableModel[indexPath.row].textValue = text
         tableView.beginUpdates()
         DispatchQueue.main.async {
@@ -99,7 +105,7 @@ extension AddCharacterTableViewController: RealmPickerViewValueUpdatedDelegate {
         tableView.endUpdates()
     }
     
-    func showOrHideRealmPickerView(indexPath: IndexPath) {
+    private func showOrHideRealmPickerView(indexPath: IndexPath) {
         // IndexPath is the index path for the realm text field cell.
         tableView.beginUpdates()
         if tableModel.indices.contains(indexPath.row + 1), tableModel[indexPath.row + 1].rowType == .RealmPicker {
@@ -197,7 +203,7 @@ extension AddCharacterTableViewController {
 
 // MARK: - View Setup
 extension AddCharacterTableViewController {
-    func initializeViews() {
+    private func initializeViews() {
         // Save Button
         let saveButton = UIBarButtonItem(title: localizedSave(), style: .done, target: self, action: #selector(saveCharacter))
         self.navigationItem.rightBarButtonItem = saveButton
@@ -206,19 +212,19 @@ extension AddCharacterTableViewController {
 
 // MARK: - Localized Strings
 extension AddCharacterTableViewController {
-    func localizedTitle() -> String {
+    private func localizedTitle() -> String {
         return NSLocalizedString("Add Character Title", tableName: "AddCharacter", bundle: .main, value: "add character title", comment: "add character title")
     }
     
-    func localizedNamePlaceholder() -> String {
+    private func localizedNamePlaceholder() -> String {
         return NSLocalizedString("Name Placeholder", tableName: "AddCharacter", bundle: .main, value: "name placeholder", comment: "name placeholder")
     }
     
-    func localizedRealmPlaceholder() -> String {
+    private func localizedRealmPlaceholder() -> String {
         return NSLocalizedString("Realm Placeholder", tableName: "AddCharacter", bundle: .main, value: "realm placeholder", comment: "realm placeholder")
     }
     
-    func localizedSave() -> String {
+    private func localizedSave() -> String {
         return NSLocalizedString("Save", tableName: "GlobalStrings", bundle: .main, value: "save button title", comment: "save button title")
     }
 }

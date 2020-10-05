@@ -54,7 +54,7 @@ extension HomeTableViewController {
 
 // MARK: - Class Helper Functions
 extension HomeTableViewController {
-    @objc func addNewCharacter() {
+    @objc private func addNewCharacter() {
         let vc = RegionSelectTableViewController()
         self.navigationController?.pushViewController(vc, animated: true)
     }

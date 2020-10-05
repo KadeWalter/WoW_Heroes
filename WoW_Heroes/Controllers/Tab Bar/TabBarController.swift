@@ -16,7 +16,7 @@ class TabBarController: UITabBarController {
 		setupTabBar()
 	}
 	
-	func setupTabBar() {
+    private func setupTabBar() {
 		// create home screen/character select view controller
 		let homescreenVC = UINavigationController(rootViewController: HomeTableViewController())
 		homescreenVC.tabBarItem.image = UIImage(systemName: "paperplane.fill")

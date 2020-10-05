@@ -32,7 +32,7 @@ extension NetworkManager {
         task.resume()
     }
     
-    class func printServiceCallReturnStatus(fromResponse response: URLResponse, forServiceCall serviceCall: String) {
+    private class func printServiceCallReturnStatus(fromResponse response: URLResponse, forServiceCall serviceCall: String) {
         var printString: String = ""
         if let httpsResponse = response as? HTTPURLResponse {
             printString.append("Network Manager: \n")
@@ -59,13 +59,9 @@ extension NetworkManager {
         updateToken()
     }
     
-    func updateToken() {
-        SCAccessToken.getAccessToken()
-    }
-    
     func getAccessToken() -> String {
         // Return the current access token from User Defaults.
-        if let token = UserDefaultsHelper.getValue(forKey: "blizzardApiToken") as? String {
+        if let token = UserDefaultsHelper.getValue(forKey: blizzardAccessToken) as? String {
             return token
         }
         return ""
@@ -77,5 +73,9 @@ extension NetworkManager {
 //        language = language.replacingOccurrences(of: "-", with: "_")
 //        return language
         return "en_US"
+    }
+    
+    private func updateToken() {
+        SCAccessToken.getAccessToken()
     }
 }

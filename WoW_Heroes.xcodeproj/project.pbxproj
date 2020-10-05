@@ -18,10 +18,11 @@
 		19332C4323D29E95006403B9 /* HomeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19332C4223D29E95006403B9 /* HomeTableViewController.swift */; };
 		193423C923F367FE007A30DE /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 193423C823F367FE007A30DE /* NetworkManager.swift */; };
 		193423CD23F5076F007A30DE /* FontManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 193423CC23F5076F007A30DE /* FontManager.swift */; };
+		193ADB212522ACC1004BCA25 /* LoadingSpinnerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 193ADB202522ACC1004BCA25 /* LoadingSpinnerViewController.swift */; };
+		193ADB352522C3C2004BCA25 /* Spinner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 193ADB342522C3C2004BCA25 /* Spinner.swift */; };
 		1954FA2723D2A625006906F2 /* Home.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1954FA2623D2A625006906F2 /* Home.strings */; };
 		19623452251FD97700464FA7 /* UserDefaultsHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19623451251FD97700464FA7 /* UserDefaultsHelper.swift */; };
 		19623456251FDC5400464FA7 /* GlobalStringDefinitions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19623455251FDC5400464FA7 /* GlobalStringDefinitions.swift */; };
-		1962347A251FFF3B00464FA7 /* UIViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19623479251FFF3B00464FA7 /* UIViewControllerExtension.swift */; };
 		196234802520014600464FA7 /* WoW_HeroesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1962347F2520014600464FA7 /* WoW_HeroesTests.swift */; };
 		1962348425200DE100464FA7 /* AddCharacterTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1962348325200DE100464FA7 /* AddCharacterTableViewController.swift */; };
 		19623496252012F600464FA7 /* TextFieldTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19623495252012F600464FA7 /* TextFieldTableViewCell.swift */; };
@@ -62,10 +63,11 @@
 		19332C4223D29E95006403B9 /* HomeTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTableViewController.swift; sourceTree = "<group>"; };
 		193423C823F367FE007A30DE /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		193423CC23F5076F007A30DE /* FontManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontManager.swift; sourceTree = "<group>"; };
+		193ADB202522ACC1004BCA25 /* LoadingSpinnerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingSpinnerViewController.swift; sourceTree = "<group>"; };
+		193ADB342522C3C2004BCA25 /* Spinner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Spinner.swift; sourceTree = "<group>"; };
 		1954FA2623D2A625006906F2 /* Home.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Home.strings; sourceTree = "<group>"; };
 		19623451251FD97700464FA7 /* UserDefaultsHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsHelper.swift; sourceTree = "<group>"; };
 		19623455251FDC5400464FA7 /* GlobalStringDefinitions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalStringDefinitions.swift; sourceTree = "<group>"; };
-		19623479251FFF3B00464FA7 /* UIViewControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtension.swift; sourceTree = "<group>"; };
 		1962347F2520014600464FA7 /* WoW_HeroesTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WoW_HeroesTests.swift; sourceTree = "<group>"; };
 		1962348325200DE100464FA7 /* AddCharacterTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCharacterTableViewController.swift; sourceTree = "<group>"; };
 		19623495252012F600464FA7 /* TextFieldTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldTableViewCell.swift; sourceTree = "<group>"; };
@@ -230,6 +232,15 @@
 			path = Font;
 			sourceTree = "<group>";
 		};
+		193ADB1F2522ACA6004BCA25 /* Loading Spinner */ = {
+			isa = PBXGroup;
+			children = (
+				193ADB202522ACC1004BCA25 /* LoadingSpinnerViewController.swift */,
+				193ADB342522C3C2004BCA25 /* Spinner.swift */,
+			);
+			path = "Loading Spinner";
+			sourceTree = "<group>";
+		};
 		1954FA2523D2A60D006906F2 /* Strings */ = {
 			isa = PBXGroup;
 			children = (
@@ -249,6 +260,7 @@
 		19623487252010CE00464FA7 /* Custom Views */ = {
 			isa = PBXGroup;
 			children = (
+				193ADB1F2522ACA6004BCA25 /* Loading Spinner */,
 				19623488252010E600464FA7 /* TableView Cells */,
 			);
 			path = "Custom Views";
@@ -304,7 +316,6 @@
 				196234AD25205A3400464FA7 /* Strings */,
 				19623455251FDC5400464FA7 /* GlobalStringDefinitions.swift */,
 				19C9492C243820D4001780F2 /* NotificationNameExtension.swift */,
-				19623479251FFF3B00464FA7 /* UIViewControllerExtension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -443,13 +454,14 @@
 				19623496252012F600464FA7 /* TextFieldTableViewCell.swift in Sources */,
 				19CF1D1A2437B954009F2700 /* SCRealmIndex.swift in Sources */,
 				19623456251FDC5400464FA7 /* GlobalStringDefinitions.swift in Sources */,
-				1962347A251FFF3B00464FA7 /* UIViewControllerExtension.swift in Sources */,
 				1962348425200DE100464FA7 /* AddCharacterTableViewController.swift in Sources */,
+				193ADB212522ACC1004BCA25 /* LoadingSpinnerViewController.swift in Sources */,
 				19332C1D23D29708006403B9 /* TabBarController.swift in Sources */,
 				19C9492D243820D4001780F2 /* NotificationNameExtension.swift in Sources */,
 				1965D20A24DB417C00FDBE66 /* Realm.swift in Sources */,
 				193423C923F367FE007A30DE /* NetworkManager.swift in Sources */,
 				19112EF7252144BB00C57379 /* RegionSelectTableViewController.swift in Sources */,
+				193ADB352522C3C2004BCA25 /* Spinner.swift in Sources */,
 				19332C2323D29708006403B9 /* WoW_Heroes.xcdatamodeld in Sources */,
 				19332C1923D29708006403B9 /* AppDelegate.swift in Sources */,
 				1962349A2520251100464FA7 /* RealmSelectPickerViewTableViewCell.swift in Sources */,
