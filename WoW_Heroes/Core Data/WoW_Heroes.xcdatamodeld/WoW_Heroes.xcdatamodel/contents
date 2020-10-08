@@ -4,25 +4,41 @@
         <attribute name="activeSpec" optional="YES" attributeType="String"/>
         <attribute name="activeTitle" optional="YES" attributeType="String"/>
         <attribute name="averageIlvl" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
-        <attribute name="charClass" optional="YES" attributeType="String"/>
         <attribute name="equippedIlvl" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="faction" optional="YES" attributeType="String"/>
         <attribute name="gender" optional="YES" attributeType="String"/>
-        <attribute name="guild" optional="YES" attributeType="String"/>
+        <attribute name="id" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="level" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="name" optional="YES" attributeType="String"/>
         <attribute name="race" optional="YES" attributeType="String"/>
-        <relationship name="realm" optional="YES" maxCount="1" deletionRule="Deny" destinationEntity="Realm" inverseName="character" inverseEntity="Realm"/>
+        <relationship name="characterClass" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CharacterClass" inverseName="characters" inverseEntity="CharacterClass"/>
+        <relationship name="guild" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Guild" inverseName="characters" inverseEntity="Guild"/>
+        <relationship name="realm" optional="YES" maxCount="1" deletionRule="Deny" destinationEntity="Realm" inverseName="characters" inverseEntity="Realm"/>
+    </entity>
+    <entity name="CharacterClass" representedClassName="CharacterClass" syncable="YES">
+        <attribute name="id" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <relationship name="characters" optional="YES" toMany="YES" deletionRule="Deny" destinationEntity="Character" inverseName="characterClass" inverseEntity="Character"/>
+    </entity>
+    <entity name="Guild" representedClassName="Guild" syncable="YES">
+        <attribute name="faction" optional="YES" attributeType="String"/>
+        <attribute name="id" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <relationship name="characters" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Character" inverseName="guild" inverseEntity="Character"/>
+        <relationship name="realm" optional="YES" maxCount="1" deletionRule="Deny" destinationEntity="Realm" inverseName="guilds" inverseEntity="Realm"/>
     </entity>
     <entity name="Realm" representedClassName="Realm" syncable="YES">
         <attribute name="id" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="name" optional="YES" attributeType="String"/>
         <attribute name="region" optional="YES" attributeType="String"/>
         <attribute name="slug" optional="YES" attributeType="String"/>
-        <relationship name="character" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Character" inverseName="realm" inverseEntity="Character"/>
+        <relationship name="characters" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Character" inverseName="realm" inverseEntity="Character"/>
+        <relationship name="guilds" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Guild" inverseName="realm" inverseEntity="Guild"/>
     </entity>
     <elements>
-        <element name="Realm" positionX="-63" positionY="-18" width="128" height="118"/>
-        <element name="Character" positionX="205.9765625" positionY="-192.67578125" width="128" height="223"/>
+        <element name="Character" positionX="332.984375" positionY="-209.390625" width="128" height="238"/>
+        <element name="CharacterClass" positionX="336.98828125" positionY="164.66796875" width="128" height="88"/>
+        <element name="Guild" positionX="-56.36328125" positionY="-192.02734375" width="128" height="118"/>
+        <element name="Realm" positionX="-68.43359375" positionY="113.84375" width="128" height="133"/>
     </elements>
 </model>

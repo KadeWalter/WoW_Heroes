@@ -10,35 +10,14 @@ import Foundation
 import CoreData
 
 @objc(Realm)
-class Realm: WHNSManagedObject, Codable {
+class Realm: WHNSManagedObject {
     
     @NSManaged var name: String
     @NSManaged var slug: String
     @NSManaged var id: Int32
     @NSManaged var region: String
-    
-    required convenience init(from decoder: Decoder) throws {
-        let managedObjectContext = WHNSManagedObject.WHManagedObjectContext()
-        guard let entity = NSEntityDescription.entity(forEntityName: "Realm", in: managedObjectContext) else {
-            throw GenericNSManageObjectError.managedObjectContextError
-        }
-        
-        self.init(entity: entity, insertInto: managedObjectContext)
-        
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.name = try container.decode(String.self, forKey: .name)
-        self.slug = try container.decode(String.self, forKey: .slug)
-        self.id = try container.decode(Int32.self, forKey: .id)
-        self.region = ""
-    }
-    
-    public func encode(to encoder: Encoder) throws {
-        var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(name, forKey: .name)
-        try container.encode(slug, forKey: .slug)
-        try container.encode(id, forKey: .id)
-        try container.encode(region, forKey: .region)
-    }
+    @NSManaged var characters: Set<Character>
+    @NSManaged var guilds: Set<Guild>
     
     override class func identifier() -> String {
         return String(describing: self)
@@ -98,10 +77,7 @@ extension Realm {
         self.region = realm.region
     }
     
-    enum CodingKeys: String, CodingKey {
-        case name = "name"
-        case slug = "slug"
-        case id = "id"
-        case region = "region"
+    func addCharacter(character: Character) {
+        self.characters.insert(character)
     }
 }

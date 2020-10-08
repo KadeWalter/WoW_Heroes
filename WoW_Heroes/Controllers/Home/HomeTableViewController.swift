@@ -62,7 +62,7 @@ extension HomeTableViewController {
 
 // MARK: - Added Character Delegate
 extension HomeTableViewController: CharacterAddedDelegate {
-    func characterAdded(characterName name: String, realm: Realm) {
+    func characterAdded() {
         return
     }
 }

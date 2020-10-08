@@ -30,7 +30,11 @@
 		196234A2252059AF00464FA7 /* AddCharacter.strings in Resources */ = {isa = PBXBuildFile; fileRef = 196234A1252059AF00464FA7 /* AddCharacter.strings */; };
 		196234A825205A2600464FA7 /* GlobalStrings.strings in Resources */ = {isa = PBXBuildFile; fileRef = 196234A725205A2600464FA7 /* GlobalStrings.strings */; };
 		1965D20A24DB417C00FDBE66 /* Realm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1965D20924DB417C00FDBE66 /* Realm.swift */; };
+		1992145B252E7B7B00547024 /* Character.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1992145A252E7B7B00547024 /* Character.swift */; };
+		19AC19E5252D632800AB0351 /* UIAlertControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19AC19E4252D632800AB0351 /* UIAlertControllerExtension.swift */; };
 		19B3BFC623F0629900486823 /* SCAccessToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19B3BFC523F0629900486823 /* SCAccessToken.swift */; };
+		19C3D821252EB7A7001D09BD /* CharacterClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19C3D820252EB7A7001D09BD /* CharacterClass.swift */; };
+		19C3D826252EB9E0001D09BD /* Guild.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19C3D825252EB9E0001D09BD /* Guild.swift */; };
 		19C9492D243820D4001780F2 /* NotificationNameExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19C9492C243820D4001780F2 /* NotificationNameExtension.swift */; };
 		19CF1D172436655B009F2700 /* SCCharacterProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19CF1D162436655B009F2700 /* SCCharacterProfile.swift */; };
 		19CF1D1A2437B954009F2700 /* SCRealmIndex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19CF1D192437B954009F2700 /* SCRealmIndex.swift */; };
@@ -75,7 +79,11 @@
 		196234A1252059AF00464FA7 /* AddCharacter.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = AddCharacter.strings; sourceTree = "<group>"; };
 		196234A725205A2600464FA7 /* GlobalStrings.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = GlobalStrings.strings; sourceTree = "<group>"; };
 		1965D20924DB417C00FDBE66 /* Realm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Realm.swift; sourceTree = "<group>"; };
+		1992145A252E7B7B00547024 /* Character.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Character.swift; sourceTree = "<group>"; };
+		19AC19E4252D632800AB0351 /* UIAlertControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIAlertControllerExtension.swift; sourceTree = "<group>"; };
 		19B3BFC523F0629900486823 /* SCAccessToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SCAccessToken.swift; sourceTree = "<group>"; };
+		19C3D820252EB7A7001D09BD /* CharacterClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterClass.swift; sourceTree = "<group>"; };
+		19C3D825252EB9E0001D09BD /* Guild.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Guild.swift; sourceTree = "<group>"; };
 		19C9492C243820D4001780F2 /* NotificationNameExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationNameExtension.swift; sourceTree = "<group>"; };
 		19CF1D162436655B009F2700 /* SCCharacterProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SCCharacterProfile.swift; sourceTree = "<group>"; };
 		19CF1D192437B954009F2700 /* SCRealmIndex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SCRealmIndex.swift; sourceTree = "<group>"; };
@@ -180,6 +188,8 @@
 			children = (
 				19332C2123D29708006403B9 /* WoW_Heroes.xcdatamodeld */,
 				19FDC81824DB5FC000621FF5 /* WHNSManagedObject.swift */,
+				19921459252E7B5E00547024 /* Character */,
+				19C3D824252EB9CD001D09BD /* Guild */,
 				19FDC81A24DB663700621FF5 /* Realm */,
 			);
 			path = "Core Data";
@@ -283,6 +293,15 @@
 			path = Strings;
 			sourceTree = "<group>";
 		};
+		19921459252E7B5E00547024 /* Character */ = {
+			isa = PBXGroup;
+			children = (
+				1992145A252E7B7B00547024 /* Character.swift */,
+				19C3D820252EB7A7001D09BD /* CharacterClass.swift */,
+			);
+			path = Character;
+			sourceTree = "<group>";
+		};
 		19B3BFC223F061B600486823 /* Service Calls */ = {
 			isa = PBXGroup;
 			children = (
@@ -310,12 +329,21 @@
 			path = WoWCharacters;
 			sourceTree = "<group>";
 		};
+		19C3D824252EB9CD001D09BD /* Guild */ = {
+			isa = PBXGroup;
+			children = (
+				19C3D825252EB9E0001D09BD /* Guild.swift */,
+			);
+			path = Guild;
+			sourceTree = "<group>";
+		};
 		19C9492B243820B8001780F2 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
 				196234AD25205A3400464FA7 /* Strings */,
 				19623455251FDC5400464FA7 /* GlobalStringDefinitions.swift */,
 				19C9492C243820D4001780F2 /* NotificationNameExtension.swift */,
+				19AC19E4252D632800AB0351 /* UIAlertControllerExtension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -461,14 +489,18 @@
 				1965D20A24DB417C00FDBE66 /* Realm.swift in Sources */,
 				193423C923F367FE007A30DE /* NetworkManager.swift in Sources */,
 				19112EF7252144BB00C57379 /* RegionSelectTableViewController.swift in Sources */,
+				19C3D821252EB7A7001D09BD /* CharacterClass.swift in Sources */,
 				193ADB352522C3C2004BCA25 /* Spinner.swift in Sources */,
+				1992145B252E7B7B00547024 /* Character.swift in Sources */,
 				19332C2323D29708006403B9 /* WoW_Heroes.xcdatamodeld in Sources */,
 				19332C1923D29708006403B9 /* AppDelegate.swift in Sources */,
+				19C3D826252EB9E0001D09BD /* Guild.swift in Sources */,
 				1962349A2520251100464FA7 /* RealmSelectPickerViewTableViewCell.swift in Sources */,
 				19FDC81924DB5FC000621FF5 /* WHNSManagedObject.swift in Sources */,
 				193423CD23F5076F007A30DE /* FontManager.swift in Sources */,
 				19623452251FD97700464FA7 /* UserDefaultsHelper.swift in Sources */,
 				19B3BFC623F0629900486823 /* SCAccessToken.swift in Sources */,
+				19AC19E5252D632800AB0351 /* UIAlertControllerExtension.swift in Sources */,
 				19332C1B23D29708006403B9 /* SceneDelegate.swift in Sources */,
 				19332C4323D29E95006403B9 /* HomeTableViewController.swift in Sources */,
 				19CF1D172436655B009F2700 /* SCCharacterProfile.swift in Sources */,
@@ -625,6 +657,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = Z4PM8J443B;
+				GCC_NO_COMMON_BLOCKS = NO;
 				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
 				INFOPLIST_FILE = WoW_Heroes/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -645,6 +678,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = Z4PM8J443B;
+				GCC_NO_COMMON_BLOCKS = NO;
 				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
 				INFOPLIST_FILE = WoW_Heroes/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (

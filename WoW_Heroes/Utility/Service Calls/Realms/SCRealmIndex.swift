@@ -6,38 +6,20 @@
 //  Copyright © 2020 Kade Walter. All rights reserved.
 //
 
+import Foundation
 import CoreData
-import UIKit
 
 final class SCRealmIndex {
     
     private static var region: String = ""
     
     class func getRealms(region: String, completion: @escaping (Bool) -> Void) {
-        // Create Params
-        self.region = region
-        var params: [String : String] = [:]
-        params["namespace"] = "dynamic-\(region)"
-        params["locale"] = NetworkManager.shared.getLocale()
-        params["access_token"] = NetworkManager.shared.getAccessToken()
-        
         // Create URL Components
-        let urlString = "\(NetworkManager.shared.getBlizzardBaseAPI(region: region))/data/wow/realm/index"
-        var components = URLComponents(string: urlString)
-        var queryItems = [URLQueryItem]()
-        
-        for (key, value) in params {
-            queryItems.append(URLQueryItem(name: key, value: value))
-        }
-        
-        queryItems = queryItems.filter{ !$0.name.isEmpty }
-        
-        if !queryItems.isEmpty {
-            components?.queryItems = queryItems
-        }
+        self.region = region
+        let urlString = "\(NetworkManager.getBlizzardBaseApiUrl(region: region))/data/wow/realm/index"
         
         // Create POST request.
-        if let url = components?.url {
+        if let url = NetworkManager.getBlizzardApiTaskUrl(forRegion: region, withUrlString: urlString, forNamespace: .dynamic) {
             var request = URLRequest(url: url)
             request.httpMethod = "GET"
             NetworkManager.executeTask(forRequest: request, serviceCallName: "GetRealms") { data, response, error in

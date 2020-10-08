@@ -9,7 +9,7 @@
 import UIKit
 
 protocol CharacterAddedDelegate: class {
-    func characterAdded(characterName name: String, realm: Realm)
+    func characterAdded()
 }
 
 class AddCharacterTableViewController: UITableViewController {
@@ -19,7 +19,6 @@ class AddCharacterTableViewController: UITableViewController {
     let region: String
     var realms: [Realm] = []
     var characterName: String?
-    var realmName: String?
     var selectedRealm: Realm?
     var loadingMask: LoadingSpinnerViewController?
     
@@ -61,20 +60,48 @@ class AddCharacterTableViewController: UITableViewController {
             loadingMask?.showLoadingMask()
             SCRealmIndex.getRealms(region: self.region) { success in
                 if success {
+                    // TODO: remove the filter when finished with adding characters to core data
                     self.realms = Realm.fetchAllRealms(forRegion: self.region)
                 }
                 self.loadingMask?.hideLoadingMask()
             }
         } else {
+            // TODO: remove the filter when finished with adding characters to core data
             realms = Realm.fetchAllRealms(forRegion: region)
         }
     }
     
     @objc private func saveCharacter() {
-        // Save character
+        loadingMask?.showLoadingMask()
+        // Save character if there is a valid name and realm selected.
         if let realm = selectedRealm, let name = characterName {
-            addCharacterDelegate?.characterAdded(characterName: name, realm: realm)
-            self.navigationController?.popToRootViewController(animated: true)
+            // Make the service call to get the character.
+            SCCharacterProfile.getCharacter(region: self.region, characterName: name, realm: realm, completion: { success in
+                self.loadingMask?.hideLoadingMask()
+                self.handleGetCharacterCallFinished(success: success)
+            })
+        } else {
+            // Otherwise tell them to fix their stuff.
+            let alert = UIAlertController(title: localizedError(), message: localizedCharacterEntryError(), preferredStyle: .alert)
+            alert.addOkayButton()
+            alert.presentAlert(forViewController: self)
+        }
+    }
+    
+    private func handleGetCharacterCallFinished(success: Bool) {
+        // This function will likely be on a background thread as it is being called from a completion handler.
+        DispatchQueue.main.async {
+            // TODO: - Handle this better
+            if success {
+                // Call delegate so the homescreen can update. Then pop to the homescreen
+                self.addCharacterDelegate?.characterAdded()
+                self.navigationController?.popToRootViewController(animated: true)
+            } else {
+                // If something bad happened getting character info, tell the user.
+                let alert = UIAlertController(title: self.localizedError(), message: self.localizedCharacterRetrievalError(), preferredStyle: .alert)
+                alert.addOkayButton()
+                alert.presentAlert(forViewController: self)
+            }
         }
     }
 }
@@ -92,7 +119,6 @@ extension AddCharacterTableViewController: TextFieldTableViewCellDelegate {
 extension AddCharacterTableViewController: RealmPickerViewValueUpdatedDelegate {
     func pickerValueUpdated(indexPath: IndexPath, value: Realm) {
         selectedRealm = value
-        realmName = value.name
         updateRealmNameTextField(indexPath: indexPath, text: value.name)
     }
     
@@ -226,5 +252,17 @@ extension AddCharacterTableViewController {
     
     private func localizedSave() -> String {
         return NSLocalizedString("Save", tableName: "GlobalStrings", bundle: .main, value: "save button title", comment: "save button title")
+    }
+    
+    private func localizedError() -> String {
+        return NSLocalizedString("Error", tableName: "GlobalStrings", bundle: .main, value: "error title", comment: "error title")
+    }
+    
+    private func localizedCharacterEntryError() -> String {
+        return NSLocalizedString("Character Entry Error", tableName: "AddCharacter", bundle: .main, value: "character entry error message", comment: "character entry error message")
+    }
+    
+    private func localizedCharacterRetrievalError() -> String {
+        return NSLocalizedString("Character Retrieval Error", tableName: "AddCharacter", bundle: .main, value: "character retrieval error message", comment: "character retrieval error message")
     }
 }

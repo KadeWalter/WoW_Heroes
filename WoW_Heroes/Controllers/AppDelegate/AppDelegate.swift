@@ -14,7 +14,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // First thing we need to do is get an access token. Maybe?
-        NetworkManager.shared.accessTokenNeedsRefreshed()
+        NetworkManager.accessTokenNeedsRefreshed()
         return true
     }
     

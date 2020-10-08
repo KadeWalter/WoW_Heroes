@@ -10,14 +10,14 @@ import Foundation
 
 typealias NetworkCompletionBlock = (_ data: Data?, _ response: URLResponse?, _ error: Error?) -> Void
 
+enum BlizzardApiNamespaceType: String {
+    case profile
+    case dynamic
+}
+
 class NetworkManager {
     
-    static let shared = NetworkManager()
-    let blizzardBaseAPI: String
-    
-    private init() {
-        blizzardBaseAPI = "https://%@.api.blizzard.com"
-    }
+    static let blizzardBaseApiUrl = "https://%@.api.blizzard.com"
 }
 
 // MARK: - Task Execution Functions
@@ -30,6 +30,30 @@ extension NetworkManager {
             completion(data, response, error)
         }
         task.resume()
+    }
+    
+    class func getBlizzardApiTaskUrl(forRegion region: String, withUrlString urlStr: String, forNamespace namespace: BlizzardApiNamespaceType) -> URL? {
+        // Create Params
+        var params: [String : String] = [:]
+        params["namespace"] = "\(namespace.rawValue)-\(region)"
+        params["locale"] = getLocale()
+        params["access_token"] = getAccessToken()
+        
+        // Create URL Components
+        var components = URLComponents(string: urlStr)
+        var queryItems = [URLQueryItem]()
+        
+        for (key, value) in params {
+            queryItems.append(URLQueryItem(name: key, value: value))
+        }
+        
+        queryItems = queryItems.filter{ !$0.name.isEmpty }
+        
+        if !queryItems.isEmpty {
+            components?.queryItems = queryItems
+        }
+        
+        return components?.url
     }
     
     private class func printServiceCallReturnStatus(fromResponse response: URLResponse, forServiceCall serviceCall: String) {
@@ -45,11 +69,11 @@ extension NetworkManager {
 
 // MARK: - Blizzard Access Token and URL Functions
 extension NetworkManager {
-    func getBlizzardBaseAPI(region: String) -> String {
-        return String(format: blizzardBaseAPI, region)
+    class func getBlizzardBaseApiUrl(region: String) -> String {
+        return String(format: blizzardBaseApiUrl, region)
     }
     
-    func accessTokenNeedsRefreshed() {
+    class func accessTokenNeedsRefreshed() {
         // Check if the access token needs refreshed. If it does, get a new one.
         if let accessTokenEpiration = UserDefaults.standard.value(forKey: blizzardAccessTokenExpiration) as? Date {
             if Date() < accessTokenEpiration {
@@ -59,7 +83,7 @@ extension NetworkManager {
         updateToken()
     }
     
-    func getAccessToken() -> String {
+    private class func getAccessToken() -> String {
         // Return the current access token from User Defaults.
         if let token = UserDefaultsHelper.getValue(forKey: blizzardAccessToken) as? String {
             return token
@@ -67,7 +91,7 @@ extension NetworkManager {
         return ""
     }
     
-    func getLocale() -> String {
+    private class func getLocale() -> String {
         // TODO: - re-enable this. doesnt work on simulator
 //        let language = Locale.preferredLanguages[0]
 //        language = language.replacingOccurrences(of: "-", with: "_")
@@ -75,7 +99,7 @@ extension NetworkManager {
         return "en_US"
     }
     
-    private func updateToken() {
+    private class func updateToken() {
         SCAccessToken.getAccessToken()
     }
 }

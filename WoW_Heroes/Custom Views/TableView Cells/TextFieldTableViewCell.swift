@@ -43,6 +43,10 @@ class TextFieldTableViewCell: UITableViewCell, UITextFieldDelegate {
         return true
     }
     
+    @objc func textChanged(textField: UITextField) {
+        textFieldDelegate?.didEndEditing(cell: self, text: textField.text ?? "")
+    }
+    
     private func lazyTextField() -> UITextField {
         let textField = UITextField()
         textField.translatesAutoresizingMaskIntoConstraints = false
@@ -51,6 +55,7 @@ class TextFieldTableViewCell: UITableViewCell, UITextFieldDelegate {
         textField.delegate = self
         textField.returnKeyType = .done
         textField.isUserInteractionEnabled = false
+        textField.addTarget(self, action: #selector(textChanged(textField:)), for: .editingChanged)
         return textField
     }
     

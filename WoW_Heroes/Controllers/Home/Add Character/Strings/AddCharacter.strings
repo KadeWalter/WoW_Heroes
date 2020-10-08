@@ -12,4 +12,6 @@
 
 "Realm Placeholder" = "Character Realm";
 
+"Character Entry Error" = "Please enter a valid character name and realm selection.";
 
+"Character Retrieval Error" = "There was an error getting your character. Please try again later.";
