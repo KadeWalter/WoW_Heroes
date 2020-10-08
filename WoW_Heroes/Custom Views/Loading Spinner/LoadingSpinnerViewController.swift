@@ -29,14 +29,22 @@ final class LoadingSpinnerViewController: UIViewController {
     }
     
     func showLoadingMask() {
+        showLoadingMask(withCompletion: nil)
+    }
+    
+    func showLoadingMask(withCompletion completion: (() -> Void)?) {
         DispatchQueue.main.async {
-            self.parentVC.navigationController?.present(self, animated: true)
+            self.parentVC.navigationController?.present(self, animated: true, completion: completion)
         }
     }
     
     func hideLoadingMask() {
+        hideLoadingMask(withCompletion: nil)
+    }
+    
+    func hideLoadingMask(withCompletion completion: (() -> Void)?) {
         DispatchQueue.main.async {
-            self.parentVC.navigationController?.dismiss(animated: true)
+            self.parentVC.navigationController?.dismiss(animated: true, completion: completion)
         }
     }
 }

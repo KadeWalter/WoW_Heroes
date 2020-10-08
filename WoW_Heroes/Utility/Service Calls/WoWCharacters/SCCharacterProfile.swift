@@ -55,8 +55,9 @@ final class SCCharacterProfile {
         guard let character = Character.createWithoutInsert(context: context), let realmObj = Realm.fetchRealm(withId: Int(realm.id), region: realm.region, context: context), let charClass = CharacterClass.createWithoutInsert(context: context), let guild = Guild.createWithoutInsert(context: context) else { return }
         
         // Character entity information
+        character.achievementPoints = Int32(characterData.achievement_points)
         character.activeSpec = characterData.active_spec.name
-        character.activeTitle = characterData.active_title.name
+        character.activeTitle = characterData.active_title?.name
         character.averageIlvl = Int16(characterData.average_item_level)
         character.equippedIlvl = Int16(characterData.equipped_item_level)
         character.faction = characterData.faction.name
@@ -71,9 +72,11 @@ final class SCCharacterProfile {
         charClass.name = characterData.character_class.name
         
         // Guild entity informtion
-        guild.id = Int64(characterData.guild.id)
-        guild.name = characterData.guild.name
-        guild.faction = characterData.guild.faction.name
+        if let guildInfo = characterData.guild {
+            guild.id = Int64(guildInfo.id)
+            guild.name = guildInfo.name
+            guild.faction = guildInfo.faction.name
+        }
         
         
         // Check if the characters class already exists. if it does, add the character. Otherwise make it and add the character.
@@ -91,8 +94,11 @@ final class SCCharacterProfile {
         if let existingGuild = Guild.fetchGuild(withId: guild.id, name: guild.name, context: context) {
             guildExists = existingGuild
         } else {
-            guild.insert(intoContext: context)
-            guildExists = guild
+            // Make sure we got the guild info
+            if let _ = characterData.guild {
+                guild.insert(intoContext: context)
+                guildExists = guild
+            }
         }
         
         // Check if the characters guild already exists. if it does, add the character. Otherwise make it and add the character.
@@ -132,12 +138,12 @@ extension SCCharacterProfile {
         var race: CharacterRaceInfo
         var character_class: CharacterClassInfo
         var active_spec: CharacterActiveSpec
-        var guild: CharacterGuildInfo
+        var guild: CharacterGuildInfo?
         var level: Int
         var achievement_points: Int
         var average_item_level: Int
         var equipped_item_level: Int
-        var active_title: CharacterActiveTitleInfo
+        var active_title: CharacterActiveTitleInfo?
     }
     
     struct CharacterGenderInfo: Codable {

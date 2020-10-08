@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="17192" systemVersion="19H2" minimumToolsVersion="Automatic" sourceLanguage="Objective-C" userDefinedModelVersionIdentifier="">
     <entity name="Character" representedClassName="Character" syncable="YES">
+        <attribute name="achievementPoints" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="activeSpec" optional="YES" attributeType="String"/>
         <attribute name="activeTitle" optional="YES" attributeType="String"/>
         <attribute name="averageIlvl" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
@@ -36,7 +37,7 @@
         <relationship name="guilds" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Guild" inverseName="realm" inverseEntity="Guild"/>
     </entity>
     <elements>
-        <element name="Character" positionX="332.984375" positionY="-209.390625" width="128" height="238"/>
+        <element name="Character" positionX="332.984375" positionY="-209.390625" width="128" height="253"/>
         <element name="CharacterClass" positionX="336.98828125" positionY="164.66796875" width="128" height="88"/>
         <element name="Guild" positionX="-56.36328125" positionY="-192.02734375" width="128" height="118"/>
         <element name="Realm" positionX="-68.43359375" positionY="113.84375" width="128" height="133"/>

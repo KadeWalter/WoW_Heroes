@@ -12,8 +12,9 @@ import CoreData
 @objc(Character)
 class Character: WHNSManagedObject {
     
+    @NSManaged var achievementPoints: Int32
     @NSManaged var activeSpec: String
-    @NSManaged var activeTitle: String
+    @NSManaged var activeTitle: String?
     @NSManaged var averageIlvl: Int16
     @NSManaged var equippedIlvl: Int16
     @NSManaged var faction: String
@@ -23,7 +24,7 @@ class Character: WHNSManagedObject {
     @NSManaged var name: String
     @NSManaged var race: String
     @NSManaged var characterClass: CharacterClass
-    @NSManaged var guild: Guild
+    @NSManaged var guild: Guild?
     
     override class func identifier() -> String {
         return String(describing: self)
@@ -56,6 +57,7 @@ extension Character {
 
 extension Character {
     func updateCharacter(fromCharacter character: Character) {
+        self.achievementPoints = character.achievementPoints
         self.activeSpec = character.activeSpec
         self.activeTitle = character.activeTitle
         self.averageIlvl = character.averageIlvl

@@ -72,13 +72,14 @@ class AddCharacterTableViewController: UITableViewController {
     }
     
     @objc private func saveCharacter() {
-        loadingMask?.showLoadingMask()
         // Save character if there is a valid name and realm selected.
-        if let realm = selectedRealm, let name = characterName {
+        if let realm = selectedRealm, let name = characterName?.trimmingCharacters(in: .whitespacesAndNewlines), name.onlyContainsLetters() {
+            loadingMask?.showLoadingMask()
             // Make the service call to get the character.
             SCCharacterProfile.getCharacter(region: self.region, characterName: name, realm: realm, completion: { success in
-                self.loadingMask?.hideLoadingMask()
-                self.handleGetCharacterCallFinished(success: success)
+                self.loadingMask?.hideLoadingMask() {
+                    self.handleGetCharacterCallFinished(success: success)
+                }
             })
         } else {
             // Otherwise tell them to fix their stuff.
@@ -90,18 +91,15 @@ class AddCharacterTableViewController: UITableViewController {
     
     private func handleGetCharacterCallFinished(success: Bool) {
         // This function will likely be on a background thread as it is being called from a completion handler.
-        DispatchQueue.main.async {
-            // TODO: - Handle this better
-            if success {
-                // Call delegate so the homescreen can update. Then pop to the homescreen
-                self.addCharacterDelegate?.characterAdded()
-                self.navigationController?.popToRootViewController(animated: true)
-            } else {
-                // If something bad happened getting character info, tell the user.
-                let alert = UIAlertController(title: self.localizedError(), message: self.localizedCharacterRetrievalError(), preferredStyle: .alert)
-                alert.addOkayButton()
-                alert.presentAlert(forViewController: self)
-            }
+        if success {
+            // Call delegate so the homescreen can update. Then pop to the homescreen
+            self.addCharacterDelegate?.characterAdded()
+            self.navigationController?.popToRootViewController(animated: true)
+        } else {
+            // If something bad happened getting character info, tell the user.
+            let alert = UIAlertController(title: self.localizedError(), message: self.localizedCharacterRetrievalError(), preferredStyle: .alert)
+            alert.addOkayButton()
+            alert.presentAlert(forViewController: self)
         }
     }
 }

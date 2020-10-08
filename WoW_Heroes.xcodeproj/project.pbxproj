@@ -30,6 +30,7 @@
 		196234A2252059AF00464FA7 /* AddCharacter.strings in Resources */ = {isa = PBXBuildFile; fileRef = 196234A1252059AF00464FA7 /* AddCharacter.strings */; };
 		196234A825205A2600464FA7 /* GlobalStrings.strings in Resources */ = {isa = PBXBuildFile; fileRef = 196234A725205A2600464FA7 /* GlobalStrings.strings */; };
 		1965D20A24DB417C00FDBE66 /* Realm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1965D20924DB417C00FDBE66 /* Realm.swift */; };
+		19663AC6252F68FB00217FA9 /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19663AC5252F68FB00217FA9 /* StringExtension.swift */; };
 		1992145B252E7B7B00547024 /* Character.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1992145A252E7B7B00547024 /* Character.swift */; };
 		19AC19E5252D632800AB0351 /* UIAlertControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19AC19E4252D632800AB0351 /* UIAlertControllerExtension.swift */; };
 		19B3BFC623F0629900486823 /* SCAccessToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19B3BFC523F0629900486823 /* SCAccessToken.swift */; };
@@ -79,6 +80,7 @@
 		196234A1252059AF00464FA7 /* AddCharacter.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = AddCharacter.strings; sourceTree = "<group>"; };
 		196234A725205A2600464FA7 /* GlobalStrings.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = GlobalStrings.strings; sourceTree = "<group>"; };
 		1965D20924DB417C00FDBE66 /* Realm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Realm.swift; sourceTree = "<group>"; };
+		19663AC5252F68FB00217FA9 /* StringExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
 		1992145A252E7B7B00547024 /* Character.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Character.swift; sourceTree = "<group>"; };
 		19AC19E4252D632800AB0351 /* UIAlertControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIAlertControllerExtension.swift; sourceTree = "<group>"; };
 		19B3BFC523F0629900486823 /* SCAccessToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SCAccessToken.swift; sourceTree = "<group>"; };
@@ -344,6 +346,7 @@
 				19623455251FDC5400464FA7 /* GlobalStringDefinitions.swift */,
 				19C9492C243820D4001780F2 /* NotificationNameExtension.swift */,
 				19AC19E4252D632800AB0351 /* UIAlertControllerExtension.swift */,
+				19663AC5252F68FB00217FA9 /* StringExtension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -503,6 +506,7 @@
 				19AC19E5252D632800AB0351 /* UIAlertControllerExtension.swift in Sources */,
 				19332C1B23D29708006403B9 /* SceneDelegate.swift in Sources */,
 				19332C4323D29E95006403B9 /* HomeTableViewController.swift in Sources */,
+				19663AC6252F68FB00217FA9 /* StringExtension.swift in Sources */,
 				19CF1D172436655B009F2700 /* SCCharacterProfile.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
