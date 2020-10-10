@@ -75,7 +75,7 @@ extension NetworkManager {
     
     class func accessTokenNeedsRefreshed() {
         // Check if the access token needs refreshed. If it does, get a new one.
-        if let accessTokenEpiration = UserDefaults.standard.value(forKey: blizzardAccessTokenExpiration) as? Date {
+        if let accessTokenEpiration = UserDefaults.standard.value(forKey: udBlizzardAccessTokenExpiration) as? Date {
             if Date() < accessTokenEpiration {
                 return
             }
@@ -85,7 +85,7 @@ extension NetworkManager {
     
     private class func getAccessToken() -> String {
         // Return the current access token from User Defaults.
-        if let token = UserDefaultsHelper.getValue(forKey: blizzardAccessToken) as? String {
+        if let token = UserDefaultsHelper.getValue(forKey: udBlizzardAccessToken) as? String {
             return token
         }
         return ""

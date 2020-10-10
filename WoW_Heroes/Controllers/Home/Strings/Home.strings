@@ -6,12 +6,12 @@
   Copyright © 2020 Kade Walter. All rights reserved.
 */
 
-"Screen Title" = "Home";
+"Home Screen Title" = "Home";
 
-"Character Select Header" = "Selected Character";
+"Other Characters" = "Other Characters";
 
-"All Characters Header" = "All Characters";
+"Update Character Info" = "Update Characters";
 
-"No Character Selected" = "There is no character selected. Add one below.";
+"Update All Characters" = "Update All Characters";
 
-"Add New Character" = "Add New Character";
+"Update Selected Character" = "Update Selected Character";

@@ -23,8 +23,10 @@ class Character: WHNSManagedObject {
     @NSManaged var level: Int16
     @NSManaged var name: String
     @NSManaged var race: String
+    @NSManaged var isSelectedCharacter: Bool
     @NSManaged var characterClass: CharacterClass
     @NSManaged var guild: Guild?
+    @NSManaged var realm: Realm
     
     override class func identifier() -> String {
         return String(describing: self)
@@ -53,6 +55,45 @@ extension Character {
             return nil
         }
     }
+    
+    class func fetchAllCharacters() -> [Character] {
+        let characters = fetchAllCharacters(context: WHNSManagedObject.WHManagedObjectContext())
+        return characters
+    }
+    
+    class func fetchAllCharacters(context: NSManagedObjectContext) -> [Character] {
+        do {
+            let request = NSFetchRequest<Character>(entityName: self.identifier())
+            
+            let sortByLevel = NSSortDescriptor(key: "level", ascending: false)
+            let sortByName = NSSortDescriptor(key: "name", ascending: true)
+            request.sortDescriptors = [sortByLevel, sortByName]
+            
+            let characters = try context.fetch(request)
+            return characters
+        } catch {
+            return []
+        }
+    }
+    
+    class func setIsSelected(forCharacters characters: [Character], isSelected: Bool) {
+        setIsSelected(forCharacters: characters, isSelected: isSelected, context: WHNSManagedObject.WHManagedObjectContext())
+    }
+    
+    class func setIsSelected(forCharacters characters: [Character], isSelected: Bool, context: NSManagedObjectContext) {
+        context.performAndWait {
+            do {
+                for char in characters {
+                    char.isSelectedCharacter = isSelected
+                }
+                if context.hasChanges {
+                    try context.save()
+                }
+            } catch let error {
+                print(error.localizedDescription)
+            }
+        }
+    }
 }
 
 extension Character {
@@ -68,5 +109,6 @@ extension Character {
         self.level = character.level
         self.name = character.name
         self.race = character.race
+        self.isSelectedCharacter = character.isSelectedCharacter
     }
 }

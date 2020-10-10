@@ -10,6 +10,7 @@ import UIKit
 
 class RegionSelectTableViewController: UITableViewController {
     
+    var addCharacterDelegate: CharacterAddedDelegate?
     var tableModel: [RegionSelectTableModel] = []
     let cellReuseIdentifier = "RegionSelectTableViewCell"
     
@@ -56,7 +57,14 @@ extension RegionSelectTableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         let vc = AddCharacterTableViewController(region: tableModel[indexPath.row].region.lowercased())
+        vc.addCharacterDelegate = self
         self.navigationController?.pushViewController(vc, animated: true)
+    }
+}
+
+extension RegionSelectTableViewController: CharacterAddedDelegate {
+    func characterAdded() {
+        addCharacterDelegate?.characterAdded()
     }
 }
 

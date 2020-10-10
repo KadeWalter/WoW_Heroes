@@ -77,8 +77,8 @@ final class SCAccessToken {
             accessToken = AccessToken(token_type: "", access_token: "", expires_in: 0)
             print("Unable to decode access token.")
         }
-        UserDefaultsHelper.set(value: accessToken.access_token, forKey: blizzardAccessToken)
-        UserDefaultsHelper.set(value: Date().addingTimeInterval(accessToken.expires_in), forKey: blizzardAccessTokenExpiration)
+        UserDefaultsHelper.set(value: accessToken.access_token, forKey: udBlizzardAccessToken)
+        UserDefaultsHelper.set(value: Date().addingTimeInterval(accessToken.expires_in), forKey: udBlizzardAccessTokenExpiration)
     }
 }
 

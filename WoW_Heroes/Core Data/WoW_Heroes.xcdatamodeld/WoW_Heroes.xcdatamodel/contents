@@ -9,6 +9,7 @@
         <attribute name="faction" optional="YES" attributeType="String"/>
         <attribute name="gender" optional="YES" attributeType="String"/>
         <attribute name="id" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="isSelectedCharacter" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="level" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="name" optional="YES" attributeType="String"/>
         <attribute name="race" optional="YES" attributeType="String"/>
@@ -37,7 +38,7 @@
         <relationship name="guilds" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Guild" inverseName="realm" inverseEntity="Guild"/>
     </entity>
     <elements>
-        <element name="Character" positionX="332.984375" positionY="-209.390625" width="128" height="253"/>
+        <element name="Character" positionX="332.984375" positionY="-209.390625" width="128" height="268"/>
         <element name="CharacterClass" positionX="336.98828125" positionY="164.66796875" width="128" height="88"/>
         <element name="Guild" positionX="-56.36328125" positionY="-192.02734375" width="128" height="118"/>
         <element name="Realm" positionX="-68.43359375" positionY="113.84375" width="128" height="133"/>

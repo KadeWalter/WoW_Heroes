@@ -55,18 +55,16 @@ class AddCharacterTableViewController: UITableViewController {
     }
     
     private func getRealms() {
-        let refreshDate : Date = UserDefaultsHelper.getValue(forKey: "\(realmRefreshDate)\(region)") as? Date ?? Date()
+        let refreshDate : Date = UserDefaultsHelper.getValue(forKey: "\(udRealmRefreshDate)\(region)") as? Date ?? Date()
         if refreshDate <= Date() {
             loadingMask?.showLoadingMask()
-            SCRealmIndex.getRealms(region: self.region) { success in
+            SCRealmIndex.getRealms(region: region) { success in
                 if success {
-                    // TODO: remove the filter when finished with adding characters to core data
                     self.realms = Realm.fetchAllRealms(forRegion: self.region)
                 }
                 self.loadingMask?.hideLoadingMask()
             }
         } else {
-            // TODO: remove the filter when finished with adding characters to core data
             realms = Realm.fetchAllRealms(forRegion: region)
         }
     }

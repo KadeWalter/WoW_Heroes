@@ -47,7 +47,10 @@ extension Guild {
 }
 
 extension Guild {
-    func updateGuild(fromCharacter character: Guild) {
-        
+    func updateGuild(fromGuild guild: Guild) {
+        self.id = guild.id
+        self.name = guild.name
+        self.faction = guild.faction
+        self.characters = guild.characters
     }
 }

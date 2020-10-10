@@ -66,6 +66,7 @@ final class SCCharacterProfile {
         character.level = Int16(characterData.level)
         character.name = characterData.name
         character.race = characterData.race.name
+        character.isSelectedCharacter = false
         
         // Class entity information
         charClass.id = Int16(characterData.character_class.id)
@@ -105,24 +106,26 @@ final class SCCharacterProfile {
         // Insert the guild to the realm if needed as well.
         if let existingCharacter = Character.fetchCharacter(withId: character.id, name: character.name, context: context) {
             existingCharacter.updateCharacter(fromCharacter: character)
-            if let g = guildExists, let c = classExists {
-                existingCharacter.guild = g
-                existingCharacter.characterClass = c
-                if !g.characters.contains(existingCharacter) {
-                    g.characters.insert(character)
+            if let guild = guildExists, let charClass = classExists {
+                existingCharacter.guild = guild
+                existingCharacter.characterClass = charClass
+                existingCharacter.realm = realmObj
+                if !guild.characters.contains(existingCharacter) {
+                    guild.characters.insert(character)
                 }
-                if !c.characters.contains(existingCharacter) {
-                    c.characters.insert(character)
+                if !charClass.characters.contains(existingCharacter) {
+                    charClass.characters.insert(character)
                 }
             }
         } else {
             character.insert(intoContext: context)
-            if let g = guildExists, let c = classExists {
-                character.guild = g
-                character.characterClass = c
-                realmObj.guilds.insert(g)
-                g.characters.insert(character)
-                c.characters.insert(character)
+            if let guild = guildExists, let charClass = classExists {
+                character.guild = guild
+                character.characterClass = charClass
+                character.realm = realmObj
+                realmObj.guilds.insert(guild)
+                guild.characters.insert(character)
+                charClass.characters.insert(character)
             }
             realmObj.characters.insert(character)
         }
