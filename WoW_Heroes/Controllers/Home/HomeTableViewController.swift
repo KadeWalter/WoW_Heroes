@@ -15,13 +15,15 @@ class HomeTableViewController: UITableViewController {
     var allCharacters: [Character] = []
     var otherCharacters: [Character] = []
     var selectedCharacter: Character?
+    var loadingMask: LoadingSpinnerViewController?
     
     init() {
         super.init(style: .grouped)
         let addCharacterButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addNewCharacter))
         addCharacterButton.tintColor = .red
         self.navigationItem.rightBarButtonItem = addCharacterButton
-        navigationItem.title = localizedHome()
+        self.title = localizedHome()
+        self.tableView.cellLayoutMarginsFollowReadableWidth = true
     }
     
     required init?(coder: NSCoder) {
@@ -30,7 +32,7 @@ class HomeTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationController?.navigationBar.prefersLargeTitles = true
+        loadingMask = LoadingSpinnerViewController(withViewController: self)
         registerTableViewCells()
         buildTableModel()
         
@@ -43,11 +45,19 @@ class HomeTableViewController: UITableViewController {
         tableModel.removeAll()
         buildCharacterObjects()
         
-        // TODO: - Add other sections
-        tableModel.append(HomeTableModel(sectionHeader: "", section: .selectedCharacter, rows: getRows(forSection: .selectedCharacter)))
-        tableModel.append(HomeTableModel(sectionHeader: localizedOtherCharactersHeader(), section: .otherCharacters, rows: getRows(forSection: .otherCharacters)))
-        tableModel.append(HomeTableModel(sectionHeader: localizedUpdateHeader(), section: .updateCharacter, rows: getRows(forSection: .updateCharacter)))
+        if selectedCharacter != nil {
+            tableModel.append(HomeTableModel(sectionHeader: "", section: .selectedCharacter, rows: getRows(forSection: .selectedCharacter)))
+        }
+        if otherCharacters.count > 0 {
+            tableModel.append(HomeTableModel(sectionHeader: localizedOtherCharactersHeader(), section: .otherCharacters, rows: getRows(forSection: .otherCharacters)))
+        }
+        if allCharacters.count > 0 {
+            tableModel.append(HomeTableModel(sectionHeader: localizedUpdateHeader(), section: .updateCharacter, rows: getRows(forSection: .updateCharacter)))
+        }
         tableView.reloadData()
+        if allCharacters.count == 0 {
+            addNewCharacter()
+        }
     }
     
     private func buildCharacterObjects() {
@@ -58,13 +68,8 @@ class HomeTableViewController: UITableViewController {
         // Get the selected character.
         selectedCharacter = allCharacters.filter({ $0.isSelectedCharacter == true }).first
         // If a character wasnt found with the filter, just set the selected character as the first character.
-        if selectedCharacter == nil {
-            if allCharacters.count > 0 {
+        if selectedCharacter == nil, allCharacters.count > 0 {
                 selectedCharacter = allCharacters.first
-            } else {
-                // If a character doesn't exist in the database, just jump to the character select screen
-                addNewCharacter()
-            }
         }
         
         // Build the array for characters that are not selected.
@@ -79,9 +84,29 @@ class HomeTableViewController: UITableViewController {
 // MARK: - Add Character Flow
 extension HomeTableViewController {
     @objc private func addNewCharacter() {
-        let vc = RegionSelectTableViewController()
-        vc.addCharacterDelegate = self
-        self.navigationController?.pushViewController(vc, animated: true)
+        
+        DispatchQueue.main.async {
+            let vc = RegionSelectTableViewController()
+            vc.addCharacterDelegate = self
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
+    }
+    
+    private func deleteCharacter(character: Character) {
+        tableView.beginUpdates()
+        Character.deleteCharacter(withCharacter: character)
+        tableView.endUpdates()
+        buildTableModel()
+    }
+    
+    private func finishedUpdatingCharacters(selectedCharacterOnly: Bool, success: Bool) {
+        if success {
+            buildTableModel()
+        } else {
+            let alert = UIAlertController(title: localizedError(), message: selectedCharacterOnly ? localizedErrorUpdatingSelectedCharacter() : localizedErrorUpdatingAllCharacters(), preferredStyle: .alert)
+            alert.addOkayButton()
+            alert.presentAlert(forViewController: self)
+        }
     }
 }
 
@@ -131,9 +156,13 @@ extension HomeTableViewController {
                 return cell
             }
         case .updateAllCharacters:
-            break
+            let cell = UITableViewCell(style: .default, reuseIdentifier: "UpdateAllCharactersCell")
+            cell.textLabel?.text = localizedUpdateAllCharacters()
+            return cell
         case .updateSelectedCharacter:
-            break
+            let cell = UITableViewCell(style: .default, reuseIdentifier: "UpdateCharacterCell")
+            cell.textLabel?.text = localizedUpdateCharacter()
+            return cell
         }
         return UITableViewCell()
     }
@@ -159,16 +188,59 @@ extension HomeTableViewController {
             // Reload the home screen when selected character changes.
             buildTableModel()
         case .updateCharacter:
-            break
+            let row = tableModel[indexPath.section].rows[indexPath.row]
+            if row == .updateSelectedCharacter, let char = selectedCharacter {
+                loadingMask?.showLoadingMask()
+                // call the character service call once for the selected character
+                SCCharacterProfile.getCharacter(region: char.realm.region, characterName: char.name, realm: char.realm) { success in
+                    self.loadingMask?.hideLoadingMask() {
+                        self.finishedUpdatingCharacters(selectedCharacterOnly: true, success: success)
+                    }
+                }
+            } else if row == .updateAllCharacters {
+                // Count how many characters we call to update.
+                var count = 0
+                if allCharacters.count > 0 {
+                    loadingMask?.showLoadingMask()
+                }
+                for char in allCharacters {
+                    count = count + 1
+                    SCCharacterProfile.getCharacter(region: char.realm.region, characterName: char.name, realm: char.realm) { success in
+                        count = count - 1
+                        // When the count hits 0, we are done and can update the table
+                        if count == 0 {
+                            self.loadingMask?.hideLoadingMask() {
+                                self.finishedUpdatingCharacters(selectedCharacterOnly: false, success: success)
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
+    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        let section = tableModel[indexPath.section].section
+        switch section {
+        case .otherCharacters:
+            return true
+        default:
+            return false
         }
     }
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         switch editingStyle {
         case .delete:
-            // TODO: - Delete the character from the database.
+            let section = tableModel[indexPath.section].section
+            switch section {
+            case .otherCharacters:
+                deleteCharacter(character: otherCharacters[indexPath.row])
+            default:
+                break
+            }
+        default:
             break
-        default: break
         }
     }
     
@@ -254,5 +326,17 @@ extension HomeTableViewController {
     
     private func localizedUpdateCharacter() -> String {
         return NSLocalizedString("Update Selected Character", tableName: "Home", bundle: .main, value: "update character", comment: "update character")
+    }
+    
+    private func localizedError() -> String {
+        return NSLocalizedString("Error", tableName: "GlobalStrings", bundle: .main, value: "error", comment: "error")
+    }
+    
+    private func localizedErrorUpdatingSelectedCharacter() -> String {
+        return NSLocalizedString("Error Updating Selected Character", tableName: "Home", bundle: .main, value: "error updating selected character", comment: "error updating selected character")
+    }
+    
+    private func localizedErrorUpdatingAllCharacters() -> String {
+        return NSLocalizedString("Error Updating All Characters", tableName: "Home", bundle: .main, value: "error updating all characters", comment: "error updating all characters")
     }
 }

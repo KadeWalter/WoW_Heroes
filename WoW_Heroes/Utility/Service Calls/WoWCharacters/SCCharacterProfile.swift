@@ -105,28 +105,33 @@ final class SCCharacterProfile {
         // Check if the characters guild already exists. if it does, add the character. Otherwise make it and add the character.
         // Insert the guild to the realm if needed as well.
         if let existingCharacter = Character.fetchCharacter(withId: character.id, name: character.name, context: context) {
+            character.isSelectedCharacter = existingCharacter.isSelectedCharacter
             existingCharacter.updateCharacter(fromCharacter: character)
-            if let guild = guildExists, let charClass = classExists {
+            if let guild = guildExists {
                 existingCharacter.guild = guild
+            }
+            if let charClass = classExists {
                 existingCharacter.characterClass = charClass
-                existingCharacter.realm = realmObj
-                if !guild.characters.contains(existingCharacter) {
-                    guild.characters.insert(character)
-                }
-                if !charClass.characters.contains(existingCharacter) {
-                    charClass.characters.insert(character)
-                }
+            }
+            existingCharacter.realm = realmObj
+            if !guild.characters.contains(existingCharacter) {
+                guild.characters.insert(character)
+            }
+            if !charClass.characters.contains(existingCharacter) {
+                charClass.characters.insert(character)
             }
         } else {
             character.insert(intoContext: context)
-            if let guild = guildExists, let charClass = classExists {
+            if let guild = guildExists {
                 character.guild = guild
-                character.characterClass = charClass
-                character.realm = realmObj
-                realmObj.guilds.insert(guild)
                 guild.characters.insert(character)
+                realmObj.guilds.insert(guild)
+            }
+            if let charClass = classExists {
+                character.characterClass = charClass
                 charClass.characters.insert(character)
             }
+            character.realm = realmObj
             realmObj.characters.insert(character)
         }
     }

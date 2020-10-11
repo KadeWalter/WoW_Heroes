@@ -17,11 +17,15 @@ class TabBarController: UITabBarController {
 	}
 	
     private func setupTabBar() {
-		// create home screen/character select view controller
+		// create home screen/character select table view controller
 		let homescreenVC = UINavigationController(rootViewController: HomeTableViewController())
 		homescreenVC.tabBarItem.image = UIImage(systemName: "paperplane.fill")
+        
+        // create settings table view controller
+        let settingsVC = UINavigationController(rootViewController: SettingsTableViewController())
+        settingsVC.tabBarItem.image = UIImage(systemName: "video.fill")
 
 		// add view controllers to tab bar
-		viewControllers = [homescreenVC]
+		viewControllers = [homescreenVC, settingsVC]
 	}
 }

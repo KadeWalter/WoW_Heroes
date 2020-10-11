@@ -28,6 +28,7 @@ class AddCharacterTableViewController: UITableViewController {
         super.init(style: .grouped)
         self.loadingMask = LoadingSpinnerViewController(withViewController: self)
         self.title = localizedTitle()
+        self.tableView.cellLayoutMarginsFollowReadableWidth = true
     }
     
     required init?(coder: NSCoder) {
@@ -91,11 +92,11 @@ class AddCharacterTableViewController: UITableViewController {
         // This function will likely be on a background thread as it is being called from a completion handler.
         if success {
             // Call delegate so the homescreen can update. Then pop to the homescreen
-            self.addCharacterDelegate?.characterAdded()
-            self.navigationController?.popToRootViewController(animated: true)
+            addCharacterDelegate?.characterAdded()
+            navigationController?.popToRootViewController(animated: true)
         } else {
             // If something bad happened getting character info, tell the user.
-            let alert = UIAlertController(title: self.localizedError(), message: self.localizedCharacterRetrievalError(), preferredStyle: .alert)
+            let alert = UIAlertController(title: localizedError(), message: localizedCharacterRetrievalError(), preferredStyle: .alert)
             alert.addOkayButton()
             alert.presentAlert(forViewController: self)
         }

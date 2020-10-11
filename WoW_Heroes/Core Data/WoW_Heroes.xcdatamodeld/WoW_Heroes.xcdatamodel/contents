@@ -15,27 +15,27 @@
         <attribute name="race" optional="YES" attributeType="String"/>
         <relationship name="characterClass" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CharacterClass" inverseName="characters" inverseEntity="CharacterClass"/>
         <relationship name="guild" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Guild" inverseName="characters" inverseEntity="Guild"/>
-        <relationship name="realm" optional="YES" maxCount="1" deletionRule="Deny" destinationEntity="Realm" inverseName="characters" inverseEntity="Realm"/>
+        <relationship name="realm" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Realm" inverseName="characters" inverseEntity="Realm"/>
     </entity>
     <entity name="CharacterClass" representedClassName="CharacterClass" syncable="YES">
         <attribute name="id" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="name" optional="YES" attributeType="String"/>
-        <relationship name="characters" optional="YES" toMany="YES" deletionRule="Deny" destinationEntity="Character" inverseName="characterClass" inverseEntity="Character"/>
+        <relationship name="characters" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Character" inverseName="characterClass" inverseEntity="Character"/>
     </entity>
     <entity name="Guild" representedClassName="Guild" syncable="YES">
         <attribute name="faction" optional="YES" attributeType="String"/>
         <attribute name="id" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="name" optional="YES" attributeType="String"/>
-        <relationship name="characters" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Character" inverseName="guild" inverseEntity="Character"/>
-        <relationship name="realm" optional="YES" maxCount="1" deletionRule="Deny" destinationEntity="Realm" inverseName="guilds" inverseEntity="Realm"/>
+        <relationship name="characters" optional="YES" toMany="YES" deletionRule="Deny" destinationEntity="Character" inverseName="guild" inverseEntity="Character"/>
+        <relationship name="realm" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Realm" inverseName="guilds" inverseEntity="Realm"/>
     </entity>
     <entity name="Realm" representedClassName="Realm" syncable="YES">
         <attribute name="id" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="name" optional="YES" attributeType="String"/>
         <attribute name="region" optional="YES" attributeType="String"/>
         <attribute name="slug" optional="YES" attributeType="String"/>
-        <relationship name="characters" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Character" inverseName="realm" inverseEntity="Character"/>
-        <relationship name="guilds" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Guild" inverseName="realm" inverseEntity="Guild"/>
+        <relationship name="characters" optional="YES" toMany="YES" deletionRule="Deny" destinationEntity="Character" inverseName="realm" inverseEntity="Character"/>
+        <relationship name="guilds" optional="YES" toMany="YES" deletionRule="Deny" destinationEntity="Guild" inverseName="realm" inverseEntity="Guild"/>
     </entity>
     <elements>
         <element name="Character" positionX="332.984375" positionY="-209.390625" width="128" height="268"/>

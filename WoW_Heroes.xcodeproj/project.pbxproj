@@ -32,6 +32,7 @@
 		196234A825205A2600464FA7 /* GlobalStrings.strings in Resources */ = {isa = PBXBuildFile; fileRef = 196234A725205A2600464FA7 /* GlobalStrings.strings */; };
 		1965D20A24DB417C00FDBE66 /* Realm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1965D20924DB417C00FDBE66 /* Realm.swift */; };
 		19663AC6252F68FB00217FA9 /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19663AC5252F68FB00217FA9 /* StringExtension.swift */; };
+		1987586B25328C3C008EB4A2 /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1987586A25328C3C008EB4A2 /* SettingsTableViewController.swift */; };
 		1992145B252E7B7B00547024 /* Character.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1992145A252E7B7B00547024 /* Character.swift */; };
 		19AC19E5252D632800AB0351 /* UIAlertControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19AC19E4252D632800AB0351 /* UIAlertControllerExtension.swift */; };
 		19B3BFC623F0629900486823 /* SCAccessToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19B3BFC523F0629900486823 /* SCAccessToken.swift */; };
@@ -83,6 +84,7 @@
 		196234A725205A2600464FA7 /* GlobalStrings.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = GlobalStrings.strings; sourceTree = "<group>"; };
 		1965D20924DB417C00FDBE66 /* Realm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Realm.swift; sourceTree = "<group>"; };
 		19663AC5252F68FB00217FA9 /* StringExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
+		1987586A25328C3C008EB4A2 /* SettingsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
 		1992145A252E7B7B00547024 /* Character.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Character.swift; sourceTree = "<group>"; };
 		19AC19E4252D632800AB0351 /* UIAlertControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIAlertControllerExtension.swift; sourceTree = "<group>"; };
 		19B3BFC523F0629900486823 /* SCAccessToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SCAccessToken.swift; sourceTree = "<group>"; };
@@ -205,6 +207,7 @@
 				19C9492B243820B8001780F2 /* Extensions */,
 				19332C3D23D299C2006403B9 /* AppDelegate */,
 				19332C4A23D2A261006403B9 /* Home */,
+				1987586925328C12008EB4A2 /* Settings */,
 				19332C4C23D2A26D006403B9 /* Tab Bar */,
 			);
 			path = Controllers;
@@ -287,6 +290,14 @@
 				196234A725205A2600464FA7 /* GlobalStrings.strings */,
 			);
 			path = Strings;
+			sourceTree = "<group>";
+		};
+		1987586925328C12008EB4A2 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				1987586A25328C3C008EB4A2 /* SettingsTableViewController.swift */,
+			);
+			path = Settings;
 			sourceTree = "<group>";
 		};
 		19921459252E7B5E00547024 /* Character */ = {
@@ -497,6 +508,7 @@
 				19FDC81924DB5FC000621FF5 /* WHNSManagedObject.swift in Sources */,
 				19623452251FD97700464FA7 /* UserDefaultsHelper.swift in Sources */,
 				19B3BFC623F0629900486823 /* SCAccessToken.swift in Sources */,
+				1987586B25328C3C008EB4A2 /* SettingsTableViewController.swift in Sources */,
 				194405A8253150B600CE8FC0 /* UIColorExtension.swift in Sources */,
 				19AC19E5252D632800AB0351 /* UIAlertControllerExtension.swift in Sources */,
 				19332C1B23D29708006403B9 /* SceneDelegate.swift in Sources */,

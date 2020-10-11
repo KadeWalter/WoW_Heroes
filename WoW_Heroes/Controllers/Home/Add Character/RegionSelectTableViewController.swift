@@ -17,7 +17,7 @@ class RegionSelectTableViewController: UITableViewController {
     init() {
         super.init(style: .grouped)
         self.title = localizedTitle()
-        navigationItem.largeTitleDisplayMode = .never
+        self.tableView.cellLayoutMarginsFollowReadableWidth = true
     }
     
     required init?(coder: NSCoder) {

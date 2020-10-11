@@ -76,6 +76,21 @@ extension Character {
         }
     }
     
+    class func deleteCharacter(withCharacter character: Character) {
+        deleteCharacter(withCharacter: character, context: WHNSManagedObject.WHManagedObjectContext())
+    }
+    
+    class func deleteCharacter(withCharacter character: Character, context: NSManagedObjectContext) {
+        context.performAndWait {
+            context.delete(character)
+            do {
+                try context.save()
+            } catch let error {
+                print(error.localizedDescription)
+            }
+        }
+    }
+    
     class func setIsSelected(forCharacters characters: [Character], isSelected: Bool) {
         setIsSelected(forCharacters: characters, isSelected: isSelected, context: WHNSManagedObject.WHManagedObjectContext())
     }
