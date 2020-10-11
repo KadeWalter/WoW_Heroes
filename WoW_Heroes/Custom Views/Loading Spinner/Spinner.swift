@@ -43,7 +43,8 @@ class Spinner: UIView {
         
         spinner.path = circularPath.cgPath
         spinner.fillColor = UIColor.clear.cgColor // sets the uiview color to clear
-        spinner.strokeColor = UIColor.darkGray.cgColor // sets the path color to red
+        // set the spinner color
+        spinner.strokeColor = self.traitCollection.userInterfaceStyle == .dark ? UIColor.white.cgColor : UIColor.darkGray.cgColor
         spinner.lineWidth = 7 // how wide is the spinner
         spinner.strokeEnd = 0.4 // how long is the line
         spinner.lineCap = .round // rounded ends on the line

@@ -52,7 +52,7 @@ final class LoadingSpinnerViewController: UIViewController {
 extension LoadingSpinnerViewController {    
     private func setupView() {
         view.isUserInteractionEnabled = false
-        view.backgroundColor = UIColor(white: 0, alpha: 0.1)
+        view.backgroundColor = self.traitCollection.userInterfaceStyle == .dark ? UIColor(white: 1.0, alpha: 0.15) : UIColor(white: 0, alpha: 0.15)
         
         spinner.frame = CGRect(x: view.center.x - 50, y: view.center.y - 50, width: 100, height: 100)
         view.addSubview(spinner)

@@ -9,8 +9,6 @@
 import UIKit
 
 class SettingsTableViewController: UITableViewController {
-
-    // TODO: - localize strings on this screen
     
     private var tableModel: [SettingsTableModel] = []
     

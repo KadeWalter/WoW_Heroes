@@ -42,7 +42,7 @@ class AppThemeTableViewController: UITableViewController {
     }
     
     private func updateColorThemes(hex: String) {
-        let color = UIColor.init(hex: hex)
+        let color = UIColor(hex: hex)
         let appDelegate: AppDelegate? = UIApplication.shared.delegate as? AppDelegate
         appDelegate?.setNavColor(color: color)
         self.tabBarController?.tabBar.tintColor = color

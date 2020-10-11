@@ -12,7 +12,7 @@ class TabBarController: UITabBarController {
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
-        tabBar.tintColor = UIColor.init(hex: UserDefaultsHelper.getValue(forKey: udAppTheme) as? String ?? "")
+        tabBar.tintColor = UIColor(hex: UserDefaultsHelper.getValue(forKey: udAppTheme) as? String ?? "")
 		setupTabBar()
 	}
 	

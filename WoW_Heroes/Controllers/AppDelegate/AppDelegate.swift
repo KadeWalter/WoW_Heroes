@@ -17,7 +17,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         NetworkManager.accessTokenNeedsRefreshed()
         
         let themeHex = UserDefaultsHelper.getValue(forKey: udAppTheme) as? String ?? ""
-        setNavColor(color: UIColor.init(hex: themeHex))
+        setNavColor(color: UIColor(hex: themeHex))
         
         return true
     }
