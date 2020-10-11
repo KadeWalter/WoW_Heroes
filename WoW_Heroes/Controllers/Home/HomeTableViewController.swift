@@ -20,7 +20,6 @@ class HomeTableViewController: UITableViewController {
     init() {
         super.init(style: .grouped)
         let addCharacterButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addNewCharacter))
-        addCharacterButton.tintColor = .red
         self.navigationItem.rightBarButtonItem = addCharacterButton
         self.title = localizedHome()
         self.tableView.cellLayoutMarginsFollowReadableWidth = true

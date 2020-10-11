@@ -1,0 +1,17 @@
+/* 
+ AppTheme.strings
+ WoW_Heroes
+ 
+ Created by Kade Walter on 10/10/20.
+ Copyright © 2020 Kade Walter. All rights reserved.
+ */
+
+
+"App Theme Title" = "App Theme";
+
+"Horde" = "Horde";
+
+"Alliance" = "Alliance";
+
+"Note" = "You will need to switch tabs for color changes to take effect.";
+

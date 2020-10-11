@@ -31,7 +31,7 @@ class OtherCharacterTableViewCell: UITableViewCell {
         nameLabel.text = "\(name) - \(realmName)"
         classLabel.text = charClass.rawValue
         classLabel.textColor = CharacterClass.getColor(forClass: charClass)
-        classLabel.font = classLabel.font.withSize(15.0)
+        classLabel.font = UIFont.boldSystemFont(ofSize: 15.0)
         levelLabel.text = level
         
         layoutIfNeeded()

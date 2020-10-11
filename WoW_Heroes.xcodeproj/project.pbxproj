@@ -33,6 +33,9 @@
 		1965D20A24DB417C00FDBE66 /* Realm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1965D20924DB417C00FDBE66 /* Realm.swift */; };
 		19663AC6252F68FB00217FA9 /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19663AC5252F68FB00217FA9 /* StringExtension.swift */; };
 		1987586B25328C3C008EB4A2 /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1987586A25328C3C008EB4A2 /* SettingsTableViewController.swift */; };
+		198758752532A0BA008EB4A2 /* AppThemeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 198758742532A0BA008EB4A2 /* AppThemeTableViewController.swift */; };
+		198758972532C862008EB4A2 /* AppTheme.strings in Resources */ = {isa = PBXBuildFile; fileRef = 198758962532C862008EB4A2 /* AppTheme.strings */; };
+		1987589B2532C86C008EB4A2 /* Settings.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1987589A2532C86C008EB4A2 /* Settings.strings */; };
 		1992145B252E7B7B00547024 /* Character.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1992145A252E7B7B00547024 /* Character.swift */; };
 		19AC19E5252D632800AB0351 /* UIAlertControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19AC19E4252D632800AB0351 /* UIAlertControllerExtension.swift */; };
 		19B3BFC623F0629900486823 /* SCAccessToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19B3BFC523F0629900486823 /* SCAccessToken.swift */; };
@@ -85,6 +88,9 @@
 		1965D20924DB417C00FDBE66 /* Realm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Realm.swift; sourceTree = "<group>"; };
 		19663AC5252F68FB00217FA9 /* StringExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
 		1987586A25328C3C008EB4A2 /* SettingsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
+		198758742532A0BA008EB4A2 /* AppThemeTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppThemeTableViewController.swift; sourceTree = "<group>"; };
+		198758962532C862008EB4A2 /* AppTheme.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = AppTheme.strings; sourceTree = "<group>"; };
+		1987589A2532C86C008EB4A2 /* Settings.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Settings.strings; sourceTree = "<group>"; };
 		1992145A252E7B7B00547024 /* Character.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Character.swift; sourceTree = "<group>"; };
 		19AC19E4252D632800AB0351 /* UIAlertControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIAlertControllerExtension.swift; sourceTree = "<group>"; };
 		19B3BFC523F0629900486823 /* SCAccessToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SCAccessToken.swift; sourceTree = "<group>"; };
@@ -295,9 +301,20 @@
 		1987586925328C12008EB4A2 /* Settings */ = {
 			isa = PBXGroup;
 			children = (
+				1987589E2532C871008EB4A2 /* Strings */,
 				1987586A25328C3C008EB4A2 /* SettingsTableViewController.swift */,
+				198758742532A0BA008EB4A2 /* AppThemeTableViewController.swift */,
 			);
 			path = Settings;
+			sourceTree = "<group>";
+		};
+		1987589E2532C871008EB4A2 /* Strings */ = {
+			isa = PBXGroup;
+			children = (
+				198758962532C862008EB4A2 /* AppTheme.strings */,
+				1987589A2532C86C008EB4A2 /* Settings.strings */,
+			);
+			path = Strings;
 			sourceTree = "<group>";
 		};
 		19921459252E7B5E00547024 /* Character */ = {
@@ -466,11 +483,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				19332C2823D29711006403B9 /* LaunchScreen.storyboard in Resources */,
+				1987589B2532C86C008EB4A2 /* Settings.strings in Resources */,
 				19332C2523D29711006403B9 /* Assets.xcassets in Resources */,
 				196234A825205A2600464FA7 /* GlobalStrings.strings in Resources */,
 				1954FA2723D2A625006906F2 /* Home.strings in Resources */,
 				19112EFC2521458F00C57379 /* RegionSelect.strings in Resources */,
 				196234A2252059AF00464FA7 /* AddCharacter.strings in Resources */,
+				198758972532C862008EB4A2 /* AppTheme.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -499,6 +518,7 @@
 				193423C923F367FE007A30DE /* NetworkManager.swift in Sources */,
 				19112EF7252144BB00C57379 /* RegionSelectTableViewController.swift in Sources */,
 				19C3D821252EB7A7001D09BD /* CharacterClass.swift in Sources */,
+				198758752532A0BA008EB4A2 /* AppThemeTableViewController.swift in Sources */,
 				193ADB352522C3C2004BCA25 /* Spinner.swift in Sources */,
 				1992145B252E7B7B00547024 /* Character.swift in Sources */,
 				19332C2323D29708006403B9 /* WoW_Heroes.xcdatamodeld in Sources */,

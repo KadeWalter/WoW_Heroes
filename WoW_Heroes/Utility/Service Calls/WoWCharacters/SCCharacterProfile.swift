@@ -51,7 +51,6 @@ final class SCCharacterProfile {
     }
     
     private class func importCharacter(characterData: CharacterProfileResponseData, realm: Realm, context: NSManagedObjectContext) {
-        // TODO: - Also create without insert guild. check if guild exists. if it does, fetch the guild and add it to the character. otherwise create the guild and then add it to the character.
         guard let character = Character.createWithoutInsert(context: context), let realmObj = Realm.fetchRealm(withId: Int(realm.id), region: realm.region, context: context), let charClass = CharacterClass.createWithoutInsert(context: context), let guild = Guild.createWithoutInsert(context: context) else { return }
         
         // Character entity information

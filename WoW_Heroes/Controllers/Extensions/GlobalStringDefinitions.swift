@@ -12,3 +12,4 @@ import Foundation
 let udBlizzardAccessToken = "blizzardAccessToken"
 let udBlizzardAccessTokenExpiration = "blizzardAccessTokenExpiration"
 let udRealmRefreshDate = "realmRefreshDate"
+let udAppTheme = "appTheme"

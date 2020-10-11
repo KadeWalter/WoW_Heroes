@@ -10,12 +10,14 @@ import UIKit
 
 class SettingsTableViewController: UITableViewController {
 
-    var tableModel: [SettingsTableModel] = []
+    // TODO: - localize strings on this screen
+    
+    private var tableModel: [SettingsTableModel] = []
     
     init() {
         super.init(style: .grouped)
         self.tableView.cellLayoutMarginsFollowReadableWidth = true
-        self.title = "Settings"
+        self.title = localizedSettings()
     }
     
     required init?(coder: NSCoder) {
@@ -28,7 +30,7 @@ class SettingsTableViewController: UITableViewController {
     }
     
     private func buildTableModel() {
-        tableModel.append(SettingsTableModel(row: .AppTheme, rowTitle: "App Theme"))
+        tableModel.append(SettingsTableModel(row: .AppTheme, rowTitle: localizedAppTheme()))
     }
 }
 
@@ -55,19 +57,31 @@ extension SettingsTableViewController {
         let row = tableModel[indexPath.row].row
         switch row {
         case .AppTheme:
-            break
+            let vc = AppThemeTableViewController()
+            self.navigationController?.pushViewController(vc, animated: true)
         }
     }
 }
 
 // MARK: Settings Table Model
 extension SettingsTableViewController {
-    struct SettingsTableModel {
+    private struct SettingsTableModel {
         var row: RowType
         var rowTitle: String
     }
     
-    enum RowType: Int {
+    private enum RowType: Int {
         case AppTheme
+    }
+}
+
+// MARK: - Localized Strings
+extension SettingsTableViewController {
+    private func localizedSettings() -> String {
+        return NSLocalizedString("Settings Title", tableName: "Settings", bundle: .main, value: "settings title", comment: "settings title")
+    }
+    
+    private func localizedAppTheme() -> String {
+        return NSLocalizedString("App Theme Title", tableName: "Settings", bundle: .main, value: "app theme title", comment: "app theme title")
     }
 }

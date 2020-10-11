@@ -43,7 +43,7 @@ extension CharacterClass {
             // Because Priest is dumb and white, we are just going to settle with grey.
             return UIColor(hex: "#777777")
         case .Rogue:
-            return UIColor(hex: "#FFF569")
+            return UIColor(hex: "#F5E400")
         case .Shaman:
             return UIColor(hex: "#0070DE")
         case .Warlock:

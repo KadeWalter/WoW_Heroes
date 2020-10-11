@@ -15,7 +15,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // First thing we need to do is get an access token. Maybe?
         NetworkManager.accessTokenNeedsRefreshed()
+        
+        let themeHex = UserDefaultsHelper.getValue(forKey: udAppTheme) as? String ?? ""
+        setNavColor(color: UIColor.init(hex: themeHex))
+        
         return true
+    }
+    
+    func setNavColor(color: UIColor) {
+        UINavigationBar.appearance().barTintColor = color
+        UINavigationBar.appearance().tintColor = .white
+        UINavigationBar.appearance().titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
+        UINavigationBar.appearance().isTranslucent = false
     }
     
     /**
