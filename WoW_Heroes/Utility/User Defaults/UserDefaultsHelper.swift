@@ -17,4 +17,12 @@ final class UserDefaultsHelper {
     class func getValue(forKey key: String) -> Any? {
         return UserDefaults.standard.value(forKey: key)
     }
+    
+    class func getStringValue(forKey key: String) -> String? {
+        return UserDefaults.standard.value(forKey: key) as? String
+    }
+    
+    class func getDateValue(forKey key: String) -> Date? {
+        return UserDefaults.standard.value(forKey: key) as? Date
+    }
 }

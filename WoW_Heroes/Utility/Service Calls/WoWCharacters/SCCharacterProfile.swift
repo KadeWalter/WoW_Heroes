@@ -76,12 +76,22 @@ final class SCCharacterProfile {
             guild.id = Int64(guildInfo.id)
             guild.name = guildInfo.name
             guild.faction = guildInfo.faction.name
+            // set the guild slug which will be used in other places
+            let guildNameParts = guild.name.split(separator: " ")
+            var guildSlug = ""
+            for part in guildNameParts {
+                guildSlug.append(contentsOf: part)
+                if part != guildNameParts.last {
+                    guildSlug.append("-")
+                }
+            }
+            guild.slug = guildSlug.lowercased()
         }
         
         
         // Check if the characters class already exists. if it does, add the character. Otherwise make it and add the character.
         var classExists: CharacterClass?
-        if let existingClass = CharacterClass.fetchCharacterClass(withId: charClass.id, name: charClass.name, context: context) {
+        if let existingClass = CharacterClass.fetchCharacterClass(withId: charClass.id, context: context) {
             classExists = existingClass
         } else {
             charClass.insert(intoContext: context)
@@ -108,6 +118,7 @@ final class SCCharacterProfile {
             existingCharacter.updateCharacter(fromCharacter: character)
             if let guild = guildExists {
                 existingCharacter.guild = guild
+                guild.realm = realmObj
             }
             if let charClass = classExists {
                 existingCharacter.characterClass = charClass
@@ -123,6 +134,7 @@ final class SCCharacterProfile {
             character.insert(intoContext: context)
             if let guild = guildExists {
                 character.guild = guild
+                guild.realm = realmObj
                 guild.characters.insert(character)
                 realmObj.guilds.insert(guild)
             }

@@ -56,14 +56,26 @@ class AddCharacterTableViewController: UITableViewController {
     }
     
     private func getRealms() {
-        let refreshDate : Date = UserDefaultsHelper.getValue(forKey: "\(udRealmRefreshDate)\(region)") as? Date ?? Date()
+        let refreshDate : Date = UserDefaultsHelper.getDateValue(forKey: "\(udRealmRefreshDate)\(region)") ?? Date()
         if refreshDate <= Date() {
             loadingMask?.showLoadingMask()
-            SCRealmIndex.getRealms(region: region) { success in
+            SCPlayableClassees.getClasses(region: region) { success in
                 if success {
-                    self.realms = Realm.fetchAllRealms(forRegion: self.region)
+                    SCRealmIndex.getRealms(region: self.region) { success in
+                        if success {
+                            self.realms = Realm.fetchAllRealms(forRegion: self.region)
+                            self.loadingMask?.hideLoadingMask()
+                        } else {
+                            self.loadingMask?.hideLoadingMask() {
+                                self.showErrorGettingDataAlert()
+                            }
+                        }
+                    }
+                } else {
+                    self.loadingMask?.hideLoadingMask() {
+                        self.showErrorGettingDataAlert()
+                    }
                 }
-                self.loadingMask?.hideLoadingMask()
             }
         } else {
             realms = Realm.fetchAllRealms(forRegion: region)
@@ -100,6 +112,12 @@ class AddCharacterTableViewController: UITableViewController {
             alert.addOkayButton()
             alert.presentAlert(forViewController: self)
         }
+    }
+    
+    private func showErrorGettingDataAlert() {
+        let alert = UIAlertController(title: self.localizedError(), message: localizedRealmRetrievalError(), preferredStyle: .alert)
+        alert.addOkayButton()
+        alert.presentAlert(forViewController: self)
     }
 }
 
@@ -261,5 +279,9 @@ extension AddCharacterTableViewController {
     
     private func localizedCharacterRetrievalError() -> String {
         return NSLocalizedString("Character Retrieval Error", tableName: "AddCharacter", bundle: .main, value: "character retrieval error message", comment: "character retrieval error message")
+    }
+    
+    private func localizedRealmRetrievalError() -> String {
+        return NSLocalizedString("Realm Retrieval Error", tableName: "AddCharacter", bundle: .main, value: "realm retrieval error message", comment: "realm retrieval error message")
     }
 }

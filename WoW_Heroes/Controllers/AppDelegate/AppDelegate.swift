@@ -16,9 +16,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // First thing we need to do is get an access token. Maybe?
         NetworkManager.accessTokenNeedsRefreshed()
         
-        let themeHex = UserDefaultsHelper.getValue(forKey: udAppTheme) as? String ?? ""
+        var themeHex = UserDefaultsHelper.getStringValue(forKey: udAppTheme) ?? ""
+        if themeHex.isEmpty {
+            themeHex = hordeHex
+            UserDefaultsHelper.set(value: hordeHex, forKey: udAppTheme)
+        }
         setNavColor(color: UIColor(hex: themeHex))
-        
         return true
     }
     

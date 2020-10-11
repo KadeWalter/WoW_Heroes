@@ -10,14 +10,11 @@ import UIKit
 
 class AppThemeTableViewController: UITableViewController {
     
-    private let hordeHex: String = "#8C1616"
-    private let allianceHex: String = "#162C57"
-    
     private var tableModel: [AppThemeTableModel] = []
     private var colorInUserDefaults: String
     
     init() {
-        colorInUserDefaults = UserDefaultsHelper.getValue(forKey: udAppTheme) as? String ?? ""
+        colorInUserDefaults = UserDefaultsHelper.getStringValue(forKey: udAppTheme) ?? ""
         super.init(style: .grouped)
         self.title = localizedAppTheme()
     }

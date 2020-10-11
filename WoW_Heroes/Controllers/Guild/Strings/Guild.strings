@@ -1,0 +1,21 @@
+/* 
+  Guild.strings
+  WoW_Heroes
+
+  Created by Kade Walter on 10/11/20.
+  Copyright © 2020 Kade Walter. All rights reserved.
+*/
+
+"Guild Title" = "Guild";
+
+"Roster Title" = "Roster";
+
+"Error Retrieving Members" = "There was an error retrieving guild members. Please try again later.";
+
+"No Guild Message" = "Your selected character doesn't have a guild. Try updating the character or choosing a new character.";
+
+"Member Count" = "Member Count";
+
+"Guild Master" = "Guild Master";
+
+"Rank" = "Rank";

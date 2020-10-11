@@ -12,7 +12,7 @@ class TabBarController: UITabBarController {
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
-        tabBar.tintColor = UIColor(hex: UserDefaultsHelper.getValue(forKey: udAppTheme) as? String ?? "")
+        tabBar.tintColor = UIColor(hex: UserDefaultsHelper.getStringValue(forKey: udAppTheme) ?? "")
 		setupTabBar()
 	}
 	
@@ -25,7 +25,11 @@ class TabBarController: UITabBarController {
         let settingsVC = UINavigationController(rootViewController: SettingsTableViewController())
         settingsVC.tabBarItem.image = UIImage(systemName: "video.fill")
 
+        // create guild table view controller
+        let guildVC = UINavigationController(rootViewController: GuildHomeTableViewController())
+        guildVC.tabBarItem.image = UIImage(systemName: "video.fill")
+        
 		// add view controllers to tab bar
-		viewControllers = [homescreenVC, settingsVC]
+		viewControllers = [homescreenVC, guildVC, settingsVC]
 	}
 }

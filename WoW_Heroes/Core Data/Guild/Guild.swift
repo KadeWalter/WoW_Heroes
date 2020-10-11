@@ -15,7 +15,9 @@ class Guild: WHNSManagedObject {
     @NSManaged var id: Int64
     @NSManaged var name: String
     @NSManaged var faction: String
+    @NSManaged var slug: String
     @NSManaged var characters: Set<Character>
+    @NSManaged var realm: Realm
     
     override class func identifier() -> String {
         return String(describing: self)
@@ -51,6 +53,7 @@ extension Guild {
         self.id = guild.id
         self.name = guild.name
         self.faction = guild.faction
+        self.slug = guild.slug
         self.characters = guild.characters
     }
 }

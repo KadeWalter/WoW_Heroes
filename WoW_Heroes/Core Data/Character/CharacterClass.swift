@@ -26,30 +26,30 @@ extension CharacterClass {
     class func getColor(forClass charClass: Classes) -> UIColor {
         switch charClass {
         case .DeathKnight:
-            return UIColor(hex: "#C41F3B")
+            return UIColor(hex: deathKnightHex)
         case .DemonHunter:
-            return UIColor(hex: "#A330C9")
+            return UIColor(hex: demonHunterHex)
         case .Druid:
-            return UIColor(hex: "#FF7D0A")
+            return UIColor(hex: druidHex)
         case .Hunter:
-            return UIColor(hex: "#A9D271")
+            return UIColor(hex: hunterHex)
         case .Mage:
-            return UIColor(hex: "#40C7EB")
+            return UIColor(hex: mageHex)
         case .Monk:
-            return UIColor(hex: "#00FF96")
+            return UIColor(hex: monkHex)
         case .Paladin:
-            return UIColor(hex: "#F58CBA")
+            return UIColor(hex: paladinHex)
         case .Priest:
             // Because Priest is dumb and white, we are just going to settle with grey.
-            return UIColor(hex: "#777777")
+            return UIColor(hex: priestHex)
         case .Rogue:
-            return UIColor(hex: "#F5E400")
+            return UIColor(hex: rogueHex)
         case .Shaman:
-            return UIColor(hex: "#0070DE")
+            return UIColor(hex: shamanHex)
         case .Warlock:
-            return UIColor(hex: "#8787ED")
+            return UIColor(hex: warlockHex)
         case .Warrior:
-            return UIColor(hex: "#C79C6E")
+            return UIColor(hex: warriorHex)
         default:
             return .black
         }
@@ -58,12 +58,12 @@ extension CharacterClass {
 
 // MARK: - Fetch Functions
 extension CharacterClass {
-    class func fetchCharacterClass(withId id: Int16, name: String) -> CharacterClass? {
-        return fetchCharacterClass(withId: id, name: name, context: WHNSManagedObject.WHManagedObjectContext())
+    class func fetchCharacterClass(withId id: Int16) -> CharacterClass? {
+        return fetchCharacterClass(withId: id, context: WHNSManagedObject.WHManagedObjectContext())
     }
     
-    class func fetchCharacterClass(withId id: Int16, name: String, context: NSManagedObjectContext) -> CharacterClass? {
-        let predicate = NSPredicate(format: "id == %d AND name == %@", id, name)
+    class func fetchCharacterClass(withId id: Int16, context: NSManagedObjectContext) -> CharacterClass? {
+        let predicate = NSPredicate(format: "id == %d", id)
         do {
             let request = NSFetchRequest<CharacterClass>(entityName: CharacterClass.identifier())
             request.predicate = predicate
@@ -74,6 +74,21 @@ extension CharacterClass {
             } else {
                 return nil
             }
+        } catch {
+            return nil
+        }
+    }
+    
+    class func fetchAllCharacterClasses() -> [CharacterClass]? {
+        return fetchAllCharacterClasses(context: WHNSManagedObject.WHManagedObjectContext())
+    }
+    
+    class func fetchAllCharacterClasses(context: NSManagedObjectContext) -> [CharacterClass]? {
+        do {
+            let request = NSFetchRequest<CharacterClass>(entityName: CharacterClass.identifier())
+            
+            let charClasses = try context.fetch(request)
+            return charClasses
         } catch {
             return nil
         }

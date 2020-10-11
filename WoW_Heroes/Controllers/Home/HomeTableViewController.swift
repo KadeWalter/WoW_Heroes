@@ -68,7 +68,10 @@ class HomeTableViewController: UITableViewController {
         selectedCharacter = allCharacters.filter({ $0.isSelectedCharacter == true }).first
         // If a character wasnt found with the filter, just set the selected character as the first character.
         if selectedCharacter == nil, allCharacters.count > 0 {
-                selectedCharacter = allCharacters.first
+            selectedCharacter = allCharacters.first
+            if let updateChar = selectedCharacter {
+                Character.setIsSelected(forCharacters: [updateChar], isSelected: true)
+            }
         }
         
         // Build the array for characters that are not selected.
@@ -166,6 +169,10 @@ extension HomeTableViewController {
         return UITableViewCell()
     }
     
+    override func tableView(_ tableView: UITableView, shouldHighlightRowAt indexPath: IndexPath) -> Bool {
+        return !(tableModel[indexPath.section].section == .selectedCharacter)
+    }
+    
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         let section = tableModel[indexPath.section].section
@@ -219,13 +226,7 @@ extension HomeTableViewController {
     }
     
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        let section = tableModel[indexPath.section].section
-        switch section {
-        case .otherCharacters:
-            return true
-        default:
-            return false
-        }
+        return tableModel[indexPath.section].section == .otherCharacters
     }
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {

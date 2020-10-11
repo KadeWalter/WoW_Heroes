@@ -21,13 +21,23 @@
         <attribute name="id" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="name" optional="YES" attributeType="String"/>
         <relationship name="characters" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Character" inverseName="characterClass" inverseEntity="Character"/>
+        <relationship name="guildRosterMember" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="GuildRosterMember" inverseName="playableClass" inverseEntity="GuildRosterMember"/>
     </entity>
     <entity name="Guild" representedClassName="Guild" syncable="YES">
         <attribute name="faction" optional="YES" attributeType="String"/>
         <attribute name="id" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="name" optional="YES" attributeType="String"/>
+        <attribute name="slug" optional="YES" attributeType="String"/>
         <relationship name="characters" optional="YES" toMany="YES" deletionRule="Deny" destinationEntity="Character" inverseName="guild" inverseEntity="Character"/>
         <relationship name="realm" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Realm" inverseName="guilds" inverseEntity="Realm"/>
+        <relationship name="rosterMember" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="GuildRosterMember" inverseName="guild" inverseEntity="GuildRosterMember"/>
+    </entity>
+    <entity name="GuildRosterMember" representedClassName="GuildRosterMember" syncable="YES">
+        <attribute name="level" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <attribute name="rank" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <relationship name="guild" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Guild" inverseName="rosterMember" inverseEntity="Guild"/>
+        <relationship name="playableClass" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CharacterClass" inverseName="guildRosterMember" inverseEntity="CharacterClass"/>
     </entity>
     <entity name="Realm" representedClassName="Realm" syncable="YES">
         <attribute name="id" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
@@ -39,8 +49,9 @@
     </entity>
     <elements>
         <element name="Character" positionX="332.984375" positionY="-209.390625" width="128" height="268"/>
-        <element name="CharacterClass" positionX="336.98828125" positionY="164.66796875" width="128" height="88"/>
-        <element name="Guild" positionX="-56.36328125" positionY="-192.02734375" width="128" height="118"/>
+        <element name="CharacterClass" positionX="336.98828125" positionY="164.66796875" width="128" height="103"/>
+        <element name="Guild" positionX="-56.36328125" positionY="-192.02734375" width="128" height="148"/>
+        <element name="GuildRosterMember" positionX="126" positionY="-54" width="128" height="118"/>
         <element name="Realm" positionX="-68.43359375" positionY="113.84375" width="128" height="133"/>
     </elements>
 </model>

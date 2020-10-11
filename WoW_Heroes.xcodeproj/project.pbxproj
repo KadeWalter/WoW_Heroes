@@ -37,10 +37,17 @@
 		198758972532C862008EB4A2 /* AppTheme.strings in Resources */ = {isa = PBXBuildFile; fileRef = 198758962532C862008EB4A2 /* AppTheme.strings */; };
 		1987589B2532C86C008EB4A2 /* Settings.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1987589A2532C86C008EB4A2 /* Settings.strings */; };
 		1992145B252E7B7B00547024 /* Character.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1992145A252E7B7B00547024 /* Character.swift */; };
+		199B28662533AFD7007A04A7 /* GuildMemberTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 199B28652533AFD7007A04A7 /* GuildMemberTableViewCell.swift */; };
 		19AC19E5252D632800AB0351 /* UIAlertControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19AC19E4252D632800AB0351 /* UIAlertControllerExtension.swift */; };
 		19B3BFC623F0629900486823 /* SCAccessToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19B3BFC523F0629900486823 /* SCAccessToken.swift */; };
 		19C3D821252EB7A7001D09BD /* CharacterClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19C3D820252EB7A7001D09BD /* CharacterClass.swift */; };
 		19C3D826252EB9E0001D09BD /* Guild.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19C3D825252EB9E0001D09BD /* Guild.swift */; };
+		19C88E0D25336F3A0093E921 /* GuildHomeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19C88E0C25336F3A0093E921 /* GuildHomeTableViewController.swift */; };
+		19C88E1225336F9C0093E921 /* Guild.strings in Resources */ = {isa = PBXBuildFile; fileRef = 19C88E1125336F9C0093E921 /* Guild.strings */; };
+		19C88E182533786C0093E921 /* GuildRosterTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19C88E172533786C0093E921 /* GuildRosterTableViewController.swift */; };
+		19C88E1C25337DA20093E921 /* SCPlayableClasses.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19C88E1B25337DA20093E921 /* SCPlayableClasses.swift */; };
+		19C88E202533A0260093E921 /* GuildRosterMember.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19C88E1F2533A0260093E921 /* GuildRosterMember.swift */; };
+		19C88E252533A1F10093E921 /* SCGuildRoster.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19C88E242533A1F10093E921 /* SCGuildRoster.swift */; };
 		19C9492D243820D4001780F2 /* NotificationNameExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19C9492C243820D4001780F2 /* NotificationNameExtension.swift */; };
 		19CF1D172436655B009F2700 /* SCCharacterProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19CF1D162436655B009F2700 /* SCCharacterProfile.swift */; };
 		19CF1D1A2437B954009F2700 /* SCRealmIndex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19CF1D192437B954009F2700 /* SCRealmIndex.swift */; };
@@ -92,10 +99,17 @@
 		198758962532C862008EB4A2 /* AppTheme.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = AppTheme.strings; sourceTree = "<group>"; };
 		1987589A2532C86C008EB4A2 /* Settings.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Settings.strings; sourceTree = "<group>"; };
 		1992145A252E7B7B00547024 /* Character.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Character.swift; sourceTree = "<group>"; };
+		199B28652533AFD7007A04A7 /* GuildMemberTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuildMemberTableViewCell.swift; sourceTree = "<group>"; };
 		19AC19E4252D632800AB0351 /* UIAlertControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIAlertControllerExtension.swift; sourceTree = "<group>"; };
 		19B3BFC523F0629900486823 /* SCAccessToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SCAccessToken.swift; sourceTree = "<group>"; };
 		19C3D820252EB7A7001D09BD /* CharacterClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterClass.swift; sourceTree = "<group>"; };
 		19C3D825252EB9E0001D09BD /* Guild.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Guild.swift; sourceTree = "<group>"; };
+		19C88E0C25336F3A0093E921 /* GuildHomeTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuildHomeTableViewController.swift; sourceTree = "<group>"; };
+		19C88E1125336F9C0093E921 /* Guild.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Guild.strings; sourceTree = "<group>"; };
+		19C88E172533786C0093E921 /* GuildRosterTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuildRosterTableViewController.swift; sourceTree = "<group>"; };
+		19C88E1B25337DA20093E921 /* SCPlayableClasses.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SCPlayableClasses.swift; sourceTree = "<group>"; };
+		19C88E1F2533A0260093E921 /* GuildRosterMember.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuildRosterMember.swift; sourceTree = "<group>"; };
+		19C88E242533A1F10093E921 /* SCGuildRoster.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SCGuildRoster.swift; sourceTree = "<group>"; };
 		19C9492C243820D4001780F2 /* NotificationNameExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationNameExtension.swift; sourceTree = "<group>"; };
 		19CF1D162436655B009F2700 /* SCCharacterProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SCCharacterProfile.swift; sourceTree = "<group>"; };
 		19CF1D192437B954009F2700 /* SCRealmIndex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SCRealmIndex.swift; sourceTree = "<group>"; };
@@ -213,6 +227,7 @@
 				19C9492B243820B8001780F2 /* Extensions */,
 				19332C3D23D299C2006403B9 /* AppDelegate */,
 				19332C4A23D2A261006403B9 /* Home */,
+				19C88E0B25336F230093E921 /* Guild */,
 				1987586925328C12008EB4A2 /* Settings */,
 				19332C4C23D2A26D006403B9 /* Tab Bar */,
 			);
@@ -286,6 +301,7 @@
 				196234992520251100464FA7 /* RealmSelectPickerViewTableViewCell.swift */,
 				19623495252012F600464FA7 /* TextFieldTableViewCell.swift */,
 				1944059C2531477900CE8FC0 /* OtherCharacterTableViewCell.swift */,
+				199B28652533AFD7007A04A7 /* GuildMemberTableViewCell.swift */,
 			);
 			path = "TableView Cells";
 			sourceTree = "<group>";
@@ -331,6 +347,7 @@
 			children = (
 				19B3BFC323F061CF00486823 /* AccessToken */,
 				19CF1D182437B8E8009F2700 /* Realms */,
+				19C88E232533A1E00093E921 /* Guild */,
 				19B3BFC423F061D700486823 /* WoWCharacters */,
 				193423C823F367FE007A30DE /* NetworkManager.swift */,
 			);
@@ -349,6 +366,7 @@
 			isa = PBXGroup;
 			children = (
 				19CF1D162436655B009F2700 /* SCCharacterProfile.swift */,
+				19C88E1B25337DA20093E921 /* SCPlayableClasses.swift */,
 			);
 			path = WoWCharacters;
 			sourceTree = "<group>";
@@ -357,6 +375,33 @@
 			isa = PBXGroup;
 			children = (
 				19C3D825252EB9E0001D09BD /* Guild.swift */,
+				19C88E1F2533A0260093E921 /* GuildRosterMember.swift */,
+			);
+			path = Guild;
+			sourceTree = "<group>";
+		};
+		19C88E0B25336F230093E921 /* Guild */ = {
+			isa = PBXGroup;
+			children = (
+				19C88E1025336F900093E921 /* Strings */,
+				19C88E0C25336F3A0093E921 /* GuildHomeTableViewController.swift */,
+				19C88E172533786C0093E921 /* GuildRosterTableViewController.swift */,
+			);
+			path = Guild;
+			sourceTree = "<group>";
+		};
+		19C88E1025336F900093E921 /* Strings */ = {
+			isa = PBXGroup;
+			children = (
+				19C88E1125336F9C0093E921 /* Guild.strings */,
+			);
+			path = Strings;
+			sourceTree = "<group>";
+		};
+		19C88E232533A1E00093E921 /* Guild */ = {
+			isa = PBXGroup;
+			children = (
+				19C88E242533A1F10093E921 /* SCGuildRoster.swift */,
 			);
 			path = Guild;
 			sourceTree = "<group>";
@@ -489,6 +534,7 @@
 				1954FA2723D2A625006906F2 /* Home.strings in Resources */,
 				19112EFC2521458F00C57379 /* RegionSelect.strings in Resources */,
 				196234A2252059AF00464FA7 /* AddCharacter.strings in Resources */,
+				19C88E1225336F9C0093E921 /* Guild.strings in Resources */,
 				198758972532C862008EB4A2 /* AppTheme.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -507,7 +553,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				19C88E1C25337DA20093E921 /* SCPlayableClasses.swift in Sources */,
 				19623496252012F600464FA7 /* TextFieldTableViewCell.swift in Sources */,
+				19C88E252533A1F10093E921 /* SCGuildRoster.swift in Sources */,
 				19CF1D1A2437B954009F2700 /* SCRealmIndex.swift in Sources */,
 				19623456251FDC5400464FA7 /* GlobalStringDefinitions.swift in Sources */,
 				1962348425200DE100464FA7 /* AddCharacterTableViewController.swift in Sources */,
@@ -519,11 +567,14 @@
 				19112EF7252144BB00C57379 /* RegionSelectTableViewController.swift in Sources */,
 				19C3D821252EB7A7001D09BD /* CharacterClass.swift in Sources */,
 				198758752532A0BA008EB4A2 /* AppThemeTableViewController.swift in Sources */,
+				199B28662533AFD7007A04A7 /* GuildMemberTableViewCell.swift in Sources */,
+				19C88E0D25336F3A0093E921 /* GuildHomeTableViewController.swift in Sources */,
 				193ADB352522C3C2004BCA25 /* Spinner.swift in Sources */,
 				1992145B252E7B7B00547024 /* Character.swift in Sources */,
 				19332C2323D29708006403B9 /* WoW_Heroes.xcdatamodeld in Sources */,
 				19332C1923D29708006403B9 /* AppDelegate.swift in Sources */,
 				19C3D826252EB9E0001D09BD /* Guild.swift in Sources */,
+				19C88E202533A0260093E921 /* GuildRosterMember.swift in Sources */,
 				1962349A2520251100464FA7 /* RealmSelectPickerViewTableViewCell.swift in Sources */,
 				19FDC81924DB5FC000621FF5 /* WHNSManagedObject.swift in Sources */,
 				19623452251FD97700464FA7 /* UserDefaultsHelper.swift in Sources */,
@@ -534,6 +585,7 @@
 				19332C1B23D29708006403B9 /* SceneDelegate.swift in Sources */,
 				19332C4323D29E95006403B9 /* HomeTableViewController.swift in Sources */,
 				19663AC6252F68FB00217FA9 /* StringExtension.swift in Sources */,
+				19C88E182533786C0093E921 /* GuildRosterTableViewController.swift in Sources */,
 				19CF1D172436655B009F2700 /* SCCharacterProfile.swift in Sources */,
 				1944059D2531477900CE8FC0 /* OtherCharacterTableViewCell.swift in Sources */,
 			);

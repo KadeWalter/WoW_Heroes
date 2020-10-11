@@ -13,6 +13,7 @@ typealias NetworkCompletionBlock = (_ data: Data?, _ response: URLResponse?, _ e
 enum BlizzardApiNamespaceType: String {
     case profile
     case dynamic
+    case staticNamespace = "static"
 }
 
 class NetworkManager {
@@ -85,7 +86,7 @@ extension NetworkManager {
     
     private class func getAccessToken() -> String {
         // Return the current access token from User Defaults.
-        if let token = UserDefaultsHelper.getValue(forKey: udBlizzardAccessToken) as? String {
+        if let token = UserDefaultsHelper.getStringValue(forKey: udBlizzardAccessToken) {
             return token
         }
         return ""

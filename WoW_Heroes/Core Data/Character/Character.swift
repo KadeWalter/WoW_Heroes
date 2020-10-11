@@ -56,6 +56,26 @@ extension Character {
         }
     }
     
+    class func fetchSelectedCharacter() -> Character? {
+        return fetchSelectedCharacter(context: WHNSManagedObject.WHManagedObjectContext())
+    }
+    
+    class func fetchSelectedCharacter(context: NSManagedObjectContext) -> Character? {
+        do {
+            let request = NSFetchRequest<Character>(entityName: self.identifier())
+            let predicate = NSPredicate(format: "isSelectedCharacter == true")
+            request.predicate = predicate
+            
+            let characters = try context.fetch(request)
+            if characters.count == 1, let character = characters.first {
+                return character
+            }
+            return nil
+        } catch {
+            return nil
+        }
+    }
+    
     class func fetchAllCharacters() -> [Character] {
         let characters = fetchAllCharacters(context: WHNSManagedObject.WHManagedObjectContext())
         return characters
