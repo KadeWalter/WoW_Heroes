@@ -66,6 +66,27 @@ extension GuildRosterMember {
             return nil
         }
     }
+    
+    class func deleteRoster(forGuild guild: Guild) {
+        deleteRoster(forGuild: guild, context: WHNSManagedObject.WHManagedObjectContext())
+    }
+    
+    class func deleteRoster(forGuild guild: Guild, context: NSManagedObjectContext) {
+        context.performAndWait {
+            let predicate = NSPredicate(format: "guild.id == %d AND guild.name == %@", guild.id, guild.name)
+            do {
+                let request = NSFetchRequest<GuildRosterMember>(entityName: GuildRosterMember.identifier())
+                request.predicate = predicate
+                let results = try context.fetch(request)
+                for managedObject in results {
+                    context.delete(managedObject)
+                }
+                try context.save()
+            } catch let error {
+                print(error.localizedDescription)
+            }
+        }
+    }
 }
 
 extension GuildRosterMember {

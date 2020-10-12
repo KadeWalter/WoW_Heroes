@@ -41,7 +41,8 @@ extension NetworkManager {
         params["access_token"] = getAccessToken()
         
         // Create URL Components
-        var components = URLComponents(string: urlStr)
+        let url = URL(string: urlStr.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!)!
+        var components = URLComponents(url: url, resolvingAgainstBaseURL: false)
         var queryItems = [URLQueryItem]()
         
         for (key, value) in params {

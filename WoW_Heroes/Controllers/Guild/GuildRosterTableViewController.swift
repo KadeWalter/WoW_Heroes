@@ -29,10 +29,11 @@ class GuildRosterTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        let refreshButton = UIBarButtonItem(barButtonSystemItem: .refresh, target: self, action: #selector(refreshGuildRoster))
+        self.navigationItem.rightBarButtonItem = refreshButton
         loadingMask = LoadingSpinnerViewController(withViewController: self)
         tableView.register(GuildMemberTableViewCell.self, forCellReuseIdentifier: GuildMemberTableViewCell.identifier)
         getRosterInformation()
-        buildTableModel()
     }
     
     private func getRosterInformation() {
@@ -40,8 +41,42 @@ class GuildRosterTableViewController: UITableViewController {
         guildRoster = GuildRosterMember.fetchGuildMembers(withGuildId: guild.id, guildName: guild.name)
         // if it returns 0 results, we need to fetch for a new roster. otherwise build the table model.
         if guildRoster?.count == 0 {
-            loadingMask?.showLoadingMask()
-            SCGuildRoster.getRoster(region: guild.realm.region, guildSlug: guild.slug, realmSlug: guild.realm.slug) { success in
+            loadingMask?.showLoadingMask() {
+                SCGuildRoster.getRoster(region: self.guild.realm.region, guildSlug: self.guild.slug, realmSlug: self.guild.realm.slug) { success in
+                    if success {
+                        self.guildRoster = GuildRosterMember.fetchGuildMembers(withGuildId: self.guild.id, guildName: self.guild.name)
+                        self.loadingMask?.hideLoadingMask() {
+                            self.buildTableModel()
+                        }
+                    } else {
+                        self.loadingMask?.hideLoadingMask() {
+                            let alert = UIAlertController(title: self.localizedError(), message: self.localizedErrorRetrievingMessage(), preferredStyle: .alert)
+                            alert.addOkayButton()
+                            alert.presentAlert(forViewController: self)
+                        }
+                    }
+                }
+            }
+        } else {
+            buildTableModel()
+        }
+    }
+    
+    private func buildTableModel() {
+        tableModel.removeAll()
+        // Add the member count section
+        tableModel.append(RosterTableModel(section: .memberCount, rows: [.memberCountRow]))
+        // Now add the section with all of the guild members
+        tableModel.append(RosterTableModel(section: .characters, rows: getMemberRows()))
+        tableView.reloadData()
+    }
+    
+    @objc func refreshGuildRoster() {
+        // delete all entries for the guild.
+        GuildRosterMember.deleteRoster(forGuild: guild)
+        // get refreshed data.
+        self.loadingMask?.showLoadingMask() {
+            SCGuildRoster.getRoster(region: self.guild.realm.region, guildSlug: self.guild.slug, realmSlug: self.guild.realm.slug) { success in
                 if success {
                     self.guildRoster = GuildRosterMember.fetchGuildMembers(withGuildId: self.guild.id, guildName: self.guild.name)
                     self.loadingMask?.hideLoadingMask() {
@@ -55,19 +90,7 @@ class GuildRosterTableViewController: UITableViewController {
                     }
                 }
             }
-        } else {
-            buildTableModel()
         }
-    }
-    
-    private func buildTableModel() {
-        tableModel.removeAll()
-        
-        // Add the member count section
-        tableModel.append(RosterTableModel(section: .memberCount, rows: [.memberCountRow]))
-        
-        // Now add the section with all of the guild members
-        tableModel.append(RosterTableModel(section: .characters, rows: getMemberRows()))
     }
 }
 

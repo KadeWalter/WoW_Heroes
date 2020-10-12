@@ -84,7 +84,7 @@ class AddCharacterTableViewController: UITableViewController {
     
     @objc private func saveCharacter() {
         // Save character if there is a valid name and realm selected.
-        if let realm = selectedRealm, let name = characterName?.trimmingCharacters(in: .whitespacesAndNewlines), name.onlyContainsLetters() {
+        if let realm = selectedRealm, let name = characterName?.trimmingCharacters(in: .whitespacesAndNewlines), name.containsOnlyLettersAndWhitespace() {
             loadingMask?.showLoadingMask()
             // Make the service call to get the character.
             SCCharacterProfile.getCharacter(region: self.region, characterName: name, realm: realm, completion: { success in

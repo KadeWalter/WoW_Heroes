@@ -9,17 +9,8 @@
 import Foundation
 
 extension String {
-    func onlyContainsLetters() -> Bool {
-        do {
-        let regex = try NSRegularExpression(pattern: ".*[^A-Za-z ].*", options: [])
-            if regex.firstMatch(in: self, options: [], range: NSMakeRange(0, self.count)) != nil {
-                 return false
-
-            } else {
-                return true
-            }
-        } catch {
-            return false
-        }
+    func containsOnlyLettersAndWhitespace() -> Bool {
+        let allowed = CharacterSet.letters.union(.whitespaces)
+        return unicodeScalars.allSatisfy(allowed.contains)
     }
 }

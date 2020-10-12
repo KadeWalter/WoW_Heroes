@@ -27,6 +27,8 @@ final class SCCharacterProfile {
                     completion(false)
                 }
             }
+        } else {
+            completion(false)
         }
     }
     
