@@ -29,33 +29,22 @@ class GuildRosterTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let refreshButton = UIBarButtonItem(barButtonSystemItem: .refresh, target: self, action: #selector(refreshGuildRoster))
-        self.navigationItem.rightBarButtonItem = refreshButton
         loadingMask = LoadingSpinnerViewController(withViewController: self)
         tableView.register(GuildMemberTableViewCell.self, forCellReuseIdentifier: GuildMemberTableViewCell.identifier)
+        
+        // Add pull to refresh to force update event data
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(refreshGuildRoster), for: .valueChanged)
+        tableView.refreshControl = refreshControl
+        
         getRosterInformation()
     }
     
     private func getRosterInformation() {
         // if it returns 0 results, we need to fetch for a new roster. otherwise build the table model.
         if let date = Calendar.current.date(byAdding: .hour, value: -3, to: Date()), UserDefaultsHelper.getGuildLastUpdatedDate(forKey: String(format: udGuildRosterUpdated, guild.name)) < date {
-            loadingMask?.showLoadingMask() {
-                GuildRosterMember.deleteRoster(forGuild: self.guild)
-                SCGuildRoster.getRoster(region: self.guild.realm.region, guildSlug: self.guild.slug, realmSlug: self.guild.realm.slug) { success in
-                    if success {
-                        self.guildRoster = GuildRosterMember.fetchGuildMembers(withGuildId: self.guild.id, guildName: self.guild.name)
-                        self.loadingMask?.hideLoadingMask() {
-                            self.buildTableModel()
-                        }
-                        UserDefaultsHelper.setGuildUpdatedDictionary(forKey: String(format: udGuildRosterUpdated, self.guild.name))
-                    } else {
-                        self.loadingMask?.hideLoadingMask() {
-                            let alert = UIAlertController(title: self.localizedError(), message: self.localizedErrorRetrievingMessage(), preferredStyle: .alert)
-                            alert.addOkayButton()
-                            alert.presentAlert(forViewController: self)
-                        }
-                    }
-                }
+            self.loadingMask?.showLoadingMask() {
+                self.refreshGuildRoster()
             }
         } else {
             guildRoster = GuildRosterMember.fetchGuildMembers(withGuildId: guild.id, guildName: guild.name)
@@ -72,26 +61,33 @@ class GuildRosterTableViewController: UITableViewController {
         tableView.reloadData()
     }
     
-    @objc func refreshGuildRoster() {
-        // delete all entries for the guild.
-        GuildRosterMember.deleteRoster(forGuild: guild)
+    @objc private func refreshGuildRoster() {
         // get refreshed data.
-        self.loadingMask?.showLoadingMask() {
-            SCGuildRoster.getRoster(region: self.guild.realm.region, guildSlug: self.guild.slug, realmSlug: self.guild.realm.slug) { success in
-                if success {
-                    self.guildRoster = GuildRosterMember.fetchGuildMembers(withGuildId: self.guild.id, guildName: self.guild.name)
-                    self.loadingMask?.hideLoadingMask() {
-                        self.buildTableModel()
+        // delete all entries for the guild.
+        GuildRosterMember.deleteRoster(forGuild: self.guild)
+        SCGuildRoster.getRoster(region: self.guild.realm.region, guildSlug: self.guild.slug, realmSlug: self.guild.realm.slug) { success in
+            if success {
+                self.guildRoster = GuildRosterMember.fetchGuildMembers(withGuildId: self.guild.id, guildName: self.guild.name)
+                self.loadingMask?.hideLoadingMask() {
+                    self.buildTableModel()
+                }
+                UserDefaultsHelper.setGuildUpdatedDictionary(forKey: String(format: udGuildRosterUpdated, self.guild.name))
+            } else {
+                self.loadingMask?.hideLoadingMask() {
+                    let alert = UIAlertController(title: self.localizedError(), message: self.localizedErrorRetrievingMessage(), preferredStyle: .alert)
+                    alert.addOkayButton() { _ in
+                        self.endRefreshing()
                     }
-                    UserDefaultsHelper.setGuildUpdatedDictionary(forKey: String(format: udGuildRosterUpdated, self.guild.name))
-                } else {
-                    self.loadingMask?.hideLoadingMask() {
-                        let alert = UIAlertController(title: self.localizedError(), message: self.localizedErrorRetrievingMessage(), preferredStyle: .alert)
-                        alert.addOkayButton()
-                        alert.presentAlert(forViewController: self)
-                    }
+                    alert.presentAlert(forViewController: self)
                 }
             }
+            self.endRefreshing()
+        }
+    }
+    
+    private func endRefreshing() {
+        DispatchQueue.main.async {
+            self.tableView.refreshControl?.endRefreshing()
         }
     }
 }

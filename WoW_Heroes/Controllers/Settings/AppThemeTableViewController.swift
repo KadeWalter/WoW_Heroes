@@ -42,6 +42,7 @@ class AppThemeTableViewController: UITableViewController {
         let color = UIColor(hex: hex)
         let appDelegate: AppDelegate? = UIApplication.shared.delegate as? AppDelegate
         appDelegate?.setNavColor(color: color)
+        self.navigationController?.navigationBar.barTintColor = color
         self.tabBarController?.tabBar.tintColor = color
     }
     
@@ -75,10 +76,6 @@ extension AppThemeTableViewController {
         updateColorThemes(hex: tableModel[indexPath.row].rowHex)
         tableView.reloadSections(IndexSet(integer: 0), with: .automatic)
     }
-    
-    override func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
-        return localizedNote()
-    }
 }
 
 // MARK: - Localized Strings
@@ -93,10 +90,6 @@ extension AppThemeTableViewController {
     
     private func localizedAlliance() -> String {
         return NSLocalizedString("Alliance", tableName: "AppTheme", bundle: .main, value: "alliance title", comment: "alliance title")
-    }
-    
-    private func localizedNote() -> String {
-        return NSLocalizedString("Note", tableName: "AppTheme", bundle: .main, value: "note", comment: "note")
     }
 }
 

@@ -32,6 +32,11 @@ class GuildHomeTableViewController: UITableViewController {
         super.viewDidLoad()
         loadingMask = LoadingSpinnerViewController(withViewController: self)
         tableView.register(GuildEventTableViewCell.self, forCellReuseIdentifier: GuildEventTableViewCell.identifier)
+        
+        // Add pull to refresh to force update event data
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(refreshGuildEventData), for: .valueChanged)
+        tableView.refreshControl = refreshControl
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -43,29 +48,7 @@ class GuildHomeTableViewController: UITableViewController {
             // Maximum refresh should be every 3 hours probably.
             if let date = Calendar.current.date(byAdding: .hour, value: -3, to: Date()), UserDefaultsHelper.getGuildLastUpdatedDate(forKey: String(format: udGuildEventsUpdated, guild.name)) < date {
                 loadingMask?.showLoadingMask() {
-                    SCGuildEvents.getGuildEvents(forGuild: guild) { success in
-                        if success {
-                            self.encounters = GuildEvent.fetchEncounters(forGuild: guild)
-                            self.characterAchievements = GuildEvent.fetchCharacterAchievements(forGuild: guild)
-                            SCGuildAchievements.getGuildAchievements(forGuild: guild) { success in
-                                if success {
-                                    self.guildAchievements = GuildAchievement.fetchGuildAchievements(forGuild: guild)
-                                    self.loadingMask?.hideLoadingMask() {
-                                        self.buildTableModel()
-                                    }
-                                    UserDefaultsHelper.setGuildUpdatedDictionary(forKey: String(format: udGuildEventsUpdated, guild.name))
-                                } else {
-                                    self.loadingMask?.hideLoadingMask() {
-                                        self.showErrorLoadingDataMessage()
-                                    }
-                                }
-                            }
-                        } else {
-                            self.loadingMask?.hideLoadingMask() {
-                                self.showErrorLoadingDataMessage()
-                            }
-                        }
-                    }
+                    self.refreshGuildEventData()
                 }
             } else {
                 encounters = GuildEvent.fetchEncounters(forGuild: guild)
@@ -100,7 +83,47 @@ class GuildHomeTableViewController: UITableViewController {
     }
     
     private func showErrorLoadingDataMessage() {
-        
+        let alert = UIAlertController(title: self.localizedError(), message: self.localizedErrorRetrievingMessage(), preferredStyle: .alert)
+        alert.addOkayButton() { _ in
+            self.endRefreshing()
+        }
+        alert.presentAlert(forViewController: self)
+    }
+    
+    @objc private func refreshGuildEventData() {
+        if let guild = selectedGuild {
+            SCGuildEvents.getGuildEvents(forGuild: guild) { success in
+                if success {
+                    self.encounters = GuildEvent.fetchEncounters(forGuild: guild)
+                    self.characterAchievements = GuildEvent.fetchCharacterAchievements(forGuild: guild)
+                    SCGuildAchievements.getGuildAchievements(forGuild: guild) { success in
+                        self.endRefreshing()
+                        if success {
+                            self.guildAchievements = GuildAchievement.fetchGuildAchievements(forGuild: guild)
+                            self.loadingMask?.hideLoadingMask() {
+                                self.buildTableModel()
+                            }
+                            UserDefaultsHelper.setGuildUpdatedDictionary(forKey: String(format: udGuildEventsUpdated, guild.name))
+                        } else {
+                            self.loadingMask?.hideLoadingMask() {
+                                self.showErrorLoadingDataMessage()
+                            }
+                        }
+                    }
+                } else {
+                    self.endRefreshing()
+                    self.loadingMask?.hideLoadingMask() {
+                        self.showErrorLoadingDataMessage()
+                    }
+                }
+            }
+        }
+    }
+    
+    private func endRefreshing() {
+        DispatchQueue.main.async {
+            self.tableView.refreshControl?.endRefreshing()
+        }
     }
 }
 
@@ -270,5 +293,13 @@ extension GuildHomeTableViewController {
     
     private func localizedNoGuild() -> String {
         return NSLocalizedString("No Guild Message", tableName: "Guild", bundle: .main, value: "no guild message", comment: "no guild message")
+    }
+    
+    private func localizedError() -> String {
+        return NSLocalizedString("Error", tableName: "GlobalStrings", bundle: .main, value: "error title", comment: "error title")
+    }
+    
+    private func localizedErrorRetrievingMessage() -> String {
+        return NSLocalizedString("Error Retrieving Events", tableName: "Guild", bundle: .main, value: "error message", comment: "error message")
     }
 }

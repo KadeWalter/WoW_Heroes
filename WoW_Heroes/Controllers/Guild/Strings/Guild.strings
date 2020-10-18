@@ -12,6 +12,8 @@
 
 "Error Retrieving Members" = "There was an error retrieving guild members. Please try again later.";
 
+"Error Retrieving Events" = "There was an error retrieving guild events. Please try again later.";
+
 "No Guild Message" = "Your selected character doesn't have a guild. Try updating the character or choosing a new character.";
 
 "Member Count" = "Member Count";
