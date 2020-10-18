@@ -147,8 +147,8 @@ extension HomeTableViewController {
         let row = tableModel[indexPath.section].rows[indexPath.row]
         switch row {
         case .selectedCharacter:
-            if let cell = tableView.dequeueReusableCell(withIdentifier: OtherCharacterTableViewCell.identifier) as? OtherCharacterTableViewCell, let character = selectedCharacter {
-                cell.updateCell(withName: character.name, realmName: character.realm.name, charClass: Classes.getClass(fromClass: character.characterClass.name), level: String(describing: character.level))
+            if let cell = tableView.dequeueReusableCell(withIdentifier: HomeScreenSelectedCharacterTableViewCell.identifier) as? HomeScreenSelectedCharacterTableViewCell, let character = selectedCharacter {
+                cell.updateCell(forCharacter: character)
                 return cell
             }
         case .otherCharacter:
@@ -178,6 +178,7 @@ extension HomeTableViewController {
         let section = tableModel[indexPath.section].section
         switch section {
         case .selectedCharacter:
+            // TODO: - Go To Selected Character Tab
             break
         case .otherCharacters:
             // set the character that corresponds to the selected row as the selected character
@@ -246,6 +247,7 @@ extension HomeTableViewController {
     
     private func registerTableViewCells() {
         tableView.register(OtherCharacterTableViewCell.self, forCellReuseIdentifier: OtherCharacterTableViewCell.identifier)
+        tableView.register(HomeScreenSelectedCharacterTableViewCell.self, forCellReuseIdentifier: HomeScreenSelectedCharacterTableViewCell.identifier)
     }
 }
 

@@ -56,6 +56,7 @@
 		19C9492D243820D4001780F2 /* NotificationNameExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19C9492C243820D4001780F2 /* NotificationNameExtension.swift */; };
 		19CF1D172436655B009F2700 /* SCCharacterProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19CF1D162436655B009F2700 /* SCCharacterProfile.swift */; };
 		19CF1D1A2437B954009F2700 /* SCRealmIndex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19CF1D192437B954009F2700 /* SCRealmIndex.swift */; };
+		19F4B381253CEAEE001C5BC4 /* HomeScreenSelectedCharacterTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19F4B380253CEAEE001C5BC4 /* HomeScreenSelectedCharacterTableViewCell.swift */; };
 		19FDC81924DB5FC000621FF5 /* WHNSManagedObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19FDC81824DB5FC000621FF5 /* WHNSManagedObject.swift */; };
 /* End PBXBuildFile section */
 
@@ -123,6 +124,7 @@
 		19C9492C243820D4001780F2 /* NotificationNameExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationNameExtension.swift; sourceTree = "<group>"; };
 		19CF1D162436655B009F2700 /* SCCharacterProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SCCharacterProfile.swift; sourceTree = "<group>"; };
 		19CF1D192437B954009F2700 /* SCRealmIndex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SCRealmIndex.swift; sourceTree = "<group>"; };
+		19F4B380253CEAEE001C5BC4 /* HomeScreenSelectedCharacterTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreenSelectedCharacterTableViewCell.swift; sourceTree = "<group>"; };
 		19FDC81824DB5FC000621FF5 /* WHNSManagedObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WHNSManagedObject.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -313,6 +315,7 @@
 				1944059C2531477900CE8FC0 /* OtherCharacterTableViewCell.swift */,
 				199B28652533AFD7007A04A7 /* GuildMemberTableViewCell.swift */,
 				19194DA5253A645300C7496C /* GuildEventTableViewCell.swift */,
+				19F4B380253CEAEE001C5BC4 /* HomeScreenSelectedCharacterTableViewCell.swift */,
 			);
 			path = "TableView Cells";
 			sourceTree = "<group>";
@@ -602,6 +605,7 @@
 				1987586B25328C3C008EB4A2 /* SettingsTableViewController.swift in Sources */,
 				194405A8253150B600CE8FC0 /* UIColorExtension.swift in Sources */,
 				19AC19E5252D632800AB0351 /* UIAlertControllerExtension.swift in Sources */,
+				19F4B381253CEAEE001C5BC4 /* HomeScreenSelectedCharacterTableViewCell.swift in Sources */,
 				19332C1B23D29708006403B9 /* SceneDelegate.swift in Sources */,
 				19332C4323D29E95006403B9 /* HomeTableViewController.swift in Sources */,
 				19663AC6252F68FB00217FA9 /* StringExtension.swift in Sources */,

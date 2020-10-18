@@ -58,7 +58,7 @@ final class SCCharacterProfile {
         // Character entity information
         character.achievementPoints = Int32(characterData.achievement_points)
         character.activeSpec = characterData.active_spec.name
-        character.activeTitle = characterData.active_title?.name
+        character.activeTitle = characterData.active_title?.display_string
         character.averageIlvl = Int16(characterData.average_item_level)
         character.equippedIlvl = Int16(characterData.equipped_item_level)
         character.faction = characterData.faction.name
@@ -201,6 +201,7 @@ extension SCCharacterProfile {
     
     struct CharacterActiveTitleInfo: Codable {
         var name: String
+        var display_string: String
         var id: Int
     }
 }

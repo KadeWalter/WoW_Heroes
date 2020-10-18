@@ -19,3 +19,10 @@
 "Error Updating Selected Character" = "There was an error updating the selected character. Please try again later.";
 
 "Error Updating All Characters" = "There was an error updating your characters. Please try again later.";
+
+// Selected Character Table View Cell Strings
+"Level" = "Level";
+
+"Achievements Points" = "Achievement Points";
+
+"Equipped Ilvl" = "Equipped Item Level";
