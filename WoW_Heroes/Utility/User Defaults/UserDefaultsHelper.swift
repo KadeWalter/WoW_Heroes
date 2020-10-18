@@ -25,4 +25,19 @@ final class UserDefaultsHelper {
     class func getDateValue(forKey key: String) -> Date? {
         return UserDefaults.standard.value(forKey: key) as? Date
     }
+    
+    class func setGuildUpdatedDictionary(forKey key: String) {
+        var dict = getGuildUpdatedDictionary()
+        dict[key] = Date()
+        UserDefaults.standard.setValue(dict, forKey: udGuildUpdatedInformation)
+    }
+    
+    class func getGuildLastUpdatedDate(forKey key: String) -> Date {
+        let dict = getGuildUpdatedDictionary()
+        return dict[key] ?? Calendar.current.date(byAdding: .hour, value: -4, to: Date()) ?? Date()
+    }
+    
+    private class func getGuildUpdatedDictionary() -> [String : Date] {
+        return UserDefaults.standard.value(forKey: udGuildUpdatedInformation) as? [String : Date] ?? [:]
+    }
 }

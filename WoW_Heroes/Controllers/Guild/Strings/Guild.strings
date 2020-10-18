@@ -19,3 +19,7 @@
 "Guild Master" = "Guild Master";
 
 "Rank" = "Rank";
+
+"Achievement Message" = "%@ earned the achievement";
+
+"Encounter Message" = "%@ has defeated";

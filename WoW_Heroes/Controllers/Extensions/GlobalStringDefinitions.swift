@@ -13,6 +13,11 @@ let udBlizzardAccessToken = "blizzardAccessToken"
 let udBlizzardAccessTokenExpiration = "blizzardAccessTokenExpiration"
 let udRealmRefreshDate = "realmRefreshDate"
 let udAppTheme = "appTheme"
+// MARK: - Guild Info Updated Dictionary Keys
+let udGuildUpdatedInformation = "guildUpdatedInformation"
+let udGuildEventsUpdated = "%@UpdatedEvents"
+let udGuildRosterUpdated = "%@UpdatedRoster"
+
 
 // MARK: - Horde/Alliance Colors
 let hordeHex: String = "#8C1616"
@@ -32,3 +37,8 @@ let rogueHex = "#F5E400"
 let shamanHex = "#0070DE"
 let warlockHex = "#8787ED"
 let warriorHex = "#C79C6E"
+
+// MARK: - Achievement and Encounter Text Colors
+let achievementLightModeYellowHex = "#b8b209"
+let achievementDarkModeYellowHex = "#e0d904"
+let encounterRedHex = "#AA2317"

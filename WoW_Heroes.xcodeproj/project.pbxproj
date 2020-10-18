@@ -9,6 +9,11 @@
 /* Begin PBXBuildFile section */
 		19112EF7252144BB00C57379 /* RegionSelectTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19112EF6252144BB00C57379 /* RegionSelectTableViewController.swift */; };
 		19112EFC2521458F00C57379 /* RegionSelect.strings in Resources */ = {isa = PBXBuildFile; fileRef = 19112EFB2521458F00C57379 /* RegionSelect.strings */; };
+		19194DA6253A645300C7496C /* GuildEventTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19194DA5253A645300C7496C /* GuildEventTableViewCell.swift */; };
+		19194DAC253AA4A500C7496C /* GuildEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19194DAB253AA4A500C7496C /* GuildEvent.swift */; };
+		19194DB0253B751A00C7496C /* SCGuildEvents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19194DAF253B751A00C7496C /* SCGuildEvents.swift */; };
+		19194DB4253BB35800C7496C /* GuildAchievement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19194DB3253BB35800C7496C /* GuildAchievement.swift */; };
+		19194DB8253BB5C100C7496C /* SCGuildAchievements.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19194DB7253BB5C100C7496C /* SCGuildAchievements.swift */; };
 		19332C1923D29708006403B9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19332C1823D29708006403B9 /* AppDelegate.swift */; };
 		19332C1B23D29708006403B9 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19332C1A23D29708006403B9 /* SceneDelegate.swift */; };
 		19332C1D23D29708006403B9 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19332C1C23D29708006403B9 /* TabBarController.swift */; };
@@ -67,6 +72,11 @@
 /* Begin PBXFileReference section */
 		19112EF6252144BB00C57379 /* RegionSelectTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegionSelectTableViewController.swift; sourceTree = "<group>"; };
 		19112EFB2521458F00C57379 /* RegionSelect.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = RegionSelect.strings; sourceTree = "<group>"; };
+		19194DA5253A645300C7496C /* GuildEventTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuildEventTableViewCell.swift; sourceTree = "<group>"; };
+		19194DAB253AA4A500C7496C /* GuildEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuildEvent.swift; sourceTree = "<group>"; };
+		19194DAF253B751A00C7496C /* SCGuildEvents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SCGuildEvents.swift; sourceTree = "<group>"; };
+		19194DB3253BB35800C7496C /* GuildAchievement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuildAchievement.swift; sourceTree = "<group>"; };
+		19194DB7253BB5C100C7496C /* SCGuildAchievements.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SCGuildAchievements.swift; sourceTree = "<group>"; };
 		19332C1523D29708006403B9 /* WoW_Heroes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WoW_Heroes.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		19332C1823D29708006403B9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		19332C1A23D29708006403B9 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -302,6 +312,7 @@
 				19623495252012F600464FA7 /* TextFieldTableViewCell.swift */,
 				1944059C2531477900CE8FC0 /* OtherCharacterTableViewCell.swift */,
 				199B28652533AFD7007A04A7 /* GuildMemberTableViewCell.swift */,
+				19194DA5253A645300C7496C /* GuildEventTableViewCell.swift */,
 			);
 			path = "TableView Cells";
 			sourceTree = "<group>";
@@ -376,6 +387,8 @@
 			children = (
 				19C3D825252EB9E0001D09BD /* Guild.swift */,
 				19C88E1F2533A0260093E921 /* GuildRosterMember.swift */,
+				19194DAB253AA4A500C7496C /* GuildEvent.swift */,
+				19194DB3253BB35800C7496C /* GuildAchievement.swift */,
 			);
 			path = Guild;
 			sourceTree = "<group>";
@@ -402,6 +415,8 @@
 			isa = PBXGroup;
 			children = (
 				19C88E242533A1F10093E921 /* SCGuildRoster.swift */,
+				19194DAF253B751A00C7496C /* SCGuildEvents.swift */,
+				19194DB7253BB5C100C7496C /* SCGuildAchievements.swift */,
 			);
 			path = Guild;
 			sourceTree = "<group>";
@@ -553,12 +568,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				19194DB4253BB35800C7496C /* GuildAchievement.swift in Sources */,
 				19C88E1C25337DA20093E921 /* SCPlayableClasses.swift in Sources */,
 				19623496252012F600464FA7 /* TextFieldTableViewCell.swift in Sources */,
 				19C88E252533A1F10093E921 /* SCGuildRoster.swift in Sources */,
 				19CF1D1A2437B954009F2700 /* SCRealmIndex.swift in Sources */,
 				19623456251FDC5400464FA7 /* GlobalStringDefinitions.swift in Sources */,
 				1962348425200DE100464FA7 /* AddCharacterTableViewController.swift in Sources */,
+				19194DB0253B751A00C7496C /* SCGuildEvents.swift in Sources */,
 				193ADB212522ACC1004BCA25 /* LoadingSpinnerViewController.swift in Sources */,
 				19332C1D23D29708006403B9 /* TabBarController.swift in Sources */,
 				19C9492D243820D4001780F2 /* NotificationNameExtension.swift in Sources */,
@@ -570,7 +587,10 @@
 				199B28662533AFD7007A04A7 /* GuildMemberTableViewCell.swift in Sources */,
 				19C88E0D25336F3A0093E921 /* GuildHomeTableViewController.swift in Sources */,
 				193ADB352522C3C2004BCA25 /* Spinner.swift in Sources */,
+				19194DB8253BB5C100C7496C /* SCGuildAchievements.swift in Sources */,
 				1992145B252E7B7B00547024 /* Character.swift in Sources */,
+				19194DA6253A645300C7496C /* GuildEventTableViewCell.swift in Sources */,
+				19194DAC253AA4A500C7496C /* GuildEvent.swift in Sources */,
 				19332C2323D29708006403B9 /* WoW_Heroes.xcdatamodeld in Sources */,
 				19332C1923D29708006403B9 /* AppDelegate.swift in Sources */,
 				19C3D826252EB9E0001D09BD /* Guild.swift in Sources */,

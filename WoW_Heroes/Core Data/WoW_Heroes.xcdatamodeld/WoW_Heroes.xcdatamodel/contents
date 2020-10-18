@@ -28,9 +28,24 @@
         <attribute name="id" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="name" optional="YES" attributeType="String"/>
         <attribute name="slug" optional="YES" attributeType="String"/>
+        <relationship name="achievements" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="GuildAchievement" inverseName="guild" inverseEntity="GuildAchievement"/>
         <relationship name="characters" optional="YES" toMany="YES" deletionRule="Deny" destinationEntity="Character" inverseName="guild" inverseEntity="Character"/>
+        <relationship name="events" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="GuildEvent" inverseName="guild" inverseEntity="GuildEvent"/>
         <relationship name="realm" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Realm" inverseName="guilds" inverseEntity="Realm"/>
         <relationship name="rosterMember" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="GuildRosterMember" inverseName="guild" inverseEntity="GuildRosterMember"/>
+    </entity>
+    <entity name="GuildAchievement" representedClassName="GuildAchievement" syncable="YES">
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <attribute name="timestamp" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <relationship name="guild" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Guild" inverseName="achievements" inverseEntity="Guild"/>
+    </entity>
+    <entity name="GuildEvent" representedClassName="GuildEvent" syncable="YES">
+        <attribute name="character" optional="YES" attributeType="String"/>
+        <attribute name="difficulty" optional="YES" attributeType="String"/>
+        <attribute name="eventName" attributeType="String"/>
+        <attribute name="timestamp" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="type" attributeType="String"/>
+        <relationship name="guild" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Guild" inverseName="events" inverseEntity="Guild"/>
     </entity>
     <entity name="GuildRosterMember" representedClassName="GuildRosterMember" syncable="YES">
         <attribute name="level" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
@@ -50,8 +65,10 @@
     <elements>
         <element name="Character" positionX="332.984375" positionY="-209.390625" width="128" height="268"/>
         <element name="CharacterClass" positionX="336.98828125" positionY="164.66796875" width="128" height="103"/>
-        <element name="Guild" positionX="-56.36328125" positionY="-192.02734375" width="128" height="148"/>
+        <element name="Guild" positionX="-56.36328125" positionY="-192.02734375" width="128" height="28"/>
         <element name="GuildRosterMember" positionX="126" positionY="-54" width="128" height="118"/>
         <element name="Realm" positionX="-68.43359375" positionY="113.84375" width="128" height="133"/>
+        <element name="GuildEvent" positionX="153" positionY="-36" width="128" height="133"/>
+        <element name="GuildAchievement" positionX="162" positionY="-27" width="128" height="88"/>
     </elements>
 </model>

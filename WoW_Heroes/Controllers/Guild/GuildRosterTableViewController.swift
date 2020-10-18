@@ -37,17 +37,17 @@ class GuildRosterTableViewController: UITableViewController {
     }
     
     private func getRosterInformation() {
-        // try to fetch the roster for the guild from core data
-        guildRoster = GuildRosterMember.fetchGuildMembers(withGuildId: guild.id, guildName: guild.name)
         // if it returns 0 results, we need to fetch for a new roster. otherwise build the table model.
-        if guildRoster?.count == 0 {
+        if let date = Calendar.current.date(byAdding: .hour, value: -3, to: Date()), UserDefaultsHelper.getGuildLastUpdatedDate(forKey: String(format: udGuildRosterUpdated, guild.name)) < date {
             loadingMask?.showLoadingMask() {
+                GuildRosterMember.deleteRoster(forGuild: self.guild)
                 SCGuildRoster.getRoster(region: self.guild.realm.region, guildSlug: self.guild.slug, realmSlug: self.guild.realm.slug) { success in
                     if success {
                         self.guildRoster = GuildRosterMember.fetchGuildMembers(withGuildId: self.guild.id, guildName: self.guild.name)
                         self.loadingMask?.hideLoadingMask() {
                             self.buildTableModel()
                         }
+                        UserDefaultsHelper.setGuildUpdatedDictionary(forKey: String(format: udGuildRosterUpdated, self.guild.name))
                     } else {
                         self.loadingMask?.hideLoadingMask() {
                             let alert = UIAlertController(title: self.localizedError(), message: self.localizedErrorRetrievingMessage(), preferredStyle: .alert)
@@ -58,6 +58,7 @@ class GuildRosterTableViewController: UITableViewController {
                 }
             }
         } else {
+            guildRoster = GuildRosterMember.fetchGuildMembers(withGuildId: guild.id, guildName: guild.name)
             buildTableModel()
         }
     }
@@ -82,6 +83,7 @@ class GuildRosterTableViewController: UITableViewController {
                     self.loadingMask?.hideLoadingMask() {
                         self.buildTableModel()
                     }
+                    UserDefaultsHelper.setGuildUpdatedDictionary(forKey: String(format: udGuildRosterUpdated, self.guild.name))
                 } else {
                     self.loadingMask?.hideLoadingMask() {
                         let alert = UIAlertController(title: self.localizedError(), message: self.localizedErrorRetrievingMessage(), preferredStyle: .alert)
