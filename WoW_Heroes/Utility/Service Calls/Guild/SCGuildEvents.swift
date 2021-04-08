@@ -84,46 +84,46 @@ class SCGuildEvents {
 }
 
 extension SCGuildEvents {
-    struct GuildEventData: Codable {
+    private struct GuildEventData: Codable {
         var activities: [ActivityData]
     }
     
-    struct ActivityData: Codable {
+    private struct ActivityData: Codable {
         var character_achievement: CharacterActivityData?
         var encounter_completed: EncounterCompletedData?
         var activity: ActivityType
         var timestamp: Int64
     }
     
-    struct ActivityType: Codable {
+    private struct ActivityType: Codable {
         var type: String
     }
     
     // Character Activity Structs
-    struct CharacterActivityData: Codable {
+    private struct CharacterActivityData: Codable {
         var character: CharacterData
         var achievement: AchievementData
     }
     
-    struct CharacterData: Codable {
+    private struct CharacterData: Codable {
         var name: String
     }
     
-    struct AchievementData: Codable {
+    private struct AchievementData: Codable {
         var name: String
     }
     
     // Encounter Structs
-    struct EncounterCompletedData: Codable {
+    private struct EncounterCompletedData: Codable {
         var encounter: EncounterData
         var mode: EncounterMode
     }
     
-    struct EncounterData: Codable {
+    private struct EncounterData: Codable {
         var name: String
     }
     
-    struct EncounterMode: Codable {
+    private struct EncounterMode: Codable {
         var name: String
     }
 }

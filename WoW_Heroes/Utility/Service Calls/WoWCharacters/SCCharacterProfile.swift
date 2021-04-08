@@ -69,6 +69,11 @@ final class SCCharacterProfile {
         character.race = characterData.race.name
         character.isSelectedCharacter = false
         
+        if let covenant = characterData.covenant_progress, let covInfo = covenant.chosen_covenant {
+            character.covenantName = covInfo.name
+            character.renownLevel = covenant.renown_level ?? 0
+        }
+        
         // Class entity information
         charClass.id = Int16(characterData.character_class.id)
         charClass.name = characterData.character_class.name
@@ -151,7 +156,7 @@ final class SCCharacterProfile {
 }
 
 extension SCCharacterProfile {
-    struct CharacterProfileResponseData: Codable {
+    private struct CharacterProfileResponseData: Codable {
         var id: Int
         var name: String
         var gender: CharacterGenderInfo
@@ -165,43 +170,53 @@ extension SCCharacterProfile {
         var average_item_level: Int
         var equipped_item_level: Int
         var active_title: CharacterActiveTitleInfo?
+        var covenant_progress: CovenantProgressInfo?
     }
     
-    struct CharacterGenderInfo: Codable {
+    private struct CharacterGenderInfo: Codable {
         var type: String
         var name: String
     }
     
-    struct CharacterFactionInfo: Codable {
+    private struct CharacterFactionInfo: Codable {
         var type: String
         var name: String
     }
     
-    struct CharacterRaceInfo: Codable {
+    private struct CharacterRaceInfo: Codable {
         var name: String
         var id: Int
     }
     
-    struct CharacterClassInfo: Codable {
+    private struct CharacterClassInfo: Codable {
         var name: String
         var id: Int
     }
     
-    struct CharacterActiveSpec: Codable {
+    private struct CharacterActiveSpec: Codable {
         var name: String
         var id: Int
     }
     
-    struct CharacterGuildInfo: Codable {
+    private struct CharacterGuildInfo: Codable {
         var name: String
         var id: Int
         var faction: CharacterFactionInfo
         
     }
     
-    struct CharacterActiveTitleInfo: Codable {
+    private struct CharacterActiveTitleInfo: Codable {
         var name: String
         var display_string: String
         var id: Int
+    }
+    
+    private struct CovenantProgressInfo: Codable {
+        var chosen_covenant: ChosenCovenantInfo?
+        var renown_level: Int16?
+    }
+    
+    private struct ChosenCovenantInfo: Codable {
+        var name: String
     }
 }

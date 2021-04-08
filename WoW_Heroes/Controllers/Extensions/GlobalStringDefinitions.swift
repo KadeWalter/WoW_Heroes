@@ -38,6 +38,12 @@ let shamanHex = "#0070DE"
 let warlockHex = "#8787ED"
 let warriorHex = "#C79C6E"
 
+// MARK: - Covenant Colors
+let kyrianHex = "#60C2FF"
+let nightfaeHex = "#5C88C9"
+let necrolordHex = "#488D69"
+let venthyrHex = "#4E0B11"
+
 // MARK: - Achievement and Encounter Text Colors
 let achievementLightModeYellowHex = "#b8b209"
 let achievementDarkModeYellowHex = "#e0d904"

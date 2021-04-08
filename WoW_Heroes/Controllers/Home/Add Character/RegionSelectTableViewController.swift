@@ -10,9 +10,9 @@ import UIKit
 
 class RegionSelectTableViewController: UITableViewController {
     
-    var addCharacterDelegate: CharacterAddedDelegate?
-    var tableModel: [RegionSelectTableModel] = []
-    let cellReuseIdentifier = "RegionSelectTableViewCell"
+    weak var addCharacterDelegate: CharacterAddedDelegate?
+    private var tableModel: [RegionSelectTableModel] = []
+    private let cellReuseIdentifier = "RegionSelectTableViewCell"
     
     init() {
         super.init(style: .grouped)
@@ -70,7 +70,7 @@ extension RegionSelectTableViewController: CharacterAddedDelegate {
 
 // MARK: - TableModel
 extension RegionSelectTableViewController {
-    struct RegionSelectTableModel {
+    private struct RegionSelectTableModel {
         var region: String
     }
 }

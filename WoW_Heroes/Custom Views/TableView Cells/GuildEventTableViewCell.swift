@@ -12,9 +12,9 @@ class GuildEventTableViewCell: UITableViewCell {
 
     static let identifier = String(describing: GuildEventTableViewCell.self)
 
-    lazy var messageLabel = lazyMessageLabel()
-    lazy var eventLabel = lazyEventLabel()
-    lazy var stackView = lazyStackView()
+    private lazy var messageLabel = lazyMessageLabel()
+    private lazy var eventLabel = lazyEventLabel()
+    private lazy var stackView = lazyStackView()
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)

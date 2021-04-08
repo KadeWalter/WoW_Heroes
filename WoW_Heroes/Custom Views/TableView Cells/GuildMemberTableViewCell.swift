@@ -12,12 +12,12 @@ class GuildMemberTableViewCell: UITableViewCell {
 
     static let identifier = String(describing: GuildMemberTableViewCell.self)
 
-    lazy var nameLabel = lazyLabel()
-    lazy var classLabel = lazyLabel()
-    lazy var levelLabel = lazyLabel()
-    lazy var rankLabel = lazyLabel()
-    lazy var stackView = lazyStackView()
-    lazy var classRankLevelStackView = lazyClassRankLevelStackView()
+    private lazy var nameLabel = lazyLabel()
+    private lazy var classLabel = lazyLabel()
+    private lazy var levelLabel = lazyLabel()
+    private lazy var rankLabel = lazyLabel()
+    private lazy var stackView = lazyStackView()
+    private lazy var classRankLevelStackView = lazyClassRankLevelStackView()
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)

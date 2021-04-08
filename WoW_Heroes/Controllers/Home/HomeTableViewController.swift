@@ -12,10 +12,10 @@ import CoreData
 class HomeTableViewController: UITableViewController {
     
     private var tableModel: [HomeTableModel] = []
-    var allCharacters: [Character] = []
-    var otherCharacters: [Character] = []
-    var selectedCharacter: Character?
-    var loadingMask: LoadingSpinnerViewController?
+    private var allCharacters: [Character] = []
+    private var otherCharacters: [Character] = []
+    private var selectedCharacter: Character?
+    private var loadingMask: LoadingSpinnerViewController?
     
     init() {
         super.init(style: .grouped)
@@ -37,6 +37,15 @@ class HomeTableViewController: UITableViewController {
         
         // REMOVE THIS LATER. USE FOR DEVELOPMENT
         print(UserDefaultsHelper.getValue(forKey: udBlizzardAccessToken) ?? "")
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        if tableModel.count > 0, tableModel[0].rows.contains(.selectedCharactersGuild) {
+            tableView.beginUpdates()
+            tableView.reloadRows(at: [IndexPath(row: 1, section: 0)], with: .automatic)
+            tableView.endUpdates()
+        }
     }
     
     private func buildTableModel() {
@@ -140,7 +149,7 @@ extension HomeTableViewController {
     }
     
     override func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 44.0
+        return 100.0
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -149,6 +158,14 @@ extension HomeTableViewController {
         case .selectedCharacter:
             if let cell = tableView.dequeueReusableCell(withIdentifier: HomeScreenSelectedCharacterTableViewCell.identifier) as? HomeScreenSelectedCharacterTableViewCell, let character = selectedCharacter {
                 cell.updateCell(forCharacter: character)
+                cell.accessoryType = .disclosureIndicator
+                return cell
+            }
+        case .selectedCharactersGuild:
+            if let cell = tableView.dequeueReusableCell(withIdentifier: HomeScreenSelectedGuildTableViewCell.identifier) as? HomeScreenSelectedGuildTableViewCell, let character = selectedCharacter, let guild = character.guild {
+                let rosterCount = GuildRosterMember.fetchGuildRosterCount(forGuildId: guild.id, guildName: guild.name)
+                cell.updateCell(guild: guild, count: rosterCount)
+                cell.accessoryType = .disclosureIndicator
                 return cell
             }
         case .otherCharacter:
@@ -169,16 +186,22 @@ extension HomeTableViewController {
         return UITableViewCell()
     }
     
-    override func tableView(_ tableView: UITableView, shouldHighlightRowAt indexPath: IndexPath) -> Bool {
-        return !(tableModel[indexPath.section].section == .selectedCharacter)
-    }
-    
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         let section = tableModel[indexPath.section].section
         switch section {
         case .selectedCharacter:
-            // TODO: - Go To Selected Character Tab
+            switch tableModel[indexPath.section].rows[indexPath.row] {
+            case .selectedCharacter:
+                // TODO: - Go To Selected Character Tab
+                break
+            case .selectedCharactersGuild:
+                // TODO: - UPDATE THIS TO GO TO THE RIGHT TAB WHEN THE SELECTED CHARACTER TAB IS ADDED
+                self.tabBarController?.selectedIndex = 1
+                break
+            default:
+                break
+            }
             break
         case .otherCharacters:
             // set the character that corresponds to the selected row as the selected character
@@ -248,6 +271,7 @@ extension HomeTableViewController {
     private func registerTableViewCells() {
         tableView.register(OtherCharacterTableViewCell.self, forCellReuseIdentifier: OtherCharacterTableViewCell.identifier)
         tableView.register(HomeScreenSelectedCharacterTableViewCell.self, forCellReuseIdentifier: HomeScreenSelectedCharacterTableViewCell.identifier)
+        tableView.register(HomeScreenSelectedGuildTableViewCell.self, forCellReuseIdentifier: HomeScreenSelectedGuildTableViewCell.identifier)
     }
 }
 
@@ -266,6 +290,7 @@ extension HomeTableViewController {
     
     private enum RowType: Int {
         case selectedCharacter
+        case selectedCharactersGuild
         case otherCharacter
         case updateSelectedCharacter
         case updateAllCharacters
@@ -285,10 +310,14 @@ extension HomeTableViewController {
     }
     
     private func getRowsForSelectedCharacter() -> [RowType] {
+        var rows: [RowType] = []
         if selectedCharacter != nil {
-            return [.selectedCharacter]
+            rows.append(.selectedCharacter)
         }
-        return []
+        if selectedCharacter?.guild != nil {
+            rows.append(.selectedCharactersGuild)
+        }
+        return rows
     }
     
     private func getRowsForOtherCharacters() -> [RowType] {

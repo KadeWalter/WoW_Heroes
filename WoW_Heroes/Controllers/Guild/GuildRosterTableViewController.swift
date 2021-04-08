@@ -10,12 +10,10 @@ import UIKit
 
 class GuildRosterTableViewController: UITableViewController {
     
-    // TODO: ADD Pull to refresh to update the roster
-    
     private var tableModel: [RosterTableModel] = []
-    var guild: Guild
-    var guildRoster: [GuildRosterMember]?
-    var loadingMask: LoadingSpinnerViewController?
+    private var guild: Guild
+    private var guildRoster: [GuildRosterMember]?
+    private var loadingMask: LoadingSpinnerViewController?
     
     init(withTitle title: String, guild: Guild) {
         self.guild = guild
@@ -77,6 +75,7 @@ class GuildRosterTableViewController: UITableViewController {
                     let alert = UIAlertController(title: self.localizedError(), message: self.localizedErrorRetrievingMessage(), preferredStyle: .alert)
                     alert.addOkayButton() { _ in
                         self.endRefreshing()
+                        self.navigationController?.popViewController(animated: true)
                     }
                     alert.presentAlert(forViewController: self)
                 }
@@ -132,12 +131,12 @@ extension GuildRosterTableViewController {
         var rows: [RowType]
     }
     
-    enum SectionType: Int {
+    private enum SectionType: Int {
         case memberCount
         case characters
     }
     
-    enum RowType {
+    private enum RowType {
         case memberCountRow
         case characterRow
     }

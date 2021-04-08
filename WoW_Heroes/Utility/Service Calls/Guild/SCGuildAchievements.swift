@@ -69,16 +69,16 @@ class SCGuildAchievements {
 }
 
 extension SCGuildAchievements {
-    struct GuildAchievementResponseData: Codable {
+    private struct GuildAchievementResponseData: Codable {
         var recent_events: [GuildAchievementData]
     }
     
-    struct GuildAchievementData: Codable {
+    private struct GuildAchievementData: Codable {
         var achievement: AchievementData
         var timestamp: Int64
     }
     
-    struct AchievementData: Codable {
+    private struct AchievementData: Codable {
         var name: String
     }
 }

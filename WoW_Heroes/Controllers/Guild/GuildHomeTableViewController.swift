@@ -10,14 +10,14 @@ import UIKit
 
 class GuildHomeTableViewController: UITableViewController {
     
-    var selectedCharacter: Character?
-    var selectedGuild: Guild?
-    var guildName: String?
-    var encounters: [GuildEvent] = []
-    var characterAchievements: [GuildEvent] = []
-    var guildAchievements: [GuildAchievement] = []
+    private var selectedCharacter: Character?
+    private var selectedGuild: Guild?
+    private var guildName: String?
+    private var encounters: [GuildEvent] = []
+    private var characterAchievements: [GuildEvent] = []
+    private var guildAchievements: [GuildAchievement] = []
     private var tableModel: [GuildHomeTableModel] = []
-    var loadingMask: LoadingSpinnerViewController?
+    private var loadingMask: LoadingSpinnerViewController?
     
     init() {
         super.init(style: .grouped)
@@ -67,16 +67,15 @@ class GuildHomeTableViewController: UITableViewController {
         if selectedGuild == nil {
             tableModel.append(GuildHomeTableModel(sectionHeader: "", section: .noGuild, rows: [.noGuild]))
         } else {
-            // TODO: - Localize Strings
             tableModel.append(GuildHomeTableModel(sectionHeader: "", section: .rosterSection, rows: getRows(forSectionType: .rosterSection)))
             if characterAchievements.count > 0 {
-                tableModel.append(GuildHomeTableModel(sectionHeader: "Recent Achievements", section: .achievementSection, rows: getRows(forSectionType: .achievementSection)))
+                tableModel.append(GuildHomeTableModel(sectionHeader: localizedRecentAchievements(), section: .achievementSection, rows: getRows(forSectionType: .achievementSection)))
             }
             if encounters.count > 0 {
-                tableModel.append(GuildHomeTableModel(sectionHeader: "Recent Encounters", section: .encounterSection, rows: getRows(forSectionType: .encounterSection)))
+                tableModel.append(GuildHomeTableModel(sectionHeader: localizedRecentEncounters(), section: .encounterSection, rows: getRows(forSectionType: .encounterSection)))
             }
             if guildAchievements.count > 0 {
-                tableModel.append(GuildHomeTableModel(sectionHeader: "Recent Guild Achievements", section: .guildAchievementSection, rows: getRows(forSectionType: .guildAchievementSection)))
+                tableModel.append(GuildHomeTableModel(sectionHeader: localizedRecentGuildAchievements(), section: .guildAchievementSection, rows: getRows(forSectionType: .guildAchievementSection)))
             }
         }
         tableView.reloadData()
@@ -301,5 +300,17 @@ extension GuildHomeTableViewController {
     
     private func localizedErrorRetrievingMessage() -> String {
         return NSLocalizedString("Error Retrieving Events", tableName: "Guild", bundle: .main, value: "error message", comment: "error message")
+    }
+    
+    private func localizedRecentAchievements() -> String {
+        return NSLocalizedString("Recent Achievements", tableName: "Guild", bundle: .main, value: "recent achievements", comment: "recent achievements")
+    }
+    
+    private func localizedRecentEncounters() -> String {
+        return NSLocalizedString("Recent Encounters", tableName: "Guild", bundle: .main, value: "recent encounters", comment: "recent encounters")
+    }
+    
+    private func localizedRecentGuildAchievements() -> String {
+        return NSLocalizedString("Recent Guild Achievements", tableName: "Guild", bundle: .main, value: "recent guild achievements", comment: "recent guild achievements")
     }
 }

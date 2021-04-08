@@ -17,7 +17,6 @@ enum BlizzardApiNamespaceType: String {
 }
 
 class NetworkManager {
-    
     static let blizzardBaseApiUrl = "https://%@.api.blizzard.com"
 }
 

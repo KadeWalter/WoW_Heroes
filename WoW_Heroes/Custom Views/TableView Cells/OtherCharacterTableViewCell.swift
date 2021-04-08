@@ -12,11 +12,11 @@ class OtherCharacterTableViewCell: UITableViewCell {
     
     static let identifier = String(describing: OtherCharacterTableViewCell.self)
 
-    lazy var nameLabel = lazyLabel()
-    lazy var classLabel = lazyLabel()
-    lazy var levelLabel = lazyLabel()
-    lazy var stackView = lazyStackView()
-    lazy var classLevelStackView = lazyClassLevelStackView()
+    private lazy var nameLabel = lazyLabel()
+    private lazy var classLabel = lazyLabel()
+    private lazy var levelLabel = lazyLabel()
+    private lazy var stackView = lazyStackView()
+    private lazy var classLevelStackView = lazyClassLevelStackView()
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)

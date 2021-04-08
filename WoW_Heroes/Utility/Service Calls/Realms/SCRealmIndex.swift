@@ -84,11 +84,11 @@ final class SCRealmIndex {
 
 // Structs for decoding realms.
 extension SCRealmIndex {
-    struct Realms: Codable {
+    private struct Realms: Codable {
         var realms: [RealmData]
     }
     
-    struct RealmData: Codable {
+    private struct RealmData: Codable {
         var name: String
         var id: Int32
         var slug: String

@@ -16,6 +16,7 @@ class Character: WHNSManagedObject {
     @NSManaged var activeSpec: String
     @NSManaged var activeTitle: String?
     @NSManaged var averageIlvl: Int16
+    @NSManaged var covenantName: String
     @NSManaged var equippedIlvl: Int16
     @NSManaged var faction: String
     @NSManaged var gender: String
@@ -27,6 +28,7 @@ class Character: WHNSManagedObject {
     @NSManaged var characterClass: CharacterClass
     @NSManaged var guild: Guild?
     @NSManaged var realm: Realm
+    @NSManaged var renownLevel: Int16
     
     override class func identifier() -> String {
         return String(describing: self)
@@ -137,6 +139,7 @@ extension Character {
         self.activeSpec = character.activeSpec
         self.activeTitle = character.activeTitle
         self.averageIlvl = character.averageIlvl
+        self.covenantName = character.covenantName
         self.equippedIlvl = character.equippedIlvl
         self.faction = character.faction
         self.gender = character.gender
@@ -145,5 +148,6 @@ extension Character {
         self.name = character.name
         self.race = character.race
         self.isSelectedCharacter = character.isSelectedCharacter
+        self.renownLevel = character.renownLevel
     }
 }

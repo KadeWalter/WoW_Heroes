@@ -15,12 +15,12 @@ protocol CharacterAddedDelegate: class {
 class AddCharacterTableViewController: UITableViewController {
     
     weak var addCharacterDelegate: CharacterAddedDelegate?
-    var tableModel: [AddCharacterTableModelRows]
-    let region: String
-    var realms: [Realm] = []
-    var characterName: String?
-    var selectedRealm: Realm?
-    var loadingMask: LoadingSpinnerViewController?
+    private var tableModel: [AddCharacterTableModelRows]
+    private let region: String
+    private var realms: [Realm] = []
+    private var characterName: String?
+    private var selectedRealm: Realm?
+    private var loadingMask: LoadingSpinnerViewController?
     
     init(region: String) {
         self.tableModel = []
@@ -223,20 +223,20 @@ extension AddCharacterTableViewController {
 
 // MARK: - Add Character Table Model
 extension AddCharacterTableViewController {
-    struct AddCharacterTableModelRows {
+    private struct AddCharacterTableModelRows {
         var placeholder: String?
         var textValue: String?
         var rowType: RowTypes
         var rowIdentifier: RowIdentifiers?
     }
     
-    enum RowTypes: Int {
+    private enum RowTypes: Int {
         case Name = 0
         case Realm
         case RealmPicker
     }
     
-    enum RowIdentifiers: String {
+    private enum RowIdentifiers: String {
         case Name = "NameRow"
         case Realm = "RealmRow"
     }

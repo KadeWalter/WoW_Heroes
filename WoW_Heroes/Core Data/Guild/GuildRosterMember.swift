@@ -67,6 +67,23 @@ extension GuildRosterMember {
         }
     }
     
+    class func fetchGuildRosterCount(forGuildId id: Int64, guildName: String) -> Int {
+        return fetchGuildRosterCount(forGuildId: id, guildName: guildName, context: WHNSManagedObject.WHManagedObjectContext())
+    }
+    
+    class func fetchGuildRosterCount(forGuildId id: Int64, guildName: String, context: NSManagedObjectContext) -> Int {
+        let predicate = NSPredicate(format: "guild.id == %d AND guild.name == %@", id, guildName)
+        do {
+            let request = NSFetchRequest<GuildRosterMember>(entityName: GuildRosterMember.identifier())
+            request.predicate = predicate
+            
+            let roster = try context.fetch(request)
+            return roster.count
+        } catch {
+            return 0
+        }
+    }
+    
     class func deleteRoster(forGuild guild: Guild) {
         deleteRoster(forGuild: guild, context: WHNSManagedObject.WHManagedObjectContext())
     }

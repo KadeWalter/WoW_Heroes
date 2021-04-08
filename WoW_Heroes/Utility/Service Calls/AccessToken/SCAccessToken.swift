@@ -83,7 +83,7 @@ final class SCAccessToken {
 }
 
 extension SCAccessToken {
-    struct AccessToken: Codable {
+    private struct AccessToken: Codable {
         var token_type: String
         var access_token: String
         var expires_in: TimeInterval

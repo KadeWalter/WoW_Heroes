@@ -13,18 +13,19 @@ class HomeScreenSelectedCharacterTableViewCell: UITableViewCell {
     static let identifier = String(describing: HomeScreenSelectedCharacterTableViewCell.self)
 
     // Labels
-    lazy var nameLabel = lazyCharacterNameLabel()
-    lazy var guildLabel = lazyGuildLabel()
-    lazy var levelClassLabel = lazyLabel()
-    lazy var raceLabel = lazyLabel()
-    lazy var equippedIlvlLabel = lazyLabel()
-    lazy var achievementPointsLabel = lazyLabel()
-    lazy var realmLabel = lazyLabel()
+    private lazy var nameLabel = lazyCharacterNameLabel()
+    private lazy var realmLabel = lazyLabel()
+    private lazy var levelLabel = lazyLabel()
+    private lazy var classLabel = lazyLabel()
+    private lazy var raceLabel = lazyLabel()
+    private lazy var covenantLabel = lazyLabel()
+    private lazy var equippedIlvlLabel = lazyLabel()
+    private lazy var achievementPointsLabel = lazyLabel()
     
     // StackViews
-    lazy var stackView = lazyOverallVerticalStack()
-    lazy var topStackView = lazyTopVerticalStack()
-    lazy var bottomStackView = lazyBottomVerticalStack()
+    private lazy var stackView = lazyOverallVerticalStack()
+    private lazy var topStackView = lazyTopVerticalStack()
+    private lazy var bottomStackView = lazyBottomVerticalStack()
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -36,23 +37,18 @@ class HomeScreenSelectedCharacterTableViewCell: UITableViewCell {
     }
     
     func updateCell(forCharacter character: Character) {
+        // Update all the text on the selected character cell
         nameLabel.text = getNameString(characterName: character.name, title: character.activeTitle)
-        guildLabel.text = getGuildString(guildName: character.guild?.name)
         realmLabel.attributedText = getRealmString(realmName: character.realm.name, faction: character.faction)
-        levelClassLabel.attributedText = getClassString(level: character.level, spec: character.activeSpec, className: character.characterClass.name)
+        levelLabel.text = String(format: "%@ %d", localizedLevel(), character.level)
+        classLabel.attributedText = getClassString(spec: character.activeSpec, className: character.characterClass.name)
         raceLabel.text = String(format: "%@ %@", character.gender, character.race)
+        covenantLabel.text = String(format: "%@: Renown %d", character.covenantName, character.renownLevel)
+        
         equippedIlvlLabel.text = String(format: "%@: %d", localizedEquippedIlvl(), character.equippedIlvl)
         achievementPointsLabel.text = String(format: "%@: %d", localizedAchievePoints(), character.achievementPoints)
         
         layoutIfNeeded()
-    }
-    
-    private func getGuildString(guildName: String?) -> String {
-        var guild = ""
-        if let guildName = guildName, !guildName.isEmpty {
-            guild = "<\(guildName)>"
-        }
-        return guild
     }
     
     private func getNameString(characterName: String, title: String?) -> String {
@@ -75,12 +71,10 @@ class HomeScreenSelectedCharacterTableViewCell: UITableViewCell {
         return combination
     }
     
-    private func getClassString(level: Int16, spec: String, className: String) -> NSMutableAttributedString {
-        let levelString: NSMutableAttributedString = NSMutableAttributedString(string: String(format: "%@ %d ", localizedLevel(), level))
+    private func getClassString(spec: String, className: String) -> NSMutableAttributedString {
         let attrs: [NSAttributedString.Key : Any] = [.foregroundColor : CharacterClass.getColor(forClass: Classes.getClass(fromClass: className)), .font : UIFont.boldSystemFont(ofSize: 14.0)]
         let classString: NSMutableAttributedString = NSMutableAttributedString(string: String(format: "%@ %@", spec, className), attributes: attrs)
         let combination: NSMutableAttributedString = NSMutableAttributedString()
-        combination.append(levelString)
         combination.append(classString)
         return combination
     }
@@ -89,12 +83,11 @@ class HomeScreenSelectedCharacterTableViewCell: UITableViewCell {
         let guide = contentView.layoutMarginsGuide
         
         topStackView.addArrangedSubview(nameLabel)
-//        if let guildText = guildLabel.text, !guildText.isEmpty {
-            topStackView.addArrangedSubview(guildLabel)
-//        }
         topStackView.addArrangedSubview(realmLabel)
-        topStackView.addArrangedSubview(levelClassLabel)
+        topStackView.addArrangedSubview(levelLabel)
+        topStackView.addArrangedSubview(classLabel)
         topStackView.addArrangedSubview(raceLabel)
+        topStackView.addArrangedSubview(covenantLabel)
         
         bottomStackView.addArrangedSubview(equippedIlvlLabel)
         bottomStackView.addArrangedSubview(achievementPointsLabel)
@@ -127,16 +120,7 @@ extension HomeScreenSelectedCharacterTableViewCell {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.adjustsFontSizeToFitWidth = true
-        label.font = label.font.withSize(20.0)
-        label.numberOfLines = 1
-        return label
-    }
-    
-    private func lazyGuildLabel() -> UILabel {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.adjustsFontSizeToFitWidth = true
-        label.font = label.font.withSize(18.0)
+        label.font = label.font.withSize(21.0)
         label.numberOfLines = 1
         return label
     }

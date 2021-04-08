@@ -17,9 +17,9 @@ class RealmSelectPickerViewTableViewCell: UITableViewCell {
     static let identifier = String(describing: RealmSelectPickerViewTableViewCell.self)
     
     weak var realmPickerDelegate: RealmPickerViewValueUpdatedDelegate?
-    lazy var pickerView = lazyPickerView()
-    var realms: [Realm] = []
-    var indexPath: IndexPath? // IndexPath for the realm text field cell
+    private lazy var pickerView = lazyPickerView()
+    private var realms: [Realm] = []
+    private var indexPath: IndexPath? // IndexPath for the realm text field cell
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
