@@ -27,13 +27,13 @@ class GuildEvent: WHNSManagedObject {
 // MARK: - Character Achievement Fetch Functions
 extension GuildEvent {
     class func fetchCharacterAchievement(achievementName: String, characterName: String, type: String) -> GuildEvent? {
-        return fetchCharacterAchievement(achievementName: achievementName, characterName: characterName, type: type, context: WHNSManagedObject.WHManagedObjectContext())
+        return fetchCharacterAchievement(achievementName: achievementName, characterName: characterName, type: type, context: self.WHManagedObjectContext())
     }
     
     class func fetchCharacterAchievement(achievementName: String, characterName: String, type: String, context: NSManagedObjectContext) -> GuildEvent? {
         let predicate = NSPredicate(format: "eventName == %@ AND character == %@ AND type == %@", achievementName, characterName, type)
         do {
-            let request = NSFetchRequest<GuildEvent>(entityName: GuildEvent.identifier())
+            let request = NSFetchRequest<GuildEvent>(entityName: self.identifier())
             request.predicate = predicate
             
             let achievements = try context.fetch(request)
@@ -47,13 +47,13 @@ extension GuildEvent {
     }
     
     class func fetchCharacterAchievements(forGuild guild: Guild) -> [GuildEvent] {
-        return fetchCharacterAchievements(forGuild: guild, context: WHNSManagedObject.WHManagedObjectContext())
+        return fetchCharacterAchievements(forGuild: guild, context: self.WHManagedObjectContext())
     }
     
     class func fetchCharacterAchievements(forGuild guild: Guild, context: NSManagedObjectContext) -> [GuildEvent] {
         let predicate = NSPredicate(format: "guild.name == %@ AND type == %@", guild.name, GuildEventTypes.CharacterAchievement.rawValue)
         do {
-            let request = NSFetchRequest<GuildEvent>(entityName: GuildEvent.identifier())
+            let request = NSFetchRequest<GuildEvent>(entityName: self.identifier())
             request.predicate = predicate
             request.fetchLimit = 10
             
@@ -71,13 +71,13 @@ extension GuildEvent {
 // MARK: - Encounter Fetch Functions
 extension GuildEvent {
     class func fetchEncounter(encounterName: String, difficulty: String, type: String) -> GuildEvent? {
-        return fetchEncounter(encounterName: encounterName, difficulty: difficulty, type: type, context: WHNSManagedObject.WHManagedObjectContext())
+        return fetchEncounter(encounterName: encounterName, difficulty: difficulty, type: type, context: self.WHManagedObjectContext())
     }
     
     class func fetchEncounter(encounterName: String, difficulty: String, type: String, context: NSManagedObjectContext) -> GuildEvent? {
         let predicate = NSPredicate(format: "eventName == %@ AND difficulty == %@ AND type == %@", encounterName, difficulty, type)
         do {
-            let request = NSFetchRequest<GuildEvent>(entityName: GuildEvent.identifier())
+            let request = NSFetchRequest<GuildEvent>(entityName: self.identifier())
             request.predicate = predicate
             
             let encounters = try context.fetch(request)
@@ -91,13 +91,13 @@ extension GuildEvent {
     }
     
     class func fetchEncounters(forGuild guild: Guild) -> [GuildEvent] {
-        return fetchEncounters(forGuild: guild, context: WHNSManagedObject.WHManagedObjectContext())
+        return fetchEncounters(forGuild: guild, context: self.WHManagedObjectContext())
     }
     
     class func fetchEncounters(forGuild guild: Guild, context: NSManagedObjectContext) -> [GuildEvent] {
         let predicate = NSPredicate(format: "guild.name == %@ AND type == %@", guild.name, GuildEventTypes.Encounter.rawValue)
         do {
-            let request = NSFetchRequest<GuildEvent>(entityName: GuildEvent.identifier())
+            let request = NSFetchRequest<GuildEvent>(entityName: self.identifier())
             request.predicate = predicate
             request.fetchLimit = 10
             

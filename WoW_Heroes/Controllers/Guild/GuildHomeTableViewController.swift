@@ -40,6 +40,7 @@ class GuildHomeTableViewController: UITableViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         selectedCharacter = Character.fetchSelectedCharacter()
         selectedGuild = selectedCharacter?.guild
         if let guild = selectedGuild, let realm = selectedCharacter?.realm {

@@ -26,13 +26,13 @@ class GuildRosterMember: WHNSManagedObject {
 // MARK: - Fetch Functions
 extension GuildRosterMember {
     class func fetchGuildMember(withName name: String, guildName: String) -> GuildRosterMember? {
-        return fetchGuildMember(withName: name, guildName: guildName, context: WHNSManagedObject.WHManagedObjectContext())
+        return fetchGuildMember(withName: name, guildName: guildName, context: self.WHManagedObjectContext())
     }
     
     class func fetchGuildMember(withName name: String, guildName: String, context: NSManagedObjectContext) -> GuildRosterMember? {
         let predicate = NSPredicate(format: "name == %@ AND guild.name == %@", name, guildName)
         do {
-            let request = NSFetchRequest<GuildRosterMember>(entityName: GuildRosterMember.identifier())
+            let request = NSFetchRequest<GuildRosterMember>(entityName: self.identifier())
             request.predicate = predicate
             
             let roster = try context.fetch(request)
@@ -46,13 +46,13 @@ extension GuildRosterMember {
     }
     
     class func fetchGuildMembers(withGuildId id: Int64, guildName: String) -> [GuildRosterMember]? {
-        return fetchGuildMembers(withGuildId: id, guildName: guildName, context: WHNSManagedObject.WHManagedObjectContext())
+        return fetchGuildMembers(withGuildId: id, guildName: guildName, context: self.WHManagedObjectContext())
     }
     
     class func fetchGuildMembers(withGuildId id: Int64, guildName: String, context: NSManagedObjectContext) -> [GuildRosterMember]? {
         let predicate = NSPredicate(format: "guild.id == %d AND guild.name == %@", id, guildName)
         do {
-            let request = NSFetchRequest<GuildRosterMember>(entityName: GuildRosterMember.identifier())
+            let request = NSFetchRequest<GuildRosterMember>(entityName: self.identifier())
             request.predicate = predicate
             
             let sortByRank = NSSortDescriptor(key: "rank", ascending: true)
@@ -68,13 +68,13 @@ extension GuildRosterMember {
     }
     
     class func fetchGuildRosterCount(forGuildId id: Int64, guildName: String) -> Int {
-        return fetchGuildRosterCount(forGuildId: id, guildName: guildName, context: WHNSManagedObject.WHManagedObjectContext())
+        return fetchGuildRosterCount(forGuildId: id, guildName: guildName, context: self.WHManagedObjectContext())
     }
     
     class func fetchGuildRosterCount(forGuildId id: Int64, guildName: String, context: NSManagedObjectContext) -> Int {
         let predicate = NSPredicate(format: "guild.id == %d AND guild.name == %@", id, guildName)
         do {
-            let request = NSFetchRequest<GuildRosterMember>(entityName: GuildRosterMember.identifier())
+            let request = NSFetchRequest<GuildRosterMember>(entityName: self.identifier())
             request.predicate = predicate
             
             let roster = try context.fetch(request)
@@ -85,14 +85,14 @@ extension GuildRosterMember {
     }
     
     class func deleteRoster(forGuild guild: Guild) {
-        deleteRoster(forGuild: guild, context: WHNSManagedObject.WHManagedObjectContext())
+        deleteRoster(forGuild: guild, context: self.WHManagedObjectContext())
     }
     
     class func deleteRoster(forGuild guild: Guild, context: NSManagedObjectContext) {
         context.performAndWait {
             let predicate = NSPredicate(format: "guild.id == %d AND guild.name == %@", guild.id, guild.name)
             do {
-                let request = NSFetchRequest<GuildRosterMember>(entityName: GuildRosterMember.identifier())
+                let request = NSFetchRequest<GuildRosterMember>(entityName: self.identifier())
                 request.predicate = predicate
                 let results = try context.fetch(request)
                 for managedObject in results {

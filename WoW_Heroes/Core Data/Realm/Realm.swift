@@ -27,13 +27,13 @@ class Realm: WHNSManagedObject {
 // MARK: - Fetch and Delete Functions
 extension Realm {
     class func fetchRealm(withId id: Int, region: String) -> Realm? {
-        return fetchRealm(withId: id, region: region, context: WHNSManagedObject.WHManagedObjectContext())
+        return fetchRealm(withId: id, region: region, context: self.WHManagedObjectContext())
     }
     
     class func fetchRealm(withId id: Int, region: String, context: NSManagedObjectContext) -> Realm? {
         let predicate = NSPredicate(format: "id == %d AND region == %@", id, region)
         do {
-            let request = NSFetchRequest<Realm>(entityName: Realm.identifier())
+            let request = NSFetchRequest<Realm>(entityName: self.identifier())
             request.predicate = predicate
             
             let realms = try context.fetch(request)

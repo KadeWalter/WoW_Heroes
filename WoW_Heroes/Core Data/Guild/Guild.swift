@@ -27,13 +27,13 @@ class Guild: WHNSManagedObject {
 // MARK: - Fetch Functions
 extension Guild {
     class func fetchGuild(withId id: Int64, name: String) -> Guild? {
-        return fetchGuild(withId: id, name: name, context: WHNSManagedObject.WHManagedObjectContext())
+        return fetchGuild(withId: id, name: name, context: self.WHManagedObjectContext())
     }
     
     class func fetchGuild(withId id: Int64, name: String, context: NSManagedObjectContext) -> Guild? {
         let predicate = NSPredicate(format: "id == %d AND name == %@", id, name)
         do {
-            let request = NSFetchRequest<Guild>(entityName: Guild.identifier())
+            let request = NSFetchRequest<Guild>(entityName: self.identifier())
             request.predicate = predicate
             
             let guilds = try context.fetch(request)

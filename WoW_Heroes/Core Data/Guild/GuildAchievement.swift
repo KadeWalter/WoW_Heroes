@@ -24,13 +24,13 @@ class GuildAchievement: WHNSManagedObject {
 // MARK: - Character Achievement Fetch Functions
 extension GuildAchievement {
     class func fetchGuildAchievement(achievementName: String) -> GuildAchievement? {
-        return fetchGuildAchievement(achievementName: achievementName, context: WHNSManagedObject.WHManagedObjectContext())
+        return fetchGuildAchievement(achievementName: achievementName, context: self.WHManagedObjectContext())
     }
     
     class func fetchGuildAchievement(achievementName: String, context: NSManagedObjectContext) -> GuildAchievement? {
         let predicate = NSPredicate(format: "name == %@", achievementName)
         do {
-            let request = NSFetchRequest<GuildAchievement>(entityName: GuildAchievement.identifier())
+            let request = NSFetchRequest<GuildAchievement>(entityName: self.identifier())
             request.predicate = predicate
             
             let achievements = try context.fetch(request)
@@ -44,13 +44,13 @@ extension GuildAchievement {
     }
     
     class func fetchGuildAchievements(forGuild guild: Guild) -> [GuildAchievement] {
-        return fetchGuildAchievements(forGuild: guild, context: WHNSManagedObject.WHManagedObjectContext())
+        return fetchGuildAchievements(forGuild: guild, context: self.WHManagedObjectContext())
     }
     
     class func fetchGuildAchievements(forGuild guild: Guild, context: NSManagedObjectContext) -> [GuildAchievement] {
         let predicate = NSPredicate(format: "guild.name == %@", guild.name)
         do {
-            let request = NSFetchRequest<GuildAchievement>(entityName: GuildAchievement.identifier())
+            let request = NSFetchRequest<GuildAchievement>(entityName: self.identifier())
             request.predicate = predicate
             request.fetchLimit = 10
             

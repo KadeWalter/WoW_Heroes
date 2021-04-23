@@ -59,13 +59,13 @@ extension CharacterClass {
 // MARK: - Fetch Functions
 extension CharacterClass {
     class func fetchCharacterClass(withId id: Int16) -> CharacterClass? {
-        return fetchCharacterClass(withId: id, context: WHNSManagedObject.WHManagedObjectContext())
+        return fetchCharacterClass(withId: id, context: self.WHManagedObjectContext())
     }
     
     class func fetchCharacterClass(withId id: Int16, context: NSManagedObjectContext) -> CharacterClass? {
         let predicate = NSPredicate(format: "id == %d", id)
         do {
-            let request = NSFetchRequest<CharacterClass>(entityName: CharacterClass.identifier())
+            let request = NSFetchRequest<CharacterClass>(entityName: self.identifier())
             request.predicate = predicate
             
             let charClasses = try context.fetch(request)
@@ -80,12 +80,12 @@ extension CharacterClass {
     }
     
     class func fetchAllCharacterClasses() -> [CharacterClass]? {
-        return fetchAllCharacterClasses(context: WHNSManagedObject.WHManagedObjectContext())
+        return fetchAllCharacterClasses(context: self.WHManagedObjectContext())
     }
     
     class func fetchAllCharacterClasses(context: NSManagedObjectContext) -> [CharacterClass]? {
         do {
-            let request = NSFetchRequest<CharacterClass>(entityName: CharacterClass.identifier())
+            let request = NSFetchRequest<CharacterClass>(entityName: self.identifier())
             
             let charClasses = try context.fetch(request)
             return charClasses

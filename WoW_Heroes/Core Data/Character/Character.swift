@@ -38,13 +38,13 @@ class Character: WHNSManagedObject {
 // MARK: - Fetch Functions
 extension Character {
     class func fetchCharacter(withId id: Int64, name: String) -> Character? {
-        return fetchCharacter(withId: id, name: name, context: WHNSManagedObject.WHManagedObjectContext())
+        return fetchCharacter(withId: id, name: name, context: self.WHManagedObjectContext())
     }
     
     class func fetchCharacter(withId id: Int64, name: String, context: NSManagedObjectContext) -> Character? {
         let predicate = NSPredicate(format: "id == %d AND name == %@", id, name)
         do {
-            let request = NSFetchRequest<Character>(entityName: Character.identifier())
+            let request = NSFetchRequest<Character>(entityName: self.identifier())
             request.predicate = predicate
             
             let chars = try context.fetch(request)
@@ -59,7 +59,7 @@ extension Character {
     }
     
     class func fetchSelectedCharacter() -> Character? {
-        return fetchSelectedCharacter(context: WHNSManagedObject.WHManagedObjectContext())
+        return fetchSelectedCharacter(context: self.WHManagedObjectContext())
     }
     
     class func fetchSelectedCharacter(context: NSManagedObjectContext) -> Character? {
@@ -99,7 +99,7 @@ extension Character {
     }
     
     class func deleteCharacter(withCharacter character: Character) {
-        deleteCharacter(withCharacter: character, context: WHNSManagedObject.WHManagedObjectContext())
+        deleteCharacter(withCharacter: character, context: self.WHManagedObjectContext())
     }
     
     class func deleteCharacter(withCharacter character: Character, context: NSManagedObjectContext) {
@@ -114,7 +114,7 @@ extension Character {
     }
     
     class func setIsSelected(forCharacters characters: [Character], isSelected: Bool) {
-        setIsSelected(forCharacters: characters, isSelected: isSelected, context: WHNSManagedObject.WHManagedObjectContext())
+        setIsSelected(forCharacters: characters, isSelected: isSelected, context: self.WHManagedObjectContext())
     }
     
     class func setIsSelected(forCharacters characters: [Character], isSelected: Bool, context: NSManagedObjectContext) {
