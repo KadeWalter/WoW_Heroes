@@ -26,6 +26,14 @@ class Realm: WHNSManagedObject {
 
 // MARK: - Fetch and Delete Functions
 extension Realm {
+    
+    /**
+     Fetch a specific realm.
+     
+     - Parameter id: Id for the realm.
+     - Parameter region: Region for the realm.
+     - Returns the realm if it exists. Otherwise returns nil.
+     */
     class func fetchRealm(withId id: Int, region: String) -> Realm? {
         return fetchRealm(withId: id, region: region, context: self.WHManagedObjectContext())
     }
@@ -47,7 +55,12 @@ extension Realm {
         }
     }
     
-    // Get All Realms For A Region
+    /**
+     Fetch all realms for a given region.
+     
+     - Parameter region: The region to get realms for.
+     - Returns an array of realms for the region.
+     */
     class func fetchAllRealms(forRegion region: String) -> [Realm] {
         return fetchAllRealms(forRegion: region, context: WHNSManagedObject.WHManagedObjectContext())
     }

@@ -1,5 +1,5 @@
 //
-//  HomeScreenSelectedCharacterTableViewCell.swift
+//  SelectedCharacterTableViewCell.swift
 //  WoW_Heroes
 //
 //  Created by Kade Walter on 10/18/20.
@@ -8,9 +8,9 @@
 
 import UIKit
 
-class HomeScreenSelectedCharacterTableViewCell: UITableViewCell {
+class SelectedCharacterTableViewCell: UITableViewCell {
     
-    static let identifier = String(describing: HomeScreenSelectedCharacterTableViewCell.self)
+    static let identifier = String(describing: SelectedCharacterTableViewCell.self)
 
     // Labels
     private lazy var nameLabel = lazyCharacterNameLabel()
@@ -106,7 +106,7 @@ class HomeScreenSelectedCharacterTableViewCell: UITableViewCell {
     }
 }
 
-extension HomeScreenSelectedCharacterTableViewCell {
+extension SelectedCharacterTableViewCell {
     private func lazyLabel() -> UILabel {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false

@@ -21,15 +21,18 @@ class TabBarController: UITabBarController {
 		let homescreenVC = UINavigationController(rootViewController: HomeTableViewController())
 		homescreenVC.tabBarItem.image = UIImage(systemName: "paperplane.fill")
         
-        // create settings table view controller
-        let settingsVC = UINavigationController(rootViewController: SettingsTableViewController())
-        settingsVC.tabBarItem.image = UIImage(systemName: "video.fill")
-
+        let characterVC = UINavigationController(rootViewController: CharacterHomeTableViewController())
+        characterVC.tabBarItem.image = UIImage(systemName: "video.fill")
+        
         // create guild table view controller
         let guildVC = UINavigationController(rootViewController: GuildHomeTableViewController())
         guildVC.tabBarItem.image = UIImage(systemName: "video.fill")
         
+        // create settings table view controller
+        let settingsVC = UINavigationController(rootViewController: SettingsTableViewController())
+        settingsVC.tabBarItem.image = UIImage(systemName: "video.fill")
+        
 		// add view controllers to tab bar
-		viewControllers = [homescreenVC, guildVC, settingsVC]
+		viewControllers = [homescreenVC, characterVC, guildVC, settingsVC]
 	}
 }

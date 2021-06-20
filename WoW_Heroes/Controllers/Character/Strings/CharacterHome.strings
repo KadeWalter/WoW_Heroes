@@ -1,0 +1,17 @@
+/* 
+  CharacterHome.strings
+  WoW_Heroes
+
+  Created by Kade Walter on 6/19/21.
+  Copyright © 2021 Kade Walter. All rights reserved.
+*/
+
+"Character" = "Character";
+
+"Equipped Items" = "Equipped Items";
+
+"Statistics" = "Statistics";
+
+"Soulbinds" = "Soulbinds";
+
+"Professions" = "Professions";

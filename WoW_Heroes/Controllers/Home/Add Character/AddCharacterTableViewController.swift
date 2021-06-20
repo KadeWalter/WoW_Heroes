@@ -8,7 +8,7 @@
 
 import UIKit
 
-protocol CharacterAddedDelegate: class {
+protocol CharacterAddedDelegate: AnyObject {
     func characterAdded()
 }
 
@@ -130,35 +130,10 @@ extension AddCharacterTableViewController: TextFieldTableViewCellDelegate {
     }
 }
 
-// MARK: - Realm PickerView Functions
-extension AddCharacterTableViewController: RealmPickerViewValueUpdatedDelegate {
-    func pickerValueUpdated(indexPath: IndexPath, value: Realm) {
-        selectedRealm = value
-        updateRealmNameTextField(indexPath: indexPath, text: value.name)
-    }
-    
-    private func updateRealmNameTextField(indexPath: IndexPath, text: String) {
-        tableModel[indexPath.row].textValue = text
-        tableView.beginUpdates()
-        DispatchQueue.main.async {
-            self.tableView.reloadRows(at: [indexPath], with: .none)
-        }
-        tableView.endUpdates()
-    }
-    
-    private func showOrHideRealmPickerView(indexPath: IndexPath) {
-        // IndexPath is the index path for the realm text field cell.
-        tableView.beginUpdates()
-        if tableModel.indices.contains(indexPath.row + 1), tableModel[indexPath.row + 1].rowType == .RealmPicker {
-            // If the realm picker view is visible, remove it.
-            tableModel.remove(at: indexPath.row + 1)
-            tableView.deleteRows(at: [IndexPath(row: indexPath.row + 1, section: indexPath.section)], with: .fade)
-        } else {
-            // Otherwise add the realm picker view to the tableModel
-            tableModel.insert(AddCharacterTableModelRows(placeholder: nil, rowType: .RealmPicker, rowIdentifier: nil), at: indexPath.row + 1)
-            tableView.insertRows(at: [IndexPath(row: indexPath.row + 1, section: indexPath.section)], with: .fade)
-        }
-        tableView.endUpdates()
+// MARK: - Realm Selection Delegate Function
+extension AddCharacterTableViewController: RealmSelectionDelegate {
+    func realmSelected(realm: Realm) {
+        self.selectedRealm = realm
         tableView.reloadData()
     }
 }
@@ -184,7 +159,7 @@ extension AddCharacterTableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cellInfo = tableModel[indexPath.row]
         switch cellInfo.rowType {
-        case .Name, .Realm:
+        case .Name:
             if let cell = tableView.dequeueReusableCell(withIdentifier: TextFieldTableViewCell.identifier, for: indexPath) as? TextFieldTableViewCell {
                 cell.textField.placeholder = cellInfo.placeholder
                 cell.textFieldDelegate = self
@@ -195,10 +170,12 @@ extension AddCharacterTableViewController {
                 cell.selectionStyle = .none
                 return cell
             }
-        case .RealmPicker:
-            if let cell = tableView.dequeueReusableCell(withIdentifier: RealmSelectPickerViewTableViewCell.identifier, for: indexPath) as? RealmSelectPickerViewTableViewCell {
-                cell.updateCell(indexPath: IndexPath(row: indexPath.row - 1, section: indexPath.section), realmList: realms)
-                cell.realmPickerDelegate = self
+        case .Realm:
+            if let cell = tableView.dequeueReusableCell(withIdentifier: TextFieldTableViewCell.identifier) as? TextFieldTableViewCell {
+                cell.textField.placeholder = cellInfo.placeholder
+                cell.textField.isEnabled = false
+                cell.accessoryType = .disclosureIndicator
+                cell.textField.text = selectedRealm?.name ?? ""
                 return cell
             }
         }
@@ -207,16 +184,22 @@ extension AddCharacterTableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.resignFirstResponder()
-        // Editing the name text field
-        if let cell = tableView.cellForRow(at: indexPath) as? TextFieldTableViewCell, cell.rowIdentifier == RowIdentifiers.Name.rawValue {
-            if !cell.textField.isFirstResponder {
-                cell.textField.isUserInteractionEnabled = true
-                cell.textField.becomeFirstResponder()
+        tableView.deselectRow(at: indexPath, animated: true)
+        let rowType = tableModel[indexPath.row].rowType
+        switch rowType {
+        case .Name:
+            // Editing the name text field
+            if let cell = tableView.cellForRow(at: indexPath) as? TextFieldTableViewCell, cell.rowIdentifier == RowIdentifiers.Name.rawValue {
+                if !cell.textField.isFirstResponder {
+                    cell.textField.isUserInteractionEnabled = true
+                    cell.textField.becomeFirstResponder()
+                }
             }
-        }
-        // Select a realm
-        if let cell = tableView.cellForRow(at: indexPath) as? TextFieldTableViewCell, cell.rowIdentifier == RowIdentifiers.Realm.rawValue {
-            showOrHideRealmPickerView(indexPath: indexPath)
+        case .Realm:
+            // Go to the realm selection
+            let vc = RealmSelectionViewController(withRealms: self.realms)
+            vc.realmSelectionDelegate = self
+            self.navigationController?.pushViewController(vc, animated: true)
         }
     }
 }
@@ -231,9 +214,8 @@ extension AddCharacterTableViewController {
     }
     
     private enum RowTypes: Int {
-        case Name = 0
+        case Name
         case Realm
-        case RealmPicker
     }
     
     private enum RowIdentifiers: String {

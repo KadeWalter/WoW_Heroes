@@ -8,7 +8,7 @@
 
 import UIKit
 
-protocol TextFieldTableViewCellDelegate: class {
+protocol TextFieldTableViewCellDelegate: AnyObject {
     func didEndEditing(cell: TextFieldTableViewCell, text: String)
 }
 

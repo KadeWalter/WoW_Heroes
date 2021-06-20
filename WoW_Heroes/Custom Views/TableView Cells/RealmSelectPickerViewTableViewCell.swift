@@ -8,7 +8,7 @@
 
 import UIKit
 
-protocol RealmPickerViewValueUpdatedDelegate: class {
+protocol RealmPickerViewValueUpdatedDelegate: AnyObject {
     func pickerValueUpdated(indexPath: IndexPath, value: Realm)
 }
 

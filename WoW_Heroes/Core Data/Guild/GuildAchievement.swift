@@ -23,6 +23,13 @@ class GuildAchievement: WHNSManagedObject {
 
 // MARK: - Character Achievement Fetch Functions
 extension GuildAchievement {
+    
+    /**
+     Fetch a guild achievement
+     
+     - Parameter achievementName: Name for the achievement.
+     - Returns the achievement if it exists. Otherwise returns nil.
+     */
     class func fetchGuildAchievement(achievementName: String) -> GuildAchievement? {
         return fetchGuildAchievement(achievementName: achievementName, context: self.WHManagedObjectContext())
     }
@@ -43,6 +50,12 @@ extension GuildAchievement {
         }
     }
     
+    /**
+     Fetch all guild achievement
+     
+     - Parameter guild: Name of the guild to get achievements for.
+     - Returns an array of achievements.
+     */
     class func fetchGuildAchievements(forGuild guild: Guild) -> [GuildAchievement] {
         return fetchGuildAchievements(forGuild: guild, context: self.WHManagedObjectContext())
     }

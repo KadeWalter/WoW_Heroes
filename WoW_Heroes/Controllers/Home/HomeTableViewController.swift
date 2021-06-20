@@ -156,7 +156,7 @@ extension HomeTableViewController {
         let row = tableModel[indexPath.section].rows[indexPath.row]
         switch row {
         case .selectedCharacter:
-            if let cell = tableView.dequeueReusableCell(withIdentifier: HomeScreenSelectedCharacterTableViewCell.identifier) as? HomeScreenSelectedCharacterTableViewCell, let character = selectedCharacter {
+            if let cell = tableView.dequeueReusableCell(withIdentifier: SelectedCharacterTableViewCell.identifier) as? SelectedCharacterTableViewCell, let character = selectedCharacter {
                 cell.updateCell(forCharacter: character)
                 cell.accessoryType = .disclosureIndicator
                 return cell
@@ -193,11 +193,10 @@ extension HomeTableViewController {
         case .selectedCharacter:
             switch tableModel[indexPath.section].rows[indexPath.row] {
             case .selectedCharacter:
-                // TODO: - Go To Selected Character Tab
+                self.tabBarController?.selectedIndex = 1
                 break
             case .selectedCharactersGuild:
-                // TODO: - UPDATE THIS TO GO TO THE RIGHT TAB WHEN THE SELECTED CHARACTER TAB IS ADDED
-                self.tabBarController?.selectedIndex = 1
+                self.tabBarController?.selectedIndex = 2
                 break
             default:
                 break
@@ -270,7 +269,7 @@ extension HomeTableViewController {
     
     private func registerTableViewCells() {
         tableView.register(OtherCharacterTableViewCell.self, forCellReuseIdentifier: OtherCharacterTableViewCell.identifier)
-        tableView.register(HomeScreenSelectedCharacterTableViewCell.self, forCellReuseIdentifier: HomeScreenSelectedCharacterTableViewCell.identifier)
+        tableView.register(SelectedCharacterTableViewCell.self, forCellReuseIdentifier: SelectedCharacterTableViewCell.identifier)
         tableView.register(HomeScreenSelectedGuildTableViewCell.self, forCellReuseIdentifier: HomeScreenSelectedGuildTableViewCell.identifier)
     }
 }
