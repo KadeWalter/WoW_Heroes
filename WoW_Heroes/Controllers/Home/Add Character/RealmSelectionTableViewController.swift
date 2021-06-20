@@ -30,6 +30,7 @@ class RealmSelectionViewController: UIViewController {
         self.realms = realms
         super.init(nibName: nil, bundle: nil)
         self.title = localizedSelectARealm()
+        self.view.backgroundColor = .systemGroupedBackground
     }
     
     required init?(coder: NSCoder) {
